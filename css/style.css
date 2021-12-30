@@ -1,0 +1,458 @@
+:root {
+    --dino-top: 314px;
+    --dino-max-top: 20px;
+    --base-color: grey;
+    --cloud-color: #e2e2e2;
+    --day-color: white;
+    --night-color: black;
+}
+
+body {
+    margin: 0px;
+}
+
+#wrapper {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: var(--base-color);
+}
+
+#game-space {
+    height: 500px;
+    width: 100%;
+    top: 200px;
+    left: 0px;
+    position: absolute;
+    background-color: var(--day-color);
+    overflow: hidden;
+}
+
+@keyframes dino-move{
+    from {
+     left: 0%;
+    }
+    to {
+        left: 20%;
+    }
+}
+
+@keyframes dino-jump{
+    from {
+      top: var(--dino-top);
+      animation-timing-function: ease-out;
+    }
+    50% {
+       top: var(--dino-max-top);
+       animation-timing-function: ease-in;
+    }
+    to {
+        top: var(--dino-top);
+        animation-timing-function: ease-in;
+    }
+}
+
+@keyframes dino-incl{
+    from{
+        left: 0%;
+    }
+    to{
+        left: 20%;
+    }
+}
+
+
+/* @keyframes dino-jump{
+    from{
+      top: var(--dino-top);
+      animation-timing-function: cubic-bezier(0.33333, 0.66667, 0.66667, 1);
+    }
+    50%{
+       top: var(--dino-max-top);
+       animation-timing-function: cubic-bezier(0.33333, 0, 0.66667, 0.33333);
+    }
+    to{
+        top: var(--dino-top);
+        animation-timing-function: ease-in;
+    }
+} */
+
+#dino {
+    position: absolute;
+    left: 72px;
+    top: 314px;
+    z-index: 300;
+}
+
+.dino-jump {
+    animation-name: dino-jump;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+}
+
+
+@keyframes cloud-move {
+    from {
+        left: 100%;
+    }
+    to {
+        left: -150px;
+    }
+}
+
+@keyframes cactus-move {
+    from {
+        left: 100%;
+    }
+    to {
+        left: -136px;
+    }
+}
+
+@keyframes ground-move {
+    from {
+        left: 100%;
+    }
+    to {
+        left: -136px;
+    }
+}
+
+@keyframes bump-move {
+    from {
+        left: 100%;
+    }
+    to {
+        left: -136px;
+    }
+}
+
+@keyframes pterodactyl-move {
+    from {
+        left: 100%;
+    }
+    to {
+        left: -136px;
+    }
+}
+
+@keyframes moon-move {
+    from {
+        left: 90%;
+    }
+    to {
+        left: -64px;
+    }
+}
+
+@keyframes star1-move {
+    from {
+        left: 30%;
+    }
+    to {
+        left: -25px;
+    }
+}
+
+@keyframes star2-move {
+    from {
+        left: 80%;
+    }
+    to {
+        left: -25px;
+    }
+}
+
+@keyframes star3-move {
+    from {
+        left: 100%;
+    }
+    to {
+        left: -25px;
+    }
+}
+
+svg {
+    position: absolute;
+    display: block;
+}
+
+#cactus-one {
+    position: absolute;
+    animation-name: cactus-move;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+
+.cactuses {
+    left: 100%;
+    z-index: 200;
+    animation-name: cactus-move;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+.cactus {
+    left: 800px;
+    animation-name: cactus-move;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    z-index: 200;
+}
+
+.big-cactus {
+    top: 301px;
+}
+
+#cloud {
+    position: absolute;
+    left: 800px;
+    top:40px;
+    animation-name: cloud-move;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    z-index: 100;
+ }
+
+
+
+.clouds {
+    position: absolute;
+    animation-name: cloud-move;
+    animation-duration: 6s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    z-index: 100;
+}
+
+/* *********************************** */
+#ground {
+    position: absolute;
+    left: 100%;
+    top:442px;
+    animation-name: ground-move;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    z-index: 100;
+ }
+
+.grounds {
+    position: absolute;
+    left: 100%;
+    top:442px;
+    animation-name: ground-move;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    z-index: 100;
+}
+
+.bumps {
+    position: absolute;
+    left: 100%;
+    top:422px;
+    animation-name: ground-move;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    z-index: 100;
+}
+
+/* ******************************************* */
+
+#pterodactyl {
+    position: absolute;
+    left: 100%;
+    top:40px;
+    animation-name: pterodactyl-move;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    z-index: 200;
+ }
+
+.pterodactyls {
+    position: absolute;
+    left: 100%;
+    top:40px;
+    animation-name: pterodactyl-move;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    z-index: 200;
+}
+
+h1{
+    text-align: center;
+    color: honeydew;
+    margin-bottom: 0px;
+    font-family: "Comic Sans MS";
+}
+
+.hidden {
+    display: none;
+}
+
+#score{
+    font-size: 50px;
+    margin-top: 0px;
+}
+
+neuro-dino {
+    position: absolute;
+    left: 72px;
+    top: 314px;
+    z-index: 300;
+}
+
+.dino-jump2 {
+    animation-name: dino-jump;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+.horizon {
+    position: absolute;
+    top: 435px;
+    width: 100%;
+    height: 3px;
+    background-color: var(--base-color);
+}
+
+.moon {
+    position: absolute;
+    left: 100%;
+    top: 70px;
+    animation-name: moon-move;
+    animation-duration: 30s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    z-index: 100;
+}
+
+.star1 {
+    position: absolute;
+    left: 30%;
+    top: 100px;
+    animation-name: star1-move;
+    animation-duration: 6s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    z-index: 100;
+}
+
+.star2 {
+    position: absolute;
+    left: 80%;
+    top: 100px;
+    animation-name: star2-move;
+    animation-duration: 16s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    z-index: 100;
+}
+
+svg path{
+    fill: var(--base-color);
+}
+
+svg path[fill=red] {
+    fill: white;
+}
+
+svg rect{
+    fill: var(--base-color);
+}
+
+.star2 .night path{
+    fill: var(--night-color);
+}
+
+.clouds path, .clouds rect{
+    fill: var(--cloud-color);
+}
+
+.clouds.night path, .clouds.night rect{
+    fill: var(--base-color);
+}
+
+.cactuses.night path {
+    fill: var(--cloud-color);
+}
+
+.pterodactyls.night path {
+    fill: var(--cloud-color);
+}
+
+.grounds.night path {
+    fill: var(--cloud-color);
+}
+
+.bumps.night path[fill=red] {
+    fill: var(--night-color);
+}
+
+.bumps.night path {
+    fill: var(--cloud-color);
+}
+
+.horizon.night path {
+    fill: var(--cloud-color);
+}
+
+.dinos.night path {
+    fill: var(--cloud-color);
+}
+
+.dinos #small-eye {
+    fill: var(--day-color);
+}
+
+.dinos.night #small-eye {
+    fill: var(--night-color);
+}
+
+.dinos.night #big-eye {
+    fill: var(--night-color);
+}
+
+.dinos.night #small-eye-bow {
+    fill: var(--night-color);
+}
+
+.dinos.night #big-eye-bow {
+    fill: var(--night-color);
+}
+
+.dinos #big-eye {
+    stroke: var(--day-color);
+}
+
+.dinos #small-eye-bow {
+    fill: var(--day-color);
+}
+
+.dinos #big-eye-bow {
+    fill: var(--base-color);
+}
+
+#game-space.night {
+    background-color: var(--night-color);
+}
+
+.star3 {
+
+    animation-name: star3-move;
+    animation-duration: 20s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+
+}
