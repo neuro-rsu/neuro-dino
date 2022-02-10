@@ -644,4 +644,3 @@ function nightEnd() {
 
     document.getElementById('game-space').classList.remove('night');
 }
-///////////////
