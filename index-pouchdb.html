@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/pouchdb@latest/dist/pouchdb.min.js"></script>
     <script src="js/pouchdb.js"></script>
+    <script type="module" src="js/dino-brain.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -17,13 +18,17 @@
         <button onclick="createPouch()">Нажми на меня</button>
 
     <p><b>min distance:</b><br>
-        <input type="text" size="40" id="mindis"></p>
+        <input id="mindis" size="40">
+    </p>
     <p><b>max distance:</b><br>
-        <input type="text" size="40" id="maxdis"></p>
+        <input id="maxdis" size="40">
+    </p>
     <p><b>min top:</b><br>
-        <input type="text" size="40" id="mintop"></p>
+        <input id="mintop" size="40">
+    </p>
     <p><b>max top:</b><br>
-        <input type="text" size="40" id="maxtop"></p>
+        <input id="maxtop" size="40">
+    </p>
         <button onclick="add()"> Save </button>
         <button onclick="allFIO()"> All cloud </button>
     <p><b>id:</b><br>
@@ -35,7 +40,7 @@
         <button onclick="getFirst()"> GetFirst </button>
         <button onclick="getLast()"> GetLast </button>
     </div>
-</div>  
+</div>
 </body>
 
 </html>

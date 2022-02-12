@@ -1,9 +1,11 @@
 var pdb = new PouchDB('dino');
+
 var remoteCouch = false;
 
 function createPouch() {
     var cloud = {
-        _id: new Date().toISOString(),
+        // _id: new Date().toISOString(),
+        _id: "1-2",
         minDistance: 1,
         maxDistance: 2,
         minTop: 3,
@@ -19,12 +21,14 @@ function createPouch() {
 
 function add() {
     var cloud = {
-        _id: new Date().toISOString(),
+        // _id: new Date().toISOString(),
+        _id: "1-2",
         minDistance: mindis.value,
         maxDistance: maxdis.value,
         minTop: mintop.value,
         maxTop: maxtop.value,
     };
+    editid.value = cloud._id;
     pdb.put(cloud, function callback(err, result) {
         if (!err) {
             console.log('Successfully posted a todo!');
@@ -34,7 +38,7 @@ function add() {
 
 function get() {
     pdb.get(editid.value).then(function (cloud) {
-        //
+        console.log(cloud);
     }).catch(function (err) {
         console.log(err);
     });
