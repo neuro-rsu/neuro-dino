@@ -57,24 +57,24 @@ function getAll() {
         });
 }
 
-function getLast() {
-    pdb.allDocs({
-            include_docs: true
-        })
-        .then(function (response) {
-            mindis.value = response.rows[response.rows.length - 1].doc.minDistance;
-            maxdis.value = response.rows[response.rows.length - 1].doc.maxDistance;
-            mintop.value = response.rows[response.rows.length - 1].doc.minTop;
-            maxtop.value = response.rows[response.rows.length - 1].doc.maxTop;
-            editid.value = response.rows[response.rows.length - 1].key;
-            // lastname.value = response[0].
-            // FirstName: firstname.value,
-            // MiddleName: middlename.value,
-            console.log(response);
-        }).catch(function (err) {
-            console.log(err);
-        });
-}
+// function getLast() {
+//     pdb.allDocs({
+//             include_docs: true
+//         })
+//         .then(function (response) {
+//             mindis.value = response.rows[response.rows.length - 1].doc.minDistance;
+//             maxdis.value = response.rows[response.rows.length - 1].doc.maxDistance;
+//             mintop.value = response.rows[response.rows.length - 1].doc.minTop;
+//             maxtop.value = response.rows[response.rows.length - 1].doc.maxTop;
+//             editid.value = response.rows[response.rows.length - 1].key;
+//             // lastname.value = response[0].
+//             // FirstName: firstname.value,
+//             // MiddleName: middlename.value,
+//             console.log(response);
+//         }).catch(function (err) {
+//             console.log(err);
+//         });
+// }
 
 function update() {
     pdb.get(editid.value).then(function (cloud) {
