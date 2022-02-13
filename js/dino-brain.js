@@ -14,7 +14,8 @@ export function getBestDinoBrain(currentTopology) {
     bestDinoBrain.cost = -Infinity;
 
     pdb.get(currentTopology.join('-')).then(function (bestDinoBrainDB) {
-        bestDinoBrain.sections = bestDinoBrainDB.sections;
+        bestDinoBrain.sections.forEach((item, index) => item.weights = bestDinoBrainDB.sections[index].weights);
+        //bestDinoBrain.sections.weights = bestDinoBrainDB.sections.weights;
         bestDinoBrain.cost = bestDinoBrainDB.cost;
         bestDinoBrain._id = bestDinoBrainDB._id;
         console.log(bestDinoBrainDB);
