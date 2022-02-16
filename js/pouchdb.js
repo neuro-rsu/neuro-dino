@@ -14,6 +14,7 @@ function createPouch() {
     pdb.put(cloud, function callback(err, result) {
         alert('111');
         if (!err) {
+            rev.value = cloud._rev;
             console.log('Successfully posted a todo!');
         }
     });
@@ -27,8 +28,11 @@ function add() {
         maxDistance: maxdis.value,
         minTop: mintop.value,
         maxTop: maxtop.value,
+        _id:  editid.value,
+        _rev: rev.value,
     };
-    editid.value = cloud._id;
+    // cloud._id = editid.value;
+    // cloud._id = rev.value;
     pdb.put(cloud, function callback(err, result) {
         if (!err) {
             console.log('Successfully posted a todo!');
@@ -38,6 +42,7 @@ function add() {
 
 function get() {
     pdb.get(editid.value).then(function (cloud) {
+        rev.value = cloud._rev;
         console.log(cloud);
     }).catch(function (err) {
         console.log(err);
@@ -98,6 +103,7 @@ function update() {
         mintop.value = cloud.minTop;
         maxtop.value = cloud.maxTop;
         editid.value = cloud._id;
+        rev.value = cloud._rev;
         console.log(cloud);
     });
 }
