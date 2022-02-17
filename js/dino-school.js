@@ -112,8 +112,8 @@ function dinoJump() {
 }
 
 function checkDinos(){
-
     cloudDistance++;
+
     if (cloudDistance > nextCloudDistance) {
         cloudDistance = 0;
         createCloud();

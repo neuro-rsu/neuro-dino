@@ -125,7 +125,7 @@
         v-7,
         h-6,
         z
-        " fill="grey" id="body-bow" visibility="visible" class="hidden">
+        " fill="grey" id="body-bow" visibility="hidden" class="hidden">
     </path>
 
     <!--Глаз маленький наклон-->
@@ -235,7 +235,7 @@
         h7,
         v-7,
         z
-        " fill="grey" visibility="hidden" id="second-leg-bow" class="hidden">
+        " fill="grey" id="second-leg-bow" visibility="hidden" class="hidden">
     </path>
 
     <!--Третья нога наклон-->
