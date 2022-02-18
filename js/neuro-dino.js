@@ -46,7 +46,7 @@ import {changeBestDinoBrain} from './dino-brain.js'
 
 //0->0,5
 //-10->0
-//10->1
+//10->1// Mutate the clone
 
 function DinoFactory() {
 
@@ -54,36 +54,20 @@ function DinoFactory() {
 
         constructor () {
             super();
-            // let tmp = document.createElement('template');
-            // tmp.innerHTML = '<img id="bird" part="bird-image" class="bird" src="images/angry-birds.png" />';
 
             this.attachShadow({mode: 'open'});
-            // let dinoTemp = document.getElementById('dino');
-            // let newDino = dinoTemp.content.cloneNode(true);
-            // this.shadowRoot.append(tmp.newDino);
-            // const gameSpace = document.getElementById('game-space');
-            // gameSpace.append(newDino);
-            // this.attachShadow({mode: 'open'});
+
             this.shadowRoot.append(document.importNode(dino.content, true));
-            // this.shadowRoot.adoptedStyleSheets = [styles];
-            // this.shadowRoot.querySelector('#bird-image').onload = () => this.isReady = true;
-            // this.speedX = MyRandom(2, this.maxVelocity.x);
+
             this.speedX = this.maxVelocity.x;
             this.speedY = 0;
             this.dinoBrain = bestDinoBrain.clone();
             this.dinoBrain.cost = 0;
 
-            // this.neuroBrain.mutate(); // Mutate the clone
-
             this.randomAmount = Math.random();
             if ( this.randomAmount < 0.75 ) {
-                this.dinoBrain.mutate(); // Mutate the clone
+                this.dinoBrain.mutate();
             }
-
-
-            // if (MyRandom(0,1)>MyRandom(0,1)) {
-            //     this.neuroBrain.mutate();// Mutate the clone
-            // }
 
         }
 
@@ -107,7 +91,7 @@ function DinoFactory() {
 
         minVelocityY = 10;
 
-        connectedCallback() {
+        // connectedCallback() {
             // Object.defineProperty(NeuroBird.prototype, 'my', {
             //     configurable: true,
             //     enumerable: true,
@@ -125,7 +109,7 @@ function DinoFactory() {
             // this.style.top = Math.random()*100+'px';
             // this.style.left = Math.random()*300+'px';
             // this.style.left = 100+'px';
-        }
+        // }
 
         // static get observedAttributes() {
         //     return ['my'];
@@ -159,7 +143,10 @@ function DinoFactory() {
         jump(cactus, cactusCoords) {
             if (!this.classList.contains("dino-jump")) {
                 const dinoCoords = this.getBoundingClientRect();
-                const inputs = [[ map( cactusCoords.x - dinoCoords.x - dinoCoords.width, this.parentNode.offsetLeft + dinoCoords.x + dinoCoords.width, this.parentNode.offsetLeft + this.parentNode.offsetWidth - dinoCoords.x - dinoCoords.width , 0, 1)]];
+                const inputs = [[ map( cactusCoords.x - dinoCoords.x - dinoCoords.width,
+                    this.parentNode.offsetLeft + dinoCoords.x + dinoCoords.width,
+                    this.parentNode.offsetLeft +
+                    this.parentNode.offsetWidth - dinoCoords.x - dinoCoords.width,0, 1)]];
                 const result = this.dinoBrain.feedForward(inputs[0]);
                 if (result[1]  > result[0]) {
                     this.classList.add("dino-jump");
@@ -168,7 +155,7 @@ function DinoFactory() {
                     this.getAnimations().forEach((anim, i, arr) => {
                         anim.onfinish = () => {
                             this.classList.remove("dino-jump")
-                            this.offsetHeight; // не удаляй reflow
+                            this.offsetHeight;                                                     // не удаляй reflow
                             svg.unpauseAnimations();
                         }
                     });
@@ -176,54 +163,54 @@ function DinoFactory() {
             }
         }
 
-        move() {
-            if (!this.isReady)
-                return;
+         move() {
+            //  if (!this.isReady)
+            //      return;
 
-            const rect = this.getBoundingClientRect();
-
-
-            const inputs = [[
-                map(rect.x, this.parentNode.offsetLeft, this.parentNode.offsetLeft + this.parentNode.offsetWidth, 0, 1),
-                map(rect.x + rect.width, this.parentNode.offsetLeft, this.parentNode.offsetLeft + this.parentNode.offsetWidth, 0, 1),
-                map(this.speedX, 0, 10, 0, 1),
+            //  const rect = this.getBoundingClientRect();
 
 
-                map(rect.y, this.parentNode.offsetTop, this.parentNode.offsetTop + this.parentNode.offsetHeight, 0, 1),
-                map(rect.y + rect.height, this.parentNode.offsetTop, this.parentNode.offsetTop + this.parentNode.offsetHeight, 0, 1),
-                map(this.speedY, 0, 10, 0, 1),
+            // const inputs = [[
+            //     map(rect.x, this.parentNode.offsetLeft, this.parentNode.offsetLeft + this.parentNode.offsetWidth, 0, 1),
+            //     map(rect.x + rect.width, this.parentNode.offsetLeft, this.parentNode.offsetLeft + this.parentNode.offsetWidth, 0, 1),
+            //     map(this.speedX, 0, 10, 0, 1),
+
+
+            //     map(rect.y, this.parentNode.offsetTop, this.parentNode.offsetTop + this.parentNode.offsetHeight, 0, 1),
+            //     map(rect.y + rect.height, this.parentNode.offsetTop, this.parentNode.offsetTop + this.parentNode.offsetHeight, 0, 1),
+            //     map(this.speedY, 0, 10, 0, 1),
 
                 // this.speedX,
                 // rect.y,
                 // rect.height,
                 // this.speedY
-            ]];
-            const result = this.neuroBrain.feedForward(inputs[0]);
+            // ]];
+            // const result = this.neuroBrain.feedForward(inputs[0]);
 
-            if (result[1]  > result[0]) {
-                const x = rect.x + this.speedX;
-                if ( (x + rect.width > this.parentNode.offsetLeft + this.parentNode.offsetWidth && this.speedX > 0) ||
-                     (x < this.parentNode.offsetLeft && this.speedX < 0) ) {
-                    this.neuroBrain.cost += 10;
-                }
-                else this.neuroBrain.cost -= 20;
+            // if (result[1]  > result[0]) {
+            //     const x = rect.x + this.speedX;
+            //     if ( (x + rect.width > this.parentNode.offsetLeft + this.parentNode.offsetWidth && this.speedX > 0) ||
+            //          (x < this.parentNode.offsetLeft && this.speedX < 0) ) {
+            //         this.neuroBrain.cost += 10;
+            //     }
+            //     else this.neuroBrain.cost -= 20;
 
-                this.speedX = -this.speedX;
-                this.countRotation++;
-            }
+            //     this.speedX = -this.speedX;
+            //     this.countRotation++;
+            // }
 
-            let x = rect.x + this.speedX;
-            if ((x + rect.width > this.parentNode.offsetLeft + this.parentNode.offsetWidth && this.speedX > 0) ||
-                (x < this.parentNode.offsetLeft && this.speedX < 0) ) {
-                if ( this.countRotation == 0 )
-                    this.neuroBrain.cost = -1000;
-                if (this.neuroBrain.cost >= bestNeuroBrain.cost) {
-                    bestNeuroBrain.change(this.neuroBrain);
-                    console.log(this.neuroBrain.cost);
-                }
-                this.remove();
-                return;
-            }
+            // let x = rect.x + this.speedX;
+            // if ((x + rect.width > this.parentNode.offsetLeft + this.parentNode.offsetWidth && this.speedX > 0) ||
+            //     (x < this.parentNode.offsetLeft && this.speedX < 0) ) {
+            //     if ( this.countRotation == 0 )
+            //         this.neuroBrain.cost = -1000;
+            //     if (this.neuroBrain.cost >= bestNeuroBrain.cost) {
+            //         bestNeuroBrain.change(this.neuroBrain);
+            //         console.log(this.neuroBrain.cost);
+            //     }
+            //     this.remove();
+            //     return;
+            // }
 
             // if (x + rect.width > this.parentNode.offsetWidth && this.speedX > 0) {
             //     x = 2 * (this.parentNode.offsetWidth - rect.width) - x;
@@ -239,7 +226,10 @@ function DinoFactory() {
             //     this.countRotation++;
             //     this.neuroBrain.cost -= 100;
             // }
-            let  y = rect.y + this.speedY;
+
+            // let  y = rect.y + this.speedY;
+
+
             // if ( (y + rect.height > this.parentNode.offsetHeight && this.speedY > 0) ||
             //     (y < this.parentNode.offsetTop && this.speedY < 0) ) {
 
@@ -257,18 +247,18 @@ function DinoFactory() {
 
 
 
-            if (this.neuroBrain.cost < -10) {
-                if (this.neuroBrain.cost >= bestNeuroBrain.cost) {
-                    bestNeuroBrain.change(this.neuroBrain);
-                    console.log(this.neuroBrain.cost);
-                }
-                this.remove();
-                return;
-            }
+            // if (this.neuroBrain.cost < -10) {
+            //     if (this.neuroBrain.cost >= bestNeuroBrain.cost) {
+            //         bestNeuroBrain.change(this.neuroBrain);
+            //         console.log(this.neuroBrain.cost);
+            //     }
+            //     this.remove();
+            //     return;
+            // }
 
 
 
-            this.traveledDistance += Math.hypot(this.speedX, this.speedY);
+            // this.traveledDistance += Math.hypot(this.speedX, this.speedY);
             // this.neuroBrain.cost += Math.hypot(this.speedX, this.speedY);
 
             // let y = rect.y + this.speedY;
@@ -281,19 +271,21 @@ function DinoFactory() {
             //     this.speedY=-this.speedY;
             // }
 
-            this.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-            this.style.transform += (this.speedX < 0) ? ' scaleX(-1)' : "";
-        }
+            // this.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+            // this.style.transform += (this.speedX < 0) ? ' scaleX(-1)' : "";
+         }
 
         // showMessage(event) {
         //     alert("This is the message " + this.getAttribute('greet-name'));
         //     console.log(event);
         // }
 
-    }
+   }
 
-    return NeuroDino;
-}
+      return NeuroDino;
+  }
+
+
 
 // export { BirdFactory }
 
@@ -374,3 +366,25 @@ function DinoFactory() {
 
 //     return NeuroBird;
 // }
+
+ // let tmp = document.createElement('template');
+// tmp.innerHTML = '<img id="bird" part="bird-image" class="bird" src="images/angry-birds.png" />';
+
+// let dinoTemp = document.getElementById('dino');
+// let newDino = dinoTemp.content.cloneNode(true);
+// this.shadowRoot.append(tmp.newDino);
+// const gameSpace = document.getElementById('game-space');
+// gameSpace.append(newDino);
+ // this.attachShadow({mode: 'open'});
+
+  // this.shadowRoot.adoptedStyleSheets = [styles];
+            // this.shadowRoot.querySelector('#bird-image').onload = () => this.isReady = true;
+            // this.speedX = MyRandom(2, this.maxVelocity.x);
+
+ // this.neuroBrain.mutate(); // Mutate the clone
+
+ // if (MyRandom(0,1)>MyRandom(0,1)) {
+            //     this.neuroBrain.mutate();// Mutate the clone
+         //   }
+
+
