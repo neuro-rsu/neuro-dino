@@ -54,7 +54,7 @@
         v-6,
         h-7,
         z
-        " fill="grey" stroke="transparent" id="body" visibility="hidde">
+        " fill="grey" stroke="transparent" id="body" visibility="visible">
     </path>
 
     <!--Глаз маленький-->
@@ -125,7 +125,7 @@
         v-7,
         h-6,
         z
-        " fill="grey" id="body-bow" visibility="hidden" class="hidden">
+        " fill="grey" id="body-bow" visibility="visible" class="hidden">
     </path>
 
     <!--Глаз маленький наклон-->
