@@ -58,6 +58,14 @@ function DinoFactory() {
             this.attachShadow({mode: 'open'});
 
             this.shadowRoot.append(document.importNode(dino.content, true));
+            //this.shadowRoot.insertAdjacentHTML('afterbegin', '<div></div>');
+            // `
+            //     <style>
+            //         .hidden {
+            //             display: none;
+            //         }
+            //     </style>
+            // `);
 
             this.speedX = this.maxVelocity.x;
             this.speedY = 0;

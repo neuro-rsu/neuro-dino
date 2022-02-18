@@ -43,7 +43,14 @@ function initDinoSchool() {
         const gameSpace = document.getElementById('game-space');
         const newTemplate = document.createElement('template');
         newTemplate.setAttribute('id', 'dino');
-        newTemplate.innerHTML = svg;
+        newTemplate.innerHTML = `
+        <style>
+            .hidden {
+                display: none;
+            }
+        </style>
+        `;
+        newTemplate.innerHTML += svg;
         gameSpace.append(newTemplate);
         createPolygon(newTemplate.content.querySelector('svg'), '', 'body', 'dino-body');
         createPolygon(newTemplate.content.querySelector('svg'), '', 'first-leg', 'dino-first-leg');
