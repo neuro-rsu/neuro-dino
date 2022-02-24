@@ -25,7 +25,8 @@ function initDinoSchool() {
         newTemplate.setAttribute('id', 'big-cactus');
         newTemplate.innerHTML = svg;
         gameSpace.append(newTemplate);
-        createPolygon(newTemplate.content.querySelector('svg'), 'path', '', 'big-cactus');
+        createPolygon(newTemplate.content.querySelector('svg'), 'path', '',
+         'big-cactus');
     });
     fetch("images/cloud.svg")
     .then(response => response.text())
@@ -37,6 +38,7 @@ function initDinoSchool() {
         gameSpace.append(newTemplate);
 
     });
+
     fetch("images/dino.svg")
     .then(response => response.text())
     .then(svg => {
@@ -124,15 +126,16 @@ function checkDinos(){
     if (cloudDistance > nextCloudDistance) {
         cloudDistance = 0;
         createCloud();
-        nextCloudDistance = randomInteger(settings.cloud.distance.min, settings.cloud.distance.max);
+        nextCloudDistance = randomInteger(settings.cloud.distance.min,
+            settings.cloud.distance.max);
     }
-
 
     cactusDistance++;
     if (cactusDistance > nextCactusDistance) {
         cactusDistance = 0;
         createCactus();
-        nextCactusDistance = randomInteger(settings.cactus.distance.min, settings.cactus.distance.max);
+        nextCactusDistance = randomInteger(settings.cactus.distance.min,
+            settings.cactus.distance.max);
     }
 
     let cactuses = document.querySelectorAll('.cactuses');
@@ -176,7 +179,7 @@ function checkDinos(){
 
     //         });
     requestAnimationFrame(checkDinos);
-}
+ }
 
 function createCloud(){
     let cloudTemp = document.querySelector('#cloud');
@@ -184,7 +187,8 @@ function createCloud(){
     const gameSpace = document.getElementById('game-space');
     gameSpace.append(newCloud);
     newCloud = gameSpace.lastChild;
-    newCloud.style.top = randomInteger(settings.cloud.distance.min, settings.cloud.distance.max) + 'px';
+    newCloud.style.top = randomInteger(settings.cloud.distance.min,
+        settings.cloud.distance.max) + 'px';
     newCloud.getAnimations().forEach((anim, i, arr) => {
         anim.onfinish = () => {
             newCloud.remove();
