@@ -135,48 +135,121 @@ function checkDinos(){
         nextCactusDistance = randomInteger(settings.cactus.distance.min, settings.cactus.distance.max);
     }
 
-    let cactuses = document.querySelectorAll('.cactuses');
-    if ( cactuses.length !== 0 ) {
-        let dinos = document.querySelectorAll('neuro-dino');
-        let cactus;
-        let index = 0;
-        if (dinos.length !== 0) {
-            let dinoCoords = dinos[0].getBoundingClientRect();
-            index = 0;
-            let cactusCoords;
-            do {
-                cactus = cactuses[index];
-                cactusCoords = cactus.getBoundingClientRect();
-                index++;
-            } while ( cactusCoords.x + cactusCoords.width < dinoCoords.x )
-            dinos.forEach( dino => {
-                if ( dino.check(cactus, cactusCoords) ) {
-                    dino.dinoBrain.cost = +document.getElementById('score').textContent;
-                    changeBestDinoBrain(dino.dinoBrain);
-                    dino.remove();
-                }
-                else {
-                    dino.jump(cactus, cactusCoords);
-                }
-            })
-            dinos = document.querySelectorAll('neuro-dino');
-            if ( dinos.length === 0 ) {
-                cactus.remove();
-            }
-        }
-        if ( dinos.length === 0 )
-        {
-            createPopulation();
+    let dinos = document.querySelectorAll('neuro-dino');
 
+    if ( dinos.length === 0 ) {
+        requestAnimationFrame(checkDinos);
+        return;
+    }
+
+    let dinoCoords = dinos[0].getBoundingClientRect();
+
+    let cactuses = document.querySelectorAll('.cactuses');
+
+    if ( cactuses.length == 0 ) {
+        requestAnimationFrame(checkDinos);
+        return;
+    }
+
+    let cactusCoords;
+    let cactus;
+    for (var i = 0; i < cactuses.length; ++i) {
+        const Coords = cactuses[i].getBoundingClientRect();
+        if (Coords.x + Coords.width >= dinoCoords.x  &&
+           (!cactus || Coords.x < cactusCoords.x)) {
+                cactus = cactuses[i];
+                cactusCoords = Coords;
         }
     }
 
-    //         cactusesAll.forEach(cactus => {
-    //             cactus.style.animationPlayState="paused";
+    if ( !cactus) {
+        requestAnimationFrame(checkDinos);
+        return;
+    }
 
-    //         });
+    dinos.forEach( dino => {
+        if ( dino.check(cactus, cactusCoords) ) {
+            dino.dinoBrain.cost = +document.getElementById('score').textContent;
+            changeBestDinoBrain(dino.dinoBrain);
+            dino.remove();
+        }
+        else {
+            dino.jump(cactus, cactusCoords);
+        }
+    })
+
+    dinos = document.querySelectorAll('neuro-dino');
+    
+    if ( dinos.length === 0 ) {
+        cactus.remove();
+    }
+
+    if ( dinos.length === 0 )
+    {
+        createPopulation();
+    }
+
     requestAnimationFrame(checkDinos);
 }
+
+// function checkDinos(){
+//     cloudDistance++;
+
+//     if (cloudDistance > nextCloudDistance) {
+//         cloudDistance = 0;
+//         createCloud();
+//         nextCloudDistance = randomInteger(settings.cloud.distance.min, settings.cloud.distance.max);
+//     }
+
+
+//     cactusDistance++;
+//     if (cactusDistance > nextCactusDistance) {
+//         cactusDistance = 0;
+//         createCactus();
+//         nextCactusDistance = randomInteger(settings.cactus.distance.min, settings.cactus.distance.max);
+//     }
+
+//     let cactuses = document.querySelectorAll('.cactuses');
+//     if ( cactuses.length !== 0 ) {
+//         let dinos = document.querySelectorAll('neuro-dino');
+//         let cactus;
+//         let index = 0;
+//         if (dinos.length !== 0) {
+//             let dinoCoords = dinos[0].getBoundingClientRect();
+//             index = 0;
+//             let cactusCoords;
+//             do {
+//                 cactus = cactuses[index];
+//                 cactusCoords = cactus.getBoundingClientRect();
+//                 index++;
+//             } while ( cactusCoords.x + cactusCoords.width < dinoCoords.x )
+//             dinos.forEach( dino => {
+//                 if ( dino.check(cactus, cactusCoords) ) {
+//                     dino.dinoBrain.cost = +document.getElementById('score').textContent;
+//                     changeBestDinoBrain(dino.dinoBrain);
+//                     dino.remove();
+//                 }
+//                 else {
+//                     dino.jump(cactus, cactusCoords);
+//                 }
+//             })
+//             dinos = document.querySelectorAll('neuro-dino');
+//             if ( dinos.length === 0 ) {
+//                 cactus.remove();
+//             }
+//         }
+//         if ( dinos.length === 0 )
+//         {
+//             createPopulation();
+//         }
+//     }
+
+//     //         cactusesAll.forEach(cactus => {
+//     //             cactus.style.animationPlayState="paused";
+
+//     //         });
+//     requestAnimationFrame(checkDinos);
+// }
 
 function createCloud(){
     let cloudTemp = document.querySelector('#cloud');

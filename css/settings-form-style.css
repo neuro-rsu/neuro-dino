@@ -32,14 +32,19 @@ button:hover {
 .cancelbtn {
     width: auto;
     padding: 10px 18px;
+    float: left;
     background-color: #f44336;
+}
+
+.footer-button {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #04aa6d;
 }
 
 .footer-buttons {
     width: auto;
-    padding: 10px 18px;
     float: right;
-    background-color: #04aa6d;
 }
 
 /* Center the image and position the close button */
