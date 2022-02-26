@@ -1,5 +1,6 @@
 import {randomInteger} from './utils.js';
 import {settings} from './settings.js';
+import {loadSettings} from "./settings.js";
 import {isIntersect} from './utils.js';
 import {createPolygon} from './utils.js';
 import { DinoFactory } from "./neuro-dino.js";
@@ -17,6 +18,7 @@ let cactusDistance = 0;
 let nextCactusDistance = 0;
 
 function initDinoSchool() {
+    loadSettings();
     fetch("images/cactus.svg")
     .then(response => response.text())
     .then(svg => {
@@ -122,6 +124,7 @@ function dinoJump() {
 
 function checkDinos(){
     cloudDistance++;
+    settings.cloud.distance.min = 1;
 
     if (cloudDistance > nextCloudDistance) {
         cloudDistance = 0;
@@ -182,7 +185,7 @@ function checkDinos(){
     })
 
     dinos = document.querySelectorAll('neuro-dino');
-    
+
     if ( dinos.length === 0 ) {
         cactus.remove();
     }

@@ -37,16 +37,44 @@
                 <input type="password" placeholder="Enter Password" name="psw" required>
 
                 <button type="submit">Login</button>
-                <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
+
+                <div class="checkboxes-settings">
+                    <label>
+                        <input type="checkbox" checked="checked" name="cloud"> Облака
+                    </label>
+                    <label>
+                        <input type="checkbox" checked="checked" name="night"> Ночь
+                    </label>
+                    <label>
+                        <input type="checkbox" checked="checked" name="horizon"> Горизонт
+                    </label>
+                    <label>
+                        <input type="checkbox" checked="checked" name="ground"> Кочки
+                    </label>
+                    <label>
+                        <input type="checkbox" checked="checked" name="pterodactyl"> Птеродактиль
+                    </label>
+                    <label>
+                        <input type="checkbox" checked="checked" name="big-cactus"> Большой кактус
+                    </label>
+                    <label>
+                        <input type="checkbox" checked="checked" name="small-cactus"> Маленький кактус
+                    </label>
+                    <label>
+                        <input type="checkbox" checked="checked" name="two-cactus"> Два кактуса
+                    </label>
+                    <label>
+                        <input type="checkbox" checked="checked" name="three-cactus"> Три кактуса
+                    </label>
+                </div>
             </div>
 
             <div class="form-footer">
                 <div class="footer-buttons">
-                    <button type="button" onclick="settingsFormCancel()" class="cancelbtn">Cancel</button>
-                    <button type="button" onclick="settingsFormCancel()" class="footer-button savebtn">Save</button>
-                    <button type="button" onclick="settingsFormCancel()" class="footer-button savebtn">Delete</button>
+                    <button type="button" onclick="settingsFormCancel()" class="footer-button cancel-button">Cancel</button>
+                    <button type="button" onclick="settingsFormCancel()" class="footer-button">Save</button>
+                    <button type="button" onclick="settingsFormCancel()" class="footer-button">Delete</button>
+                    <button type="button" onclick="settingsFormCancel()" class="footer-button">Закрыть</button>
                 </div>
                 <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
             </div>
