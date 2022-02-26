@@ -258,6 +258,9 @@ function checkDinos(){
 // }
 
 function createCloud(){
+    if (settings.cloud.hidden) {
+        return;
+    }
     let cloudTemp = document.querySelector('#cloud');
     let newCloud = cloudTemp.content.cloneNode(true);
     const gameSpace = document.getElementById('game-space');

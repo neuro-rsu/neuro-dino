@@ -13,20 +13,19 @@
 
     <script type="module" src="js/dino-school.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pouchdb@latest/dist/pouchdb.min.js"></script>
-    <script src="js/sittings-form.js"></script>
 </head>
 <body>
     <div id="wrapper">
-        <h1 id ="title" class="unselectable" onclick="settingsFormOpen()">Счет игры</h1>
+        <h1 id ="title" class="unselectable">Счет игры</h1>
         <h1 id ="score" class="unselectable">0.0</h1>
         <div id="game-space">
         </div>
     </div>
 
     <div id="sittings-form" class="modal-form">
-        <form class="modal-form-content animate" method="post">
+        <form class="modal-form-content animate" method="post" id="form-settings">
             <div class="form-header">
-                <span onclick="settingsFormClose()" class="close" title="Close Modal">&times;</span>
+                <span id="close2" class="close" title="Close Modal">&times;</span>
             </div>
 
             <div class="form-body">
@@ -39,49 +38,37 @@
                 <button type="submit">Login</button>
 
                 <div class="checkboxes-settings">
-                    <label>
-                        <input type="checkbox" checked="checked" name="cloud"> Облака
-                    </label>
-                    <label>
-                        <input type="checkbox" checked="checked" name="night"> Ночь
-                    </label>
-                    <label>
-                        <input type="checkbox" checked="checked" name="horizon"> Горизонт
-                    </label>
-                    <label>
-                        <input type="checkbox" checked="checked" name="ground"> Кочки
-                    </label>
-                    <label>
-                        <input type="checkbox" checked="checked" name="pterodactyl"> Птеродактиль
-                    </label>
-                    <label>
-                        <input type="checkbox" checked="checked" name="big-cactus"> Большой кактус
-                    </label>
-                    <label>
-                        <input type="checkbox" checked="checked" name="small-cactus"> Маленький кактус
-                    </label>
-                    <label>
-                        <input type="checkbox" checked="checked" name="two-cactus"> Два кактуса
-                    </label>
-                    <label>
-                        <input type="checkbox" checked="checked" name="three-cactus"> Три кактуса
-                    </label>
+                    <label><input type="checkbox" checked="checked" name="cloud">Облака</label>
+                    <label><input type="checkbox" checked="checked" name="night">Ночь</label>
+                    <label><input type="checkbox" checked="checked" name="horizon">Горизонт</label>
+                    <label><input type="checkbox" checked="checked" name="stars">Звезды</label>
+                    <label><input type="checkbox" checked="checked" name="ground">Кочки</label>
+                    <label><input type="checkbox" checked="checked" name="moon">Луна</label>
+                    <label><input type="checkbox" checked="checked" name="ground">Земля</label>
+                    <label><input type="checkbox" checked="checked" name="pterodactyl">Птеродактиль</label>
+                    <label><input type="checkbox" checked="checked" name="big-cactus">Большой кактус</label>
+                    <label><input type="checkbox" checked="checked" name="small-cactus">Маленький кактус</label>
+                    <label><input type="checkbox" checked="checked" name="two-cactus">Два кактуса</label>
+                    <label><input type="checkbox" checked="checked" name="three-cactus">Три кактуса</label>
                 </div>
             </div>
 
             <div class="form-footer">
                 <div class="footer-buttons">
-                    <button type="button" onclick="settingsFormCancel()" class="footer-button cancel-button">Cancel</button>
-                    <button type="button" onclick="settingsFormCancel()" class="footer-button">Save</button>
-                    <button type="button" onclick="settingsFormCancel()" class="footer-button">Delete</button>
-                    <button type="button" onclick="settingsFormCancel()" class="footer-button">Закрыть</button>
+                    <button type="button" id="cancel" class="footer-button cancel-button">Cancel</button>
+                    <button type="button" id="save" class="footer-button">Save</button>
+                    <button type="button" id="delete" class="footer-button">Delete</button>
+                    <button type="button" id="close1" class="footer-button">Закрыть</button>
                 </div>
                 <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
             </div>
         </form>
     </div>
 
-    <script>
+    <script type="module">
+        import {settingsFormOpen} from './js/sittings-form.js';
+        import {settingsFormClose} from './js/sittings-form.js';
+        import {settingsFormCancel} from './js/sittings-form.js';
         // Get the modal
         var modal = document.getElementById('sittings-form');
 
@@ -91,6 +78,11 @@
                 modal.style.display = "none";
             }
         }
+        title.onclick = settingsFormOpen;
+        cancel.onclick = settingsFormCancel;
+        close1.onclick = settingsFormClose;
+        close2.onclick = settingsFormClose;
+
     </script>
 </body>
 
