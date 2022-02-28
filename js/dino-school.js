@@ -40,6 +40,78 @@ function initDinoSchool() {
         gameSpace.append(newTemplate);
 
     });
+    fetch("images/ground.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        const newTemplate = document.createElement('template');
+        newTemplate.setAttribute('id', 'ground');
+        newTemplate.innerHTML = svg;
+        gameSpace.append(newTemplate);
+
+    });
+
+    fetch("images/pterodactyl.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        const newTemplate = document.createElement('template');
+        newTemplate.setAttribute('id', 'pterodactyl');
+        newTemplate.innerHTML = svg;
+        gameSpace.append(newTemplate);
+         //
+
+        createPolygon(newTemplate.content.querySelector('svg'), '', 'pterodactyl', 'pterodactyl');
+        createPolygon(newTemplate.content.querySelector('svg'), '', 'top-wing', 'pterodactyl-top-wing');
+        createPolygon(newTemplate.content.querySelector('svg'), '', 'bottom-wing', 'pterodactyl-bottom-wing');
+    });
+    fetch("images/horizon.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        gameSpace.insertAdjacentHTML('beforeend', svg);
+    });
+
+    fetch("images/bumps.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        const newTemplate = document.createElement('template');
+        newTemplate.setAttribute('id', 'bumps');
+        newTemplate.innerHTML = svg;
+        gameSpace.append(newTemplate);
+    });
+
+    fetch("images/moon.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        const newTemplate = document.createElement('template');
+        newTemplate.setAttribute('id', 'moon');
+        newTemplate.innerHTML = svg;
+        gameSpace.append(newTemplate);
+    });
+
+
+    fetch("images/star1.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        const newTemplate = document.createElement('template');
+        newTemplate.setAttribute('id', 'star1');
+        newTemplate.innerHTML = svg;
+        gameSpace.append(newTemplate);
+    });
+
+    fetch("images/star2.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        const newTemplate = document.createElement('template');
+        newTemplate.setAttribute('id', 'star2');
+        newTemplate.innerHTML = svg;
+        gameSpace.append(newTemplate);
+    });
 
     fetch("images/dino.svg")
     .then(response => response.text())
