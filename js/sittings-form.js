@@ -1,5 +1,6 @@
 import {settings} from './settings.js';
 
+
 export function settingsFormCancel() {
     document.getElementById('sittings-form').style.display='none';
 }
@@ -18,3 +19,4 @@ export function settingsFormClose() {
     settings.cloud.visible = !form.cloud.checked;
     settings.horizon.visible = form.horizon.checked;
 }
+

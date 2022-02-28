@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="css/settings-form-style.css">
 
     <script type="module" src="js/dino-school.js"></script>
+    <script type="module" src="js/settings-form.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/pouchdb@latest/dist/pouchdb.min.js"></script>
 </head>
 <body>
@@ -21,6 +23,8 @@
         <div id="game-space">
         </div>
     </div>
+
+    <settings-form></settings-form>
 
     <div id="sittings-form" class="modal-form">
         <form class="modal-form-content animate" method="post" id="form-settings">
@@ -83,6 +87,19 @@
         close1.onclick = settingsFormClose;
         close2.onclick = settingsFormClose;
 
+    </script>
+
+    <script type="module">
+        const modal1 = document.querySelector('settings-form');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal1) {
+                modal1.style.display = "none";
+            }
+        }
+
+        title.onclick = () => modal1.settingsFormOpen();
     </script>
 </body>
 
