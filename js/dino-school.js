@@ -50,7 +50,6 @@ function initDinoSchool() {
         gameSpace.append(newTemplate);
 
     });
-
     fetch("images/pterodactyl.svg")
     .then(response => response.text())
     .then(svg => {
@@ -71,7 +70,6 @@ function initDinoSchool() {
         const gameSpace = document.getElementById('game-space');
         gameSpace.insertAdjacentHTML('beforeend', svg);
     });
-
     fetch("images/bumps.svg")
     .then(response => response.text())
     .then(svg => {
@@ -81,7 +79,6 @@ function initDinoSchool() {
         newTemplate.innerHTML = svg;
         gameSpace.append(newTemplate);
     });
-
     fetch("images/moon.svg")
     .then(response => response.text())
     .then(svg => {
@@ -91,8 +88,6 @@ function initDinoSchool() {
         newTemplate.innerHTML = svg;
         gameSpace.append(newTemplate);
     });
-
-
     fetch("images/star1.svg")
     .then(response => response.text())
     .then(svg => {
@@ -102,7 +97,6 @@ function initDinoSchool() {
         newTemplate.innerHTML = svg;
         gameSpace.append(newTemplate);
     });
-
     fetch("images/star2.svg")
     .then(response => response.text())
     .then(svg => {
