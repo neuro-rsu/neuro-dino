@@ -256,17 +256,17 @@ function checkDinos(){
         nextBumpsDistance = randomInteger(settings.bumps.distance.min, settings.bumps.distance.max);
     }
 
-    nightDistance++;
-    if (nightDistance > nextNightDistance) {
-        nightDistance = -settings.night.length.min;
-        nightBegin();
-        nextNightDistance = randomInteger(settings.night.distance.min, settings.night.distance.max);
-    }
+    // nightDistance++;
+    // if (nightDistance > nextNightDistance) {
+    //     nightDistance = -settings.night.length.min;
+    //     nightBegin();
+    //     nextNightDistance = randomInteger(settings.night.distance.min, settings.night.distance.max);
+    // }
 
-    if (nightDistance === 0)
-    {
-        nightEnd();
-    }
+    // if (nightDistance === 0)
+    // {
+    //     nightEnd();
+    // }
 
 
 
@@ -419,6 +419,9 @@ function createCactus(){
 }
 
 function createGround(){
+    if (settings.ground.hidden) {
+        return;
+    }
     let groundTemp = document.querySelector('#ground');
     let newGround = groundTemp.content.cloneNode(true);
     const gameSpace = document.getElementById('game-space');
@@ -435,6 +438,9 @@ function createGround(){
 }
 
 function createBumps(){
+    if (settings.bumps.hidden) {
+        return;
+    }
     let bumpsTemp = document.querySelector('#bumps');
     let newBumps = bumpsTemp.content.cloneNode(true);
     const gameSpace = document.getElementById('game-space');
@@ -457,7 +463,9 @@ function createBumps(){
 }
 
 function createPterodactyl(){
-
+    if (settings.pterodactyl.hidden) {
+        return;
+    }
     let pterodactylTemp = document.querySelector('#pterodactyl');
     let newPterodactyl = pterodactylTemp.content.cloneNode(true);
     const gameSpace = document.getElementById('game-space');
@@ -473,6 +481,9 @@ function createPterodactyl(){
 }
 
 function createMoon(){
+    if (settings.moon.hidden) {
+        return;
+    }
     let moonTemp = document.querySelector('#moon');
     let newMoon = moonTemp.content.cloneNode(true);
     const gameSpace = document.getElementById('game-space');
@@ -488,6 +499,9 @@ function createMoon(){
 }
 
 function createStar(name, className){
+    if (settings.star.hidden) {
+        return;
+    }
     let nodeTemp = document.querySelector('#'+name);
     let newNode = nodeTemp.content.cloneNode(true);
     const gameSpace = document.getElementById('game-space');
