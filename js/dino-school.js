@@ -17,6 +17,18 @@ let nextCloudDistance = 0;
 let cactusDistance = 0;
 let nextCactusDistance = 0;
 
+let groundDistance = 0;
+let nextGroundDistance = 0;
+
+let pterodactylDistance = 0;
+let nextPterodactylDistance = 0;
+
+let bumpsDistance = 0;
+let nextBumpsDistance = 0;
+
+let nightDistance = 0;
+let nextNightDistance = 150;
+
 function initDinoSchool() {
     loadSettings();
     fetch("images/cactus.svg")
@@ -39,6 +51,70 @@ function initDinoSchool() {
         newTemplate.innerHTML = svg;
         gameSpace.append(newTemplate);
 
+    });
+    fetch("images/ground.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        const newTemplate = document.createElement('template');
+        newTemplate.setAttribute('id', 'ground');
+        newTemplate.innerHTML = svg;
+        gameSpace.append(newTemplate);
+    });
+    fetch("images/pterodactyl.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        const newTemplate = document.createElement('template');
+        newTemplate.setAttribute('id', 'pterodactyl');
+        newTemplate.innerHTML = svg;
+        gameSpace.append(newTemplate);
+
+        createPolygon(newTemplate.content.querySelector('svg'), '', 'pterodactyl', 'pterodactyl');
+        createPolygon(newTemplate.content.querySelector('svg'), '', 'top-wing', 'pterodactyl-top-wing');
+        createPolygon(newTemplate.content.querySelector('svg'), '', 'bottom-wing', 'pterodactyl-bottom-wing');
+    });
+    fetch("images/horizon.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        gameSpace.insertAdjacentHTML('beforeend', svg);
+    });
+    fetch("images/bumps.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        const newTemplate = document.createElement('template');
+        newTemplate.setAttribute('id', 'bumps');
+        newTemplate.innerHTML = svg;
+        gameSpace.append(newTemplate);
+    });
+    fetch("images/moon.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        const newTemplate = document.createElement('template');
+        newTemplate.setAttribute('id', 'moon');
+        newTemplate.innerHTML = svg;
+        gameSpace.append(newTemplate);
+    });
+    fetch("images/star1.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        const newTemplate = document.createElement('template');
+        newTemplate.setAttribute('id', 'star1');
+        newTemplate.innerHTML = svg;
+        gameSpace.append(newTemplate);
+    });
+    fetch("images/star2.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        const newTemplate = document.createElement('template');
+        newTemplate.setAttribute('id', 'star2');
+        newTemplate.innerHTML = svg;
+        gameSpace.append(newTemplate);
     });
 
     fetch("images/dino.svg")
@@ -102,6 +178,24 @@ function dinoJump() {
         let cactusesAll = document.querySelectorAll('.cactuses');
         cactusesAll.forEach(cactus => cactus.remove());
 
+        let grounds = document.querySelectorAll('.grounds');
+        grounds.forEach(ground => ground.style.animationPlayState="running");
+
+        let bumps = document.querySelectorAll('.bumps');
+        bumps.forEach(bump => bump.style.animationPlayState="running");
+
+        let pterodactyls = document.querySelectorAll('.pterodactyls');
+        pterodactyls.forEach(pterodactyl => pterodactyl.remove());
+
+        let moon = document.querySelectorAll('.moon');
+        moon.forEach(moon => moon.remove());
+
+        let star = document.querySelectorAll('.star1');
+        star.forEach(star => star.remove());
+
+        star = document.querySelectorAll('.star2');
+        star.forEach(star => star.remove());
+
         document.getElementById('score').textContent = '0';
         scoreID = setInterval(() => {
             let score = document.getElementById('score').textContent;
@@ -141,17 +235,49 @@ function checkDinos(){
             settings.cactus.distance.max);
     }
 
-    let dinos = document.querySelectorAll('neuro-dino');
+    pterodactylDistance++;
+    if (pterodactylDistance > nextPterodactylDistance) {
+        pterodactylDistance = 0;
+        createPterodactyl();
+        nextPterodactylDistance = randomInteger(settings.pterodactyl.distance.min, settings.pterodactyl.distance.max);
+    }
 
+    groundDistance++;
+    if (groundDistance > nextGroundDistance) {
+        groundDistance = 0;
+        createGround();
+        nextGroundDistance = randomInteger(settings.ground.distance.min, settings.ground.distance.max);
+    }
+
+    bumpsDistance++;
+    if (bumpsDistance > nextBumpsDistance) {
+        bumpsDistance = 0;
+        createBumps();
+        nextBumpsDistance = randomInteger(settings.bumps.distance.min, settings.bumps.distance.max);
+    }
+
+    nightDistance++;
+    if (nightDistance > nextNightDistance) {
+        nightDistance = -settings.night.length.min;
+        nightBegin();
+        nextNightDistance = randomInteger(settings.night.distance.min, settings.night.distance.max);
+    }
+
+    if (nightDistance === 0)
+    {
+        nightEnd();
+    }
+
+
+
+    let dinos = document.querySelectorAll('neuro-dino');
     if ( dinos.length === 0 ) {
         requestAnimationFrame(checkDinos);
         return;
     }
-
     let dinoCoords = dinos[0].getBoundingClientRect();
 
     let cactuses = document.querySelectorAll('.cactuses');
-
     if ( cactuses.length == 0 ) {
         requestAnimationFrame(checkDinos);
         return;
@@ -290,6 +416,96 @@ function createCactus(){
             newCactus.remove();
         };
     });
+}
+
+function createGround(){
+    let groundTemp = document.querySelector('#ground');
+    let newGround = groundTemp.content.cloneNode(true);
+    const gameSpace = document.getElementById('game-space');
+    const groundPaths = newGround.querySelectorAll('path');
+    groundPaths[randomInteger(0, groundPaths.length - 1)].setAttribute('visibility', 'visible');
+    gameSpace.append(newGround);
+    newGround = gameSpace.lastChild;
+    newGround.style.top = randomInteger(settings.ground.top.min, settings.ground.top.max) + 'px';
+    newGround.getAnimations().forEach((anim, i, arr) => {
+        anim.onfinish = () => {
+            newGround.remove();
+        };
+    });
+}
+
+function createBumps(){
+    let bumpsTemp = document.querySelector('#bumps');
+    let newBumps = bumpsTemp.content.cloneNode(true);
+    const gameSpace = document.getElementById('game-space');
+    const bumpsPaths = newBumps.querySelectorAll('path');
+    if (randomInteger(2, bumpsPaths.length - 1) === 2) {
+        bumpsPaths[0].setAttribute('visibility', 'visible');
+        bumpsPaths[2].setAttribute('visibility', 'visible');
+    }
+    else {
+        bumpsPaths[1].setAttribute('visibility', 'visible');
+        bumpsPaths[3].setAttribute('visibility', 'visible');
+    };
+    gameSpace.append(newBumps);
+    newBumps = gameSpace.lastChild;
+    newBumps.getAnimations().forEach((anim, i, arr) => {
+        anim.onfinish = () => {
+            newBumps.remove();
+        };
+    });
+}
+
+function createPterodactyl(){
+
+    let pterodactylTemp = document.querySelector('#pterodactyl');
+    let newPterodactyl = pterodactylTemp.content.cloneNode(true);
+    const gameSpace = document.getElementById('game-space');
+
+    gameSpace.append(newPterodactyl);
+    newPterodactyl = gameSpace.lastChild;
+    newPterodactyl.style.top = randomInteger(settings.pterodactyl.top.min, settings.pterodactyl.top.max) + 'px';
+    newPterodactyl.getAnimations().forEach((anim, i, arr) => {
+        anim.onfinish = () => {
+            newPterodactyl.remove();
+        };
+    });
+}
+
+function createMoon(){
+    let moonTemp = document.querySelector('#moon');
+    let newMoon = moonTemp.content.cloneNode(true);
+    const gameSpace = document.getElementById('game-space');
+    gameSpace.append(newMoon);
+    newMoon = gameSpace.lastChild;
+    newMoon.style.top = randomInteger(settings.moon.top.min, settings.moon.top.max) + 'px';
+    newMoon.getAnimations().forEach((anim, i, arr) => {
+        anim.onfinish = () => {
+            newMoon.remove();
+            nightEnd();
+        };
+    });
+}
+
+function createStar(name, className){
+    let nodeTemp = document.querySelector('#'+name);
+    let newNode = nodeTemp.content.cloneNode(true);
+    const gameSpace = document.getElementById('game-space');
+    gameSpace.append(newNode);
+    newNode = gameSpace.lastChild;
+    newNode.classList.add(className);
+    newNode.offsetHeight;
+
+    newNode.style.top = randomInteger(settings.star.top.min, settings.star.top.max) + 'px';
+    newNode.getAnimations().forEach((anim, i, arr) => {
+        anim.onfinish = () => {
+            newNode.remove();
+            setTimeout( () => {
+                createStar(name, 'star3');
+            }, 0);
+        };
+    });
+    return newNode;
 }
 
 // let request;
