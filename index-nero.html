@@ -17,6 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/pouchdb@latest/dist/pouchdb.min.js"></script>
 </head>
 <body>
+
     <div id="wrapper">
         <h1 id ="title" class="unselectable">Счет игры</h1>
         <h1 id ="score" class="unselectable">0.0</h1>
@@ -24,7 +25,7 @@
         </div>
     </div>
 
-    <settings-form></settings-form>
+    <settings-form id="form"></settings-form>
 
     <div id="sittings-form" class="modal-form">
         <form class="modal-form-content animate" method="post" id="form-settings">
@@ -90,16 +91,9 @@
     </script>
 
     <script type="module">
-        const modal1 = document.querySelector('settings-form');
 
         // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal1) {
-                modal1.style.display = "none";
-            }
-        }
-
-        title.onclick = () => modal1.settingsFormOpen();
+        title.onclick = () => form.show();
     </script>
 </body>
 
