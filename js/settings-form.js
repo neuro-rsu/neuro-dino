@@ -1,3 +1,5 @@
+import {settings} from './settings.js';
+
 export { FactoryForm };
 
 function FactoryForm() {
@@ -5,7 +7,7 @@ function FactoryForm() {
         <div id="form" class="modal-form" style="display: none">
             <form class="modal-form-content animate" method="post" id="form-settings">
                 <div class="form-header">
-                    <span id="close2" class="close" title="Close Modal">&times;</span>
+                    <span id="close" class="close" title="Close Modal">&times;</span>
                 </div>
 
                 <div class="form-body">
@@ -36,9 +38,9 @@ function FactoryForm() {
                 <div class="form-footer">
                     <div class="footer-buttons">
                         <button type="button" id="cancel" class="footer-button cancel-button">Cancel</button>
-                        <button type="button" id="save" class="footer-button">Save</button>
                         <button type="button" id="delete" class="footer-button">Delete</button>
-                        <button type="button" id="close1" class="footer-button">Закрыть</button>
+                        <button type="button" id="clear" class="footer-button">Очистить</button>
+                        <button type="button" id="save" class="footer-button">Save</button>
                     </div>
                     <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
                 </div>
@@ -246,6 +248,11 @@ function FactoryForm() {
             let style = document.createElement('style');
             style.textContent = formStyle;
             this.shadowRoot.append(style);
+            this.shadowRoot.getElementById('cancel').onclick = this.cancel.bind(this);
+            this.shadowRoot.getElementById('save').onclick = this.save.bind(this);
+            this.shadowRoot.getElementById('delete').onclick = this.delete.bind(this);
+            this.shadowRoot.getElementById('clear').onclick = this.clear.bind(this);
+            this.shadowRoot.getElementById('close').onclick = this.clear.bind(this);
 
         }
 
@@ -265,6 +272,16 @@ function FactoryForm() {
         }
 
         show() {
+            const form = document.getElementById('form-settings');
+            form.cloud.checked = !settings.cloud.hidden;
+            form.horizon.checked = !settings.horizon.hidden;
+            form.cactus.checked = !settings.cactus.hidden;
+            form.ground.checked = !settings.ground.hidden;
+            form.bumps.checked = !settings.bumps.hidden;
+            form.pterodactyl.checked = !settings.pterodactyl.hidden;
+            form.moon.checked = !settings.moon.hidden;
+            form.star.checked = !settings.star.hidden;
+            form.night.checked = !settings.night.hidden;
             this.form.style.display = "block";
         }
 
@@ -272,10 +289,34 @@ function FactoryForm() {
             this.form.style.display = "none";
         }
 
-        settingsFormOpen() {
-            this.style.display = "block";
-            console.log('1');
+        cancel() {
+            this.form.style.display = "none";
         }
+
+        save() {
+            const form = document.getElementById('form-settings');
+            settings.cloud.hidden = !form.cloud.checked;
+            settings.horizon.hidden = !form.horizon.checked;
+            settings.cactus.hidden = !form.cactus.checked;
+            settings.ground.hidden = !form.ground.checked;
+            settings.bumps.hidden = !form.bumps.checked;
+            settings.pterodactyl.hidden = !form.pterodactyl.checked;
+            settings.moon.hidden = !form.moon.checked;
+            settings.star.hidden = !form.star.checked;
+            settings.night.hidden = !form.night.checked;
+            this.form.style.display = "none";
+        }
+
+        delete() {
+            this.form.style.display = "none";
+        }
+
+        clear() {
+            this.form.style.display = "none";
+        }
+
+
+
     }
 
     function regForm() {

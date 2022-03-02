@@ -9,7 +9,7 @@ export const settings
             min: 10,
             max: 100,
         },
-        hidden: true,
+        hidden: false,
     },
     cactus: {
         distance: {
@@ -22,7 +22,7 @@ export const settings
             min: 100,
             max: 150,
         },
-        hidden: true
+        hidden: false
     },
     currentTopology: [1,2],
     dinoPopulationCount: 10,
@@ -36,7 +36,7 @@ export const settings
             min: 442,
             max: 451,
         },
-        hidden: true,
+        hidden: false,
     },
 
     bumps: {
@@ -44,7 +44,7 @@ export const settings
             min: 40,
             max: 100,
         },
-        hidden: true,
+        hidden: false,
     },
 
     pterodactyl: {
@@ -56,7 +56,7 @@ export const settings
             min: 10,
             max: 351,
         },
-        hidden: true,
+        hidden: false,
     },
 
     moon: {
@@ -68,7 +68,7 @@ export const settings
             min: 20,
             max: 120,
         },
-        hidden: true,
+        hidden: false,
     },
 
     star: {
@@ -80,7 +80,7 @@ export const settings
             min: 70,
             max: 200,
         },
-        hidden: true,
+        hidden: false,
     },
 
     night: {
@@ -92,12 +92,12 @@ export const settings
             min: 100,
             max: 100,
         },
-        hidden: true,
+        hidden: false,
     },
     currentTopology: [1,2],
     dinoPopulationCount: 10,
     horizon: {
-        hidden: true,
+        hidden: false,
     },
 }
 
