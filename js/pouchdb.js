@@ -107,3 +107,20 @@ function update() {
         console.log(cloud);
     });
 }
+
+
+function Clear() {
+    db.compact().then(function (info) {
+        alert("База данных удалена");
+    }).catch(function (err) {
+        alert(err);
+    });
+}
+
+function Delete() {
+    pdb.destroy().then(function () {
+        alert("База данных удалена");
+    }).catch(function (err) {
+        alert(err);
+    })
+}

@@ -1,5 +1,8 @@
-export const settings
- = {
+const pdb = new PouchDB('settings');
+
+export let settings;
+
+const defaultSettings = {
     cloud: {
         distance: {
             min: 20,
@@ -16,6 +19,7 @@ export const settings
             min: 100,
             max: 150,
         },
+        hidden: false,
     },
     bigCactus: {
         distance: {
@@ -101,10 +105,52 @@ export const settings
     },
 }
 
-export function saveSettings() {
-
+export function compactSettings() {
+    pdb.compact().then(function (info) {
+        alert("Настройки сжаты");
+    }).catch(function (err) {
+        alert(err);
+    });
 }
 
-export function loadSettings() {
+export function destroySettings() {
+    pdb.destroy().then(function () {
+        alert("Настройки удалены");
+    }).catch(function (err) {
+        alert(err);
+    })
+}
 
+export async function loadSettings() {
+    await get()
+}
+
+export async function get() {
+    await pdb.get(defaultSettings.currentTopology.join('-')).then(function (settingsDB) {
+        settings = settingsDB;
+    }).catch(function (err) {
+        create();
+    });
+}
+
+export function copyDefault() {
+    settings = {_id: settings._id, _rev: settings._rev, ...defaultSettings};
+}
+
+export async function save() {
+    await pdb.put(settings).then( settingsDB => {
+        settings._rev = settingsDB.rev;
+    }).catch( err => {
+        console.log(`Can't create settings: ${err}`);
+    });
+}
+
+export async function create() {
+    settings = defaultSettings;
+    settings._id = defaultSettings.currentTopology.join('-');
+    await pdb.put(settings).then( settingsDB => {
+        settings._rev = settingsDB.rev;
+    }).catch( err => {
+        console.log(`Can't create settings: ${err}`);
+    });
 }

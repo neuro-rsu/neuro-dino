@@ -6,7 +6,7 @@ import {createPolygon} from './utils.js';
 import { DinoFactory } from "./neuro-dino.js";
 import { regDino } from "./reg-dino.js";
 
-import {changeBestDinoBrain} from './dino-brain.js'
+import {changeBestDinoBrain, createBestDinoBrain} from './dino-brain.js'
 
 let gameOver=false;
 let gameStart=false;
@@ -29,8 +29,9 @@ let nextBumpsDistance = 0;
 let nightDistance = 0;
 let nextNightDistance = 150;
 
-function initDinoSchool() {
-    loadSettings();
+async function initDinoSchool() {
+    await loadSettings();
+    await createBestDinoBrain();
     fetch("images/cactus.svg")
     .then(response => response.text())
     .then(svg => {

@@ -6,7 +6,7 @@ var pdb = new PouchDB('dino');
 
 export let bestDinoBrain; // = new NeuralNetwork(settings.currentTopology);
 
-await createBestDinoBrain();
+//await createBestDinoBrain();
 
 export async function createBestDinoBrain() {
     bestDinoBrain = new NeuralNetwork(settings.currentTopology);
@@ -25,8 +25,7 @@ export async function createBestDinoBrain() {
     });
 }
 
-function clearBestDinoBrain() {
-    alert('ddddd');
+export async function clearBestDinoBrain() {
     bestDinoBrain = new NeuralNetwork(settings.currentTopology);
     bestDinoBrain.cost = -Infinity;
     bestDinoBrain._id = settings.currentTopology.join('-');
@@ -36,12 +35,6 @@ function clearBestDinoBrain() {
         }
     });
 }
-
-function clearBestDinoBrainDbClick() {
-    clearBestDinoBrain(settings.currentTopology);
-}
-
-title.addEventListener('dblclick', clearBestDinoBrainDbClick);
 
 // export function addBestDinoBrain() {
 //     pdb.put(bestDinoBrain, function callback(err, result) {
@@ -80,4 +73,20 @@ async function saveBestDinoBrain() {
     }).then(function (dinoBrainDB) {
         bestDinoBrain._rev = dinoBrainDB._rev;
     });
+}
+
+export async function compactDb() {
+    pdb.compact().then(function (info) {
+        alert("База данных сжата");
+    }).catch(function (err) {
+        alert(err);
+    });
+}
+
+export async function deleteDb() {
+    pdb.destroy().then(function () {
+        alert("База данных удалена");
+    }).catch(function (err) {
+        alert(err);
+    })
 }

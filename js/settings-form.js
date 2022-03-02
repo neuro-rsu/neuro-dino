@@ -1,5 +1,7 @@
 import {settings} from './settings.js';
 
+import {compactDb, deleteDb} from './dino-brain.js';
+
 export { FactoryForm };
 
 function FactoryForm() {
@@ -23,12 +25,12 @@ function FactoryForm() {
                         <label><input type="checkbox" checked="checked" name="cloud">Облака</label>
                         <label><input type="checkbox" checked="checked" name="night">Ночь</label>
                         <label><input type="checkbox" checked="checked" name="horizon">Горизонт</label>
-                        <label><input type="checkbox" checked="checked" name="stars">Звезды</label>
-                        <label><input type="checkbox" checked="checked" name="ground">Кочки</label>
+                        <label><input type="checkbox" checked="checked" name="star">Звезды</label>
+                        <label><input type="checkbox" checked="checked" name="bumps">Кочки</label>
                         <label><input type="checkbox" checked="checked" name="moon">Луна</label>
                         <label><input type="checkbox" checked="checked" name="ground">Земля</label>
                         <label><input type="checkbox" checked="checked" name="pterodactyl">Птеродактиль</label>
-                        <label><input type="checkbox" checked="checked" name="big-cactus">Большой кактус</label>
+                        <label><input type="checkbox" checked="checked" name="cactus">Большой кактус</label>
                         <label><input type="checkbox" checked="checked" name="small-cactus">Маленький кактус</label>
                         <label><input type="checkbox" checked="checked" name="two-cactus">Два кактуса</label>
                         <label><input type="checkbox" checked="checked" name="three-cactus">Три кактуса</label>
@@ -38,9 +40,10 @@ function FactoryForm() {
                 <div class="form-footer">
                     <div class="footer-buttons">
                         <button type="button" id="cancel" class="footer-button cancel-button">Cancel</button>
-                        <button type="button" id="delete" class="footer-button">Delete</button>
-                        <button type="button" id="clear" class="footer-button">Очистить</button>
-                        <button type="button" id="save" class="footer-button">Save</button>
+                        <button type="button" id="delete" class="footer-button">Удалить</button>
+                        <button type="button" id="compact" class="footer-button">Сжать</button>
+                        <button type="button" id="default" class="footer-button">По умолчанию</button>
+                        <button type="button" id="save" class="footer-button">Сохранить</button>
                     </div>
                     <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
                 </div>
@@ -160,6 +163,7 @@ function FactoryForm() {
             margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
             border: 1px solid #888;
             width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 800px;
             border-radius: 10px;
         }
 
@@ -251,11 +255,20 @@ function FactoryForm() {
             this.shadowRoot.getElementById('cancel').onclick = this.cancel.bind(this);
             this.shadowRoot.getElementById('save').onclick = this.save.bind(this);
             this.shadowRoot.getElementById('delete').onclick = this.delete.bind(this);
-            this.shadowRoot.getElementById('clear').onclick = this.clear.bind(this);
-            this.shadowRoot.getElementById('close').onclick = this.clear.bind(this);
+            this.shadowRoot.getElementById('compact').onclick = this.compact.bind(this);
+            this.shadowRoot.getElementById('close').onclick = this.close.bind(this);
+            this.shadowRoot.getElementById('default').onclick = this.default.bind(this);
+        }
+
+        static pdb = new PouchDB('settings')
+
+        saveSettings() {
 
         }
 
+        getSettings() {
+
+        }
         attributeChangedCallback(name, oldValue, newValue) {
             // if (name === "show") {
             //     if (oldValue === null) {
@@ -272,7 +285,7 @@ function FactoryForm() {
         }
 
         show() {
-            const form = document.getElementById('form-settings');
+            const form = this.shadowRoot.getElementById('form-settings');
             form.cloud.checked = !settings.cloud.hidden;
             form.horizon.checked = !settings.horizon.hidden;
             form.cactus.checked = !settings.cactus.hidden;
@@ -294,9 +307,16 @@ function FactoryForm() {
         }
 
         save() {
-            const form = document.getElementById('form-settings');
+            const form = this.shadowRoot.getElementById('form-settings');
             settings.cloud.hidden = !form.cloud.checked;
             settings.horizon.hidden = !form.horizon.checked;
+            settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
+            // if (settings.horizon.hidden) {
+            //     hideHorizon();
+            // }
+            // else {
+            //     showHorizon();
+            // }
             settings.cactus.hidden = !form.cactus.checked;
             settings.ground.hidden = !form.ground.checked;
             settings.bumps.hidden = !form.bumps.checked;
@@ -307,15 +327,38 @@ function FactoryForm() {
             this.form.style.display = "none";
         }
 
+        default() {
+            defaultSettings
+            const form = this.shadowRoot.getElementById('form-settings');
+            form.cloud.checked = !settings.cloud.hidden;
+            form.horizon.checked = !settings.horizon.hidden;
+            form.cactus.checked = !settings.cactus.hidden;
+            form.ground.checked = !settings.ground.hidden;
+            form.bumps.checked = !settings.bumps.hidden;
+            form.pterodactyl.checked = !settings.pterodactyl.hidden;
+            form.moon.checked = !settings.moon.hidden;
+            form.star.checked = !settings.star.hidden;
+            form.night.checked = !settings.night.hidden;
+            this.form.style.display = "block";
+        }
+
         delete() {
-            this.form.style.display = "none";
+            deleteDb();
         }
 
-        clear() {
-            this.form.style.display = "none";
+        compact() {
+            compactDb();
         }
 
+        hideHorizon() {
+            const horizon = document.querySelector('.horizon');
+            horizon.style.display = 'none';
+        }
 
+        showHorizon(){
+            const horizon = document.querySelector('.horizon');
+            horizon.style.display = 'block';
+        }
 
     }
 
