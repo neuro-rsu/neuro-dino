@@ -9,10 +9,60 @@ function FactoryForm() {
         <div id="form" class="modal-form" style="display: none">
             <form class="modal-form-content animate" method="post" id="form-settings">
                 <div class="form-header">
+                    <ul class="form-tabs">
+                        <li class="form-tab">
+                            <a href="#managers" class="form-tab-link">Managers</a>
+                        <!-- Omitting the end tag is valid HTML and removes the space in-between inline blocks. -->
+                        <li class="form-tab">
+                            <a href="#designers" class="form-tab-link">Designers</a>
+                        <li class="form-tab">
+                            <a href="#developers" class="form-tab-link">Developers</a>
+                    </ul>
                     <span id="close" class="close" title="Close Modal">&times;</span>
                 </div>
 
                 <div class="form-body">
+                <ol class="widget-list" id="designers">
+      <li>
+        <a class="widget-list-link">
+          <img src="http://www.gravatar.com/avatar/5?f=y&amp;s=64&amp;d=identicon">
+          Designer #1 <span>481 followers</span>
+        </a>
+      </li>
+      <li>
+        <a class="widget-list-link">
+          <img src="http://www.gravatar.com/avatar/5?f=y&amp;s=64&amp;d=identicon">
+          Designer #2 <span>5162 followers</span>
+        </a>
+      </li>
+      <li>
+        <a class="widget-list-link">
+          <img src="http://www.gravatar.com/avatar/5?f=y&amp;s=64&amp;d=identicon">
+          Designer #3 <span>342 followers</span>
+        </a>
+      </li>
+    </ol>
+
+    <ol class="widget-list" id="developers">
+      <li>
+        <a class="widget-list-link">
+          <img src="http://www.gravatar.com/avatar/6?f=y&amp;s=64&amp;d=identicon">
+          Developer #1 <span>481 followers</span>
+        </a>
+      </li>
+      <li>
+        <a class="widget-list-link">
+          <img src="http://www.gravatar.com/avatar/6?f=y&amp;s=64&amp;d=identicon">
+          Developer #2 <span>5162 followers</span>
+        </a>
+      </li>
+      <li>
+        <a class="widget-list-link">
+          <img src="http://www.gravatar.com/avatar/6?f=y&amp;s=64&amp;d=identicon">
+          Developer #3 <span>342 followers</span>
+        </a>
+      </li>
+    </ol>
                     <label for="uname"><b>Username</b></label>
                     <input type="text" placeholder="Enter Username" name="uname" required>
 
@@ -165,6 +215,136 @@ function FactoryForm() {
             width: 80%; /* Could be more or less, depending on screen size */
             max-width: 800px;
             border-radius: 10px;
+        }
+
+        .form-tabs {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 9px 12px 0;
+            margin: 0;
+            text-align: left;
+            direction: rtl;
+            background: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .form-tab,
+        .form-list:target:first-of-type ~ .form-tabs > .form-tab:first-child ~ .form-tab,
+        .form-list:target:nth-of-type(2) ~ .form-tabs > .form-tab:nth-child(2) ~ .form-tab,
+        .form-list:target:last-of-type ~ .form-tabs > .form-tab:last-child ~ .form-tab {
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 3px;
+            line-height: 36px;
+            font-weight: normal;
+            color: #999;
+            background: #fcfcfc;
+            border: solid #ddd;
+            border-width: 1px 1px 0;
+            border-radius: 5px 5px 0 0;
+            padding-bottom: 0;
+            bottom: auto;
+        }
+
+        .form-tab > .form-tab-link,
+        .form-list:target:first-of-type ~ .form-tabs > .form-tab:first-child ~ .form-tab > .form-tab-link,
+        .form-list:target:nth-of-type(2) ~ .form-tabs > .form-tab:nth-child(2) ~ .form-tab > .form-tab-link,
+        .form-list:target:last-of-type ~ .form-tabs > .form-tab:last-child ~ .form-tab > .form-tab-link {
+            margin: 0;
+            border-top: 0;
+        }
+
+        .form-tab + .form-tab {
+            margin-right: -1px;
+        }
+
+        .form-tab:last-child,
+        .form-list:target:first-of-type ~ .form-tabs > .form-tab:first-child,
+        .form-list:target:nth-of-type(2) ~ .form-tabs > .form-tab:nth-child(2),
+        .form-list:target:last-of-type ~ .form-tabs > .form-tab:last-child {
+            bottom: -1px;
+            margin-top: 0;
+            padding-bottom: 2px;
+            line-height: 34px;
+            font-weight: bold;
+            color: #555;
+            background: white;
+            border-top: 0;
+        }
+
+        .form-tab:last-child > .form-tab-link,
+        .form-list:target:first-of-type ~ .form-tabs > .form-tab:first-child > .form-tab-link,
+        .form-list:target:nth-of-type(2) ~ .form-tabs > .form-tab:nth-child(2) > .form-tab-link,
+        .form-list:target:last-of-type ~ .form-tabs > .form-tab:last-child > .form-tab-link {
+            margin: 0 -1px;
+            border-top: 4px solid #4cc8f1;
+        }
+
+        .form-tab-link {
+            display: block;
+            min-width: 60px;
+            padding: 0 15px;
+            color: inherit;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .form-list {
+            display: none;
+            padding-top: 50px;
+        }
+
+        .form-list > li + li {
+            border-top: 1px solid #e8e8e8;
+        }
+
+        .form-list:last-of-type {
+            display: block;
+        }
+
+        .form-list:target {
+            display: block;
+        }
+
+        .form-list:target ~ .form-list {
+            display: none;
+        }
+
+        .form-list-link {
+            display: block;
+            line-height: 18px;
+            padding: 10px 12px;
+            font-weight: bold;
+            color: #555;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .form-list-link:hover {
+            background: #f7f7f7;
+        }
+
+        li:last-child > .form-list-link {
+            border-radius: 0 0 3px 3px;
+        }
+
+        .form-list-link > img {
+            float: left;
+            width: 32px;
+            height: 32px;
+            margin: 2px 12px 0 0;
+        }
+
+        .form-list-link > span {
+            display: block;
+            font-size: 11px;
+            font-weight: normal;
+            color: #999;
         }
 
         /* The Close Button (x) */
