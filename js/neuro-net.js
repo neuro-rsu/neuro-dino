@@ -94,7 +94,7 @@ export class NeuralSection
     * </summary>
     * <param name="inputCount">The number of input neurons in the section.</param>
     * <param name="outputCount">The number of output neurons in the section.</param>
-    * <param name="Randomizer">The Ransom instance of the NeuralNetwork.</param>
+    * <param name="Randomize">The Ransom instance of the NeuralNetwork.</param>
     */
     constructor (inputCount=0, outputCount)
     {

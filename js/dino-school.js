@@ -217,7 +217,7 @@ function dinoJump() {
     }
 }
 
-function checkDinos(){
+async function checkDinos(){
     cloudDistance++;
     settings.cloud.distance.min = 1;
 
@@ -300,17 +300,17 @@ function checkDinos(){
         return;
     }
 
-    dinos.forEach( dino => {
+    for (const dino of dinos) {
         if ( dino.check(cactus, cactusCoords) ) {
             dino.dinoBrain.cost = +document.getElementById('score').textContent;
-            changeBestDinoBrain(dino.dinoBrain);
+            await changeBestDinoBrain(dino.dinoBrain);
             dino.remove();
         }
         else {
             dino.jump(cactus, cactusCoords);
         }
-    })
-
+    }
+    
     dinos = document.querySelectorAll('neuro-dino');
 
     if ( dinos.length === 0 ) {
