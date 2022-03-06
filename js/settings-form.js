@@ -10,92 +10,81 @@ function FactoryForm() {
             <form class="modal-form-content animate" method="post" id="form-settings">
                 <div class="form-header">
                     <ul class="form-tabs">
+                        <li class="form-tab selected">
+                            <span id="settings-tab" class="form-tab-link noselect">Настройки</span>
                         <li class="form-tab">
-                            <a href="#managers" class="form-tab-link">Managers</a>
-                        <!-- Omitting the end tag is valid HTML and removes the space in-between inline blocks. -->
+                            <span id="db-tab" class="form-tab-link noselect">База данных</span>
                         <li class="form-tab">
-                            <a href="#designers" class="form-tab-link">Designers</a>
-                        <li class="form-tab">
-                            <a href="#developers" class="form-tab-link">Developers</a>
+                            <span id="status-tab" class="form-tab-link noselect">Статистика</span>
                     </ul>
-                    <span id="close" class="close" title="Close Modal">&times;</span>
+                    <span id="close" class="close" title="Закрыть">&times;</span>
                 </div>
 
                 <div class="form-body">
-                <ol class="widget-list" id="designers">
-      <li>
-        <a class="widget-list-link">
-          <img src="http://www.gravatar.com/avatar/5?f=y&amp;s=64&amp;d=identicon">
-          Designer #1 <span>481 followers</span>
-        </a>
-      </li>
-      <li>
-        <a class="widget-list-link">
-          <img src="http://www.gravatar.com/avatar/5?f=y&amp;s=64&amp;d=identicon">
-          Designer #2 <span>5162 followers</span>
-        </a>
-      </li>
-      <li>
-        <a class="widget-list-link">
-          <img src="http://www.gravatar.com/avatar/5?f=y&amp;s=64&amp;d=identicon">
-          Designer #3 <span>342 followers</span>
-        </a>
-      </li>
-    </ol>
+                    <div id="settings-tab-section" class="form-tab-section selected">
+                        <div class="checkboxes-settings">
+                            <label><input type="checkbox" checked="checked" name="cloud">Облака</label>
+                            <label><input type="checkbox" checked="checked" name="night">Ночь</label>
+                            <label><input type="checkbox" checked="checked" name="horizon">Горизонт</label>
+                            <label><input type="checkbox" checked="checked" name="star">Звезды</label>
+                            <label><input type="checkbox" checked="checked" name="bumps">Кочки</label>
+                            <label><input type="checkbox" checked="checked" name="moon">Луна</label>
+                            <label><input type="checkbox" checked="checked" name="ground">Земля</label>
+                            <label><input type="checkbox" checked="checked" name="pterodactyl">Птеродактиль</label>
+                            <label><input type="checkbox" checked="checked" name="cactus">Большой кактус</label>
+                            <label><input type="checkbox" checked="checked" name="small-cactus">Маленький кактус</label>
+                            <label><input type="checkbox" checked="checked" name="two-cactus">Два кактуса</label>
+                            <label><input type="checkbox" checked="checked" name="three-cactus">Три кактуса</label>
+                        </div>
+                    </div>
+                    <div id="db-tab-section" class="form-tab-section">
+                        <label for="uname"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
 
-    <ol class="widget-list" id="developers">
-      <li>
-        <a class="widget-list-link">
-          <img src="http://www.gravatar.com/avatar/6?f=y&amp;s=64&amp;d=identicon">
-          Developer #1 <span>481 followers</span>
-        </a>
-      </li>
-      <li>
-        <a class="widget-list-link">
-          <img src="http://www.gravatar.com/avatar/6?f=y&amp;s=64&amp;d=identicon">
-          Developer #2 <span>5162 followers</span>
-        </a>
-      </li>
-      <li>
-        <a class="widget-list-link">
-          <img src="http://www.gravatar.com/avatar/6?f=y&amp;s=64&amp;d=identicon">
-          Developer #3 <span>342 followers</span>
-        </a>
-      </li>
-    </ol>
-                    <label for="uname"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="uname" required>
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
 
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
-
-                    <button type="submit">Login</button>
-
-                    <div class="checkboxes-settings">
-                        <label><input type="checkbox" checked="checked" name="cloud">Облака</label>
-                        <label><input type="checkbox" checked="checked" name="night">Ночь</label>
-                        <label><input type="checkbox" checked="checked" name="horizon">Горизонт</label>
-                        <label><input type="checkbox" checked="checked" name="star">Звезды</label>
-                        <label><input type="checkbox" checked="checked" name="bumps">Кочки</label>
-                        <label><input type="checkbox" checked="checked" name="moon">Луна</label>
-                        <label><input type="checkbox" checked="checked" name="ground">Земля</label>
-                        <label><input type="checkbox" checked="checked" name="pterodactyl">Птеродактиль</label>
-                        <label><input type="checkbox" checked="checked" name="cactus">Большой кактус</label>
-                        <label><input type="checkbox" checked="checked" name="small-cactus">Маленький кактус</label>
-                        <label><input type="checkbox" checked="checked" name="two-cactus">Два кактуса</label>
-                        <label><input type="checkbox" checked="checked" name="three-cactus">Три кактуса</label>
+                        <button type="submit">Login</button>
+                    </div>
+                    <div id="status-tab-section" class="form-tab-section">
+                        <label for="uname"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
                     </div>
                 </div>
 
                 <div class="form-footer">
-                    <div class="footer-buttons">
-                        <button type="button" id="cancel" class="footer-button cancel-button">Cancel</button>
-                        <button type="button" id="delete" class="footer-button">Удалить</button>
-                        <button type="button" id="compact" class="footer-button">Сжать</button>
-                        <button type="button" id="default" class="footer-button">По умолчанию</button>
-                        <button type="button" id="save" class="footer-button">Сохранить</button>
+                    <div id="settings-tab-buttons" class="footer-buttons-section selected">
+                        <div class="footer-buttons ">
+                            <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
+                            <button type="button" name="default" class="footer-button">По умолчанию</button>
+                            <button type="button" name="restory" class="footer-button">Восстановить</button>
+                            <button type="button" name="save" class="footer-button">Сохранить</button>
+                            <button type="button" name="close" class="footer-button">Закрыть</button>
+                        </div>
+                        <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
                     </div>
-                    <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
+                    <div id="db-tab-buttons" class="footer-buttons-section">
+                        <div class="footer-buttons">
+                            <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
+                            <button type="button" id="delete" class="footer-button">Удалить</button>
+                            <button type="button" id="compact" class="footer-button">Сжать</button>
+                            <button type="button" id="default" class="footer-button">По умолчанию</button>
+                            <button type="button" id="save" class="footer-button">Сохранить</button>
+                        </div>
+                        <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
+                    </div>
+                    <div id="status-tab-buttons" class="footer-buttons-section">
+                        <div class="footer-buttons">
+                            <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
+                            <button type="button" id="delete" class="footer-button">Удалить</button>
+                            <button type="button" id="compact" class="footer-button">Сжать</button>
+                            <button type="button" id="default" class="footer-button">По умолчанию</button>
+                            <button type="button" id="save" class="footer-button">Сохранить</button>
+                        </div>
+                        <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
+                    </div>
                 </div>
             </form>
         </div>
@@ -177,6 +166,7 @@ function FactoryForm() {
         }
 
         .form-body {
+            margin-top: 16px;
             padding: 16px;
         }
 
@@ -222,19 +212,18 @@ function FactoryForm() {
             top: 0;
             left: 0;
             right: 0;
-            padding: 9px 12px 0;
-            margin: 0;
+            padding: 0 12px;
+            margin: 10px 0 0;
             text-align: left;
-            direction: rtl;
-            background: #f5f5f5;
+            background: #f1f1f1;
             border-bottom: 1px solid #ddd;
             border-radius: 3px 3px 0 0;
         }
 
         .form-tab,
-        .form-list:target:first-of-type ~ .form-tabs > .form-tab:first-child ~ .form-tab,
-        .form-list:target:nth-of-type(2) ~ .form-tabs > .form-tab:nth-child(2) ~ .form-tab,
-        .form-list:target:last-of-type ~ .form-tabs > .form-tab:last-child ~ .form-tab {
+        .form-list.selected:first-of-type ~ .form-tabs > .form-tab:first-child ~ .form-tab,
+        .form-list.selected:nth-of-type(2) ~ .form-tabs > .form-tab:nth-child(2) ~ .form-tab,
+        .form-list.selected:last-of-type ~ .form-tabs > .form-tab:last-child ~ .form-tab {
             position: relative;
             display: inline-block;
             vertical-align: top;
@@ -250,22 +239,17 @@ function FactoryForm() {
             bottom: auto;
         }
 
-        .form-tab > .form-tab-link,
-        .form-list:target:first-of-type ~ .form-tabs > .form-tab:first-child ~ .form-tab > .form-tab-link,
-        .form-list:target:nth-of-type(2) ~ .form-tabs > .form-tab:nth-child(2) ~ .form-tab > .form-tab-link,
-        .form-list:target:last-of-type ~ .form-tabs > .form-tab:last-child ~ .form-tab > .form-tab-link {
+        .form-tab-link {
             margin: 0;
             border-top: 0;
         }
 
         .form-tab + .form-tab {
-            margin-right: -1px;
+            margin-left: -1px;
         }
 
-        .form-tab:last-child,
-        .form-list:target:first-of-type ~ .form-tabs > .form-tab:first-child,
-        .form-list:target:nth-of-type(2) ~ .form-tabs > .form-tab:nth-child(2),
-        .form-list:target:last-of-type ~ .form-tabs > .form-tab:last-child {
+
+        .form-tab.selected {
             bottom: -1px;
             margin-top: 0;
             padding-bottom: 2px;
@@ -276,10 +260,12 @@ function FactoryForm() {
             border-top: 0;
         }
 
-        .form-tab:last-child > .form-tab-link,
-        .form-list:target:first-of-type ~ .form-tabs > .form-tab:first-child > .form-tab-link,
-        .form-list:target:nth-of-type(2) ~ .form-tabs > .form-tab:nth-child(2) > .form-tab-link,
-        .form-list:target:last-of-type ~ .form-tabs > .form-tab:last-child > .form-tab-link {
+        .form-tab:hover {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-tab.selected > .form-tab-link{
             margin: 0 -1px;
             border-top: 4px solid #4cc8f1;
         }
@@ -289,62 +275,35 @@ function FactoryForm() {
             min-width: 60px;
             padding: 0 15px;
             color: inherit;
+            cursor: pointer;
             text-align: center;
             text-decoration: none;
             border-radius: 4px 4px 0 0;
         }
 
-        .form-list {
-            display: none;
-            padding-top: 50px;
-        }
-
-        .form-list > li + li {
-            border-top: 1px solid #e8e8e8;
-        }
-
-        .form-list:last-of-type {
-            display: block;
-        }
-
-        .form-list:target {
-            display: block;
-        }
-
-        .form-list:target ~ .form-list {
+        .form-tab-section {
             display: none;
         }
 
-        .form-list-link {
+        .form-tab-section.selected {
             display: block;
-            line-height: 18px;
-            padding: 10px 12px;
-            font-weight: bold;
-            color: #555;
-            text-decoration: none;
-            cursor: pointer;
         }
 
-        .form-list-link:hover {
-            background: #f7f7f7;
+        .footer-buttons-section {
+            display: none;
         }
 
-        li:last-child > .form-list-link {
-            border-radius: 0 0 3px 3px;
-        }
-
-        .form-list-link > img {
-            float: left;
-            width: 32px;
-            height: 32px;
-            margin: 2px 12px 0 0;
-        }
-
-        .form-list-link > span {
+        .footer-buttons-section.selected {
             display: block;
-            font-size: 11px;
-            font-weight: normal;
-            color: #999;
+        }
+
+        .noselect {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         /* The Close Button (x) */
@@ -420,6 +379,10 @@ function FactoryForm() {
             return ['show'];
         }
 
+        tabSections = new Map
+
+        tabs = new Map
+
         constructor () {
             super();
 
@@ -432,21 +395,28 @@ function FactoryForm() {
             let style = document.createElement('style');
             style.textContent = formStyle;
             this.shadowRoot.append(style);
-            this.shadowRoot.getElementById('cancel').onclick = this.cancel.bind(this);
-            this.shadowRoot.getElementById('save').onclick = this.save.bind(this);
-            this.shadowRoot.getElementById('delete').onclick = this.delete.bind(this);
-            this.shadowRoot.getElementById('compact').onclick = this.compact.bind(this);
+            this.shadowRoot.querySelector("#settings-tab-buttons button[name='cancel'").onclick = this.cancelSettings.bind(this);
+            this.shadowRoot.querySelector("#settings-tab-buttons button[name='default'").onclick = this.defaultSettings.bind(this);
+            this.shadowRoot.querySelector("#settings-tab-buttons button[name='restory'").onclick = this.restorySettings.bind(this);
+            this.shadowRoot.querySelector("#settings-tab-buttons button[name='save'").onclick = this.saveSettings.bind(this);
+            this.shadowRoot.querySelector("#settings-tab-buttons button[name='close'").onclick = this.closeSettings.bind(this);
+            // this.shadowRoot.getElementById('save').onclick = this.save.bind(this);
+            // this.shadowRoot.getElementById('delete').onclick = this.delete.bind(this);
+            // this.shadowRoot.getElementById('compact').onclick = this.compact.bind(this);
             this.shadowRoot.getElementById('close').onclick = this.close.bind(this);
-            this.shadowRoot.getElementById('default').onclick = this.default.bind(this);
+            // this.shadowRoot.getElementById('default').onclick = this.default.bind(this);
+            let tabList = this.shadowRoot.querySelectorAll('.form-tab-link');
+            for (let i = 0; i < tabList.length; i++) {
+                const tab = tabList[i];
+                tab.onclick = this.changeTab.bind(this);
+                this.tabs.set(tab.getAttribute('id'), tab);
+                this.tabSections.set(tab.getAttribute('id'), this.shadowRoot.getElementById(tab.getAttribute('id')+'-section'));
+            }
         }
 
         static pdb = new PouchDB('settings')
 
-        saveSettings() {
-
-        }
-
-        getSettings() {
+        restorySettings() {
 
         }
         attributeChangedCallback(name, oldValue, newValue) {
@@ -486,7 +456,7 @@ function FactoryForm() {
             this.form.style.display = "none";
         }
 
-        save() {
+        saveSettings() {
             const form = this.shadowRoot.getElementById('form-settings');
             settings.cloud.hidden = !form.cloud.checked;
             settings.horizon.hidden = !form.horizon.checked;
@@ -507,8 +477,7 @@ function FactoryForm() {
             this.form.style.display = "none";
         }
 
-        default() {
-            defaultSettings
+        defaultSettings() {
             const form = this.shadowRoot.getElementById('form-settings');
             form.cloud.checked = !settings.cloud.hidden;
             form.horizon.checked = !settings.horizon.hidden;
@@ -519,7 +488,56 @@ function FactoryForm() {
             form.moon.checked = !settings.moon.hidden;
             form.star.checked = !settings.star.hidden;
             form.night.checked = !settings.night.hidden;
-            this.form.style.display = "block";
+        }
+
+        cancelSettings() {
+            const form = this.shadowRoot.getElementById('form-settings');
+            form.cloud.checked = !settings.cloud.hidden;
+            form.horizon.checked = !settings.horizon.hidden;
+            form.cactus.checked = !settings.cactus.hidden;
+            form.ground.checked = !settings.ground.hidden;
+            form.bumps.checked = !settings.bumps.hidden;
+            form.pterodactyl.checked = !settings.pterodactyl.hidden;
+            form.moon.checked = !settings.moon.hidden;
+            form.star.checked = !settings.star.hidden;
+            form.night.checked = !settings.night.hidden;
+        }
+
+        closeSettings() {
+            const form = this.shadowRoot.getElementById('form-settings');
+            settings.cloud.hidden = !form.cloud.checked;
+            settings.horizon.hidden = !form.horizon.checked;
+            settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
+            // if (settings.horizon.hidden) {
+            //     hideHorizon();
+            // }
+            // else {
+            //     showHorizon();
+            // }
+            settings.cactus.hidden = !form.cactus.checked;
+            settings.ground.hidden = !form.ground.checked;
+            settings.bumps.hidden = !form.bumps.checked;
+            settings.pterodactyl.hidden = !form.pterodactyl.checked;
+            settings.moon.hidden = !form.moon.checked;
+            settings.star.hidden = !form.star.checked;
+            settings.night.hidden = !form.night.checked;
+            this.form.style.display = "none";
+        }
+
+
+        changeTab(e){
+            let tabName = e.target.getAttribute('id');
+            this.tabs.forEach((tab, name) => {
+                if (name == tabName) {
+                    tab.parentNode.classList.add('selected');
+                    this.shadowRoot.querySelector("#" + name + "-buttons").classList.add('selected')
+                    this.tabSections.get(name).classList.add('selected')
+                } else {
+                    tab.parentNode.classList.remove('selected');
+                    this.shadowRoot.querySelector("#" + name + "-buttons").classList.remove('selected')
+                    this.tabSections.get(name).classList.remove('selected')
+                }
+            });
         }
 
         delete() {
