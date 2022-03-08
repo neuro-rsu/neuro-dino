@@ -9,16 +9,16 @@ export let bestDinoBrain; // = new NeuralNetwork(settings.currentTopology);
 //await createBestDinoBrain();
 
 export async function createBestDinoBrain() {
-    bestDinoBrain = new NeuralNetwork(settings.currentTopology);
+    bestDinoBrain = new NeuralNetwork(settings.topology);
     bestDinoBrain.cost = -Infinity;
 
-    await pdb.get(settings.currentTopology.join('-')).then(function (bestDinoBrainDB) {
+    await pdb.get(settings.topology.join('-')).then(function (bestDinoBrainDB) {
         bestDinoBrain.sections.forEach((item, index) => item.weights = bestDinoBrainDB.sections[index].weights);
         bestDinoBrain.cost = bestDinoBrainDB.cost;
         // console.log(bestDinoBrainDB);
     }).catch(function (err) {
         // console.log(err);
-        bestDinoBrain._id = settings.currentTopology.join('-');
+        bestDinoBrain._id = settings.topology.join('-');
         return pdb.put(bestDinoBrain);
     }).catch( err => {
         console.log(`Can't add bestDinoBrain ${err}`);
@@ -26,10 +26,10 @@ export async function createBestDinoBrain() {
 }
 
 export async function clearBestDinoBrain() {
-    bestDinoBrain = new NeuralNetwork(settings.currentTopology);
+    bestDinoBrain = new NeuralNetwork(settings.topology);
     bestDinoBrain.cost = -Infinity;
 
-    await pdb.get(settings.currentTopology.join('-')).then(function (bestDinoBrainDB) {
+    await pdb.get(settings.topology.join('-')).then(function (bestDinoBrainDB) {
         bestDinoBrain._id = bestDinoBrainDB._id;
         bestDinoBrain._rev = bestDinoBrainDB._rev;
         return pdb.put(bestDinoBrain);
@@ -66,7 +66,7 @@ export async function changeBestDinoBrain(dinoBrain) {
 }
 
 async function saveBestDinoBrain() {
-    await pdb.get(settings.currentTopology.join('-')).then(function (bestDinoBrainDB) {
+    await pdb.get(settings.topology.join('-')).then(function (bestDinoBrainDB) {
         bestDinoBrain._id = bestDinoBrainDB._id;
         bestDinoBrain._rev = bestDinoBrainDB._rev;
         return pdb.put(bestDinoBrain);

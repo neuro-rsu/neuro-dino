@@ -257,17 +257,17 @@ async function checkDinos(){
         nextBumpsDistance = randomInteger(settings.bumps.distance.min, settings.bumps.distance.max);
     }
 
-    // nightDistance++;
-    // if (nightDistance > nextNightDistance) {
-    //     nightDistance = -settings.night.length.min;
-    //     nightBegin();
-    //     nextNightDistance = randomInteger(settings.night.distance.min, settings.night.distance.max);
-    // }
+    nightDistance++;
+    if (nightDistance > nextNightDistance) {
+        nightDistance = -settings.night.length.min;
+        nightBegin();
+        nextNightDistance = randomInteger(settings.night.distance.min, settings.night.distance.max);
+    }
 
-    // if (nightDistance === 0)
-    // {
-    //     nightEnd();
-    // }
+    if (nightDistance === 0)
+    {
+        nightEnd();
+    }
 
 
 
@@ -310,7 +310,7 @@ async function checkDinos(){
             dino.jump(cactus, cactusCoords);
         }
     }
-    
+
     dinos = document.querySelectorAll('neuro-dino');
 
     if ( dinos.length === 0 ) {
@@ -547,7 +547,7 @@ function createStar(name, className){
 
 function createPopulation() {
     document.getElementById('score').textContent = '0';
-    for (let i = 0; i < settings.dinoPopulationCount; i++) {
+    for (let i = 0; i < settings.populationCount; i++) {
         const newDino = document.createElement('neuro-dino');
         window['game-space'].append(newDino);
     }
@@ -555,3 +555,73 @@ function createPopulation() {
 }
 
 // createPopulation();
+
+
+function nightBegin() {
+    if (settings.night.hidden) {
+        return;
+    }
+    createMoon();
+    createStar('star1', 'star1');
+    createStar('star2', 'star2');
+
+    let clouds = document.querySelectorAll('.clouds');
+    clouds.forEach(cloud => cloud.classList.add('night'));
+
+    let cactuses = document.querySelectorAll('.cactuses');
+    cactuses.forEach(cactus => cactus.classList.add('night'));
+
+    let pterodactyls = document.querySelectorAll('.pterodactyls');
+    pterodactyls.forEach(pterodactyl => pterodactyl.classList.add('night'));
+
+    let grounds = document.querySelectorAll('.grounds');
+    grounds.forEach(ground => ground.classList.add('night'));
+
+    let bumps = document.querySelectorAll('.bumps');
+    bumps.forEach(bump => bump.classList.add('night'));
+
+    let horizon = document.querySelectorAll('.horizon');
+    horizon.forEach(horizon => horizon.classList.add('night'));
+
+    let dinos = document.querySelectorAll('.dinos');
+    dinos.forEach(dino => dino.classList.add('night'));
+
+    document.getElementById('game-space').classList.add('night');
+}
+
+function nightEnd() {
+    if (settings.night.hidden) {
+        return;
+    }
+    let moon = document.querySelectorAll('.moon');
+    moon.forEach(moon => moon.remove());
+
+    let star = document.querySelectorAll('.star1');
+    star.forEach(star => star.remove());
+
+    star = document.querySelectorAll('.star2');
+    star.forEach(star => star.remove());
+
+    let clouds = document.querySelectorAll('.clouds');
+    clouds.forEach(cloud => cloud.classList.remove('night'));
+
+    let cactuses = document.querySelectorAll('.cactuses');
+    cactuses.forEach(cactus => cactus.classList.remove('night'));
+
+    let pterodactyls = document.querySelectorAll('.pterodactyls');
+    pterodactyls.forEach(pterodactyl => pterodactyl.classList.remove('night'));
+
+    let grounds = document.querySelectorAll('.grounds');
+    grounds.forEach(ground => ground.classList.remove('night'));
+
+    let bumps = document.querySelectorAll('.bumps');
+    bumps.forEach(bump => bump.classList.remove('night'));
+
+    let horizon = document.querySelectorAll('.horizon');
+    horizon.forEach(horizon => horizon.classList.remove('night'));
+
+    let dinos = document.querySelectorAll('.dinos');
+    dinos.forEach(dino => dino.classList.remove('night'));
+
+    document.getElementById('game-space').classList.remove('night');
+}

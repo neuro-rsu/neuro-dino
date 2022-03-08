@@ -1,4 +1,6 @@
-import {settings} from './settings.js';
+import {settings, defaultSettings} from './settings.js';
+
+import {factoryModalDialog} from './modal-dialog.js';
 
 import {compactDb, deleteDb} from './dino-brain.js';
 
@@ -7,34 +9,55 @@ export { FactoryForm };
 function FactoryForm() {
     const formHTML = `
         <div id="form" class="modal-form" style="display: none">
+            <modal-dialog></modal-dialog>
             <form class="modal-form-content animate" method="post" id="form-settings">
                 <div class="form-header">
-                    <ul class="form-tabs">
+                    <ul class="form-tabs noselect">
                         <li class="form-tab selected">
+                            <span id="lessons-tab" class="form-tab-link noselect">Уроки</span>
+                        </li>
+                        <li class="form-tab">
                             <span id="settings-tab" class="form-tab-link noselect">Настройки</span>
+                        </li>
                         <li class="form-tab">
                             <span id="db-tab" class="form-tab-link noselect">База данных</span>
-                        <li class="form-tab">
-                            <span id="status-tab" class="form-tab-link noselect">Статистика</span>
+                        </li>
                     </ul>
-                    <span id="close" class="close" title="Закрыть">&times;</span>
+                    <span id="close" class="close noselect" title="Закрыть">&times;</span>
                 </div>
 
                 <div class="form-body">
-                    <div id="settings-tab-section" class="form-tab-section selected">
+                    <div id="lessons-tab-section" class="form-tab-section selected">
+                        <label for="lesson" class="noselect"><b>Урок</b></label>
+                        <div name="lesson" class="lesson">
+                            <input type="text" placeholder="Номер урока" name="lessonnumber" min="1" required>
+                            <input type="text" placeholder="Название урока" name="lessonname" required>
+                        </div>
+                        <label for="topic" class="noselect"><b>Тема урока</b></label>
+                        <div name="topic" class="topic">
+                            <input type="text" placeholder="Номер темы" name="topicnumber" min="1" required>
+                            <input type="text" placeholder="Название темы" name="topicname" required>
+                        </div>
+                        <label for="topology" class="noselect"><b>Топология</b></label>
+                        <input type="text" placeholder="Например, 1-2" name="topology" required>
+                        <label for="populationCount" class="noselect"><b>Размер популяции</b></label>
+                        <input type="number" placeholder="Введите размер популяции" name="populationCount" min="1" required>
+
+                    </div>
+                    <div id="settings-tab-section" class="form-tab-section">
                         <div class="checkboxes-settings">
-                            <label><input type="checkbox" checked="checked" name="cloud">Облака</label>
-                            <label><input type="checkbox" checked="checked" name="night">Ночь</label>
-                            <label><input type="checkbox" checked="checked" name="horizon">Горизонт</label>
-                            <label><input type="checkbox" checked="checked" name="star">Звезды</label>
-                            <label><input type="checkbox" checked="checked" name="bumps">Кочки</label>
-                            <label><input type="checkbox" checked="checked" name="moon">Луна</label>
-                            <label><input type="checkbox" checked="checked" name="ground">Земля</label>
-                            <label><input type="checkbox" checked="checked" name="pterodactyl">Птеродактиль</label>
-                            <label><input type="checkbox" checked="checked" name="cactus">Большой кактус</label>
-                            <label><input type="checkbox" checked="checked" name="small-cactus">Маленький кактус</label>
-                            <label><input type="checkbox" checked="checked" name="two-cactus">Два кактуса</label>
-                            <label><input type="checkbox" checked="checked" name="three-cactus">Три кактуса</label>
+                            <label class="noselect"><input type="checkbox" checked="checked" name="cloud">Облака</label>
+                            <label class="noselect"><input type="checkbox" checked="checked" name="night">Ночь</label>
+                            <label class="noselect"><input type="checkbox" checked="checked" name="horizon">Горизонт</label>
+                            <label class="noselect"><input type="checkbox" checked="checked" name="star">Звезды</label>
+                            <label class="noselect"><input type="checkbox" checked="checked" name="bumps">Кочки</label>
+                            <label class="noselect"><input type="checkbox" checked="checked" name="moon">Луна</label>
+                            <label class="noselect"><input type="checkbox" checked="checked" name="ground">Земля</label>
+                            <label class="noselect"><input type="checkbox" checked="checked" name="pterodactyl">Птеродактиль</label>
+                            <label class="noselect"><input type="checkbox" checked="checked" name="cactus">Большой кактус</label>
+                            <label class="noselect"><input type="checkbox" checked="checked" name="small-cactus">Маленький кактус</label>
+                            <label class="noselect"><input type="checkbox" checked="checked" name="two-cactus">Два кактуса</label>
+                            <label class="noselect"><input type="checkbox" checked="checked" name="three-cactus">Три кактуса</label>
                         </div>
                     </div>
                     <div id="db-tab-section" class="form-tab-section">
@@ -46,22 +69,26 @@ function FactoryForm() {
 
                         <button type="submit">Login</button>
                     </div>
-                    <div id="status-tab-section" class="form-tab-section">
-                        <label for="uname"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="uname" required>
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
-                    </div>
                 </div>
 
-                <div class="form-footer">
-                    <div id="settings-tab-buttons" class="footer-buttons-section selected">
-                        <div class="footer-buttons ">
+                <div class="form-footer noselect">
+                    <div id="lessons-tab-buttons" class="footer-buttons-section selected">
+                        <div class="footer-buttons">
                             <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
                             <button type="button" name="default" class="footer-button">По умолчанию</button>
                             <button type="button" name="restory" class="footer-button">Восстановить</button>
                             <button type="button" name="save" class="footer-button">Сохранить</button>
-                            <button type="button" name="close" class="footer-button">Закрыть</button>
+                            <button type="button" name="close" class="footer-button">Применить</button>
+                        </div>
+                        <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
+                    </div>
+                    <div id="settings-tab-buttons" class="footer-buttons-section">
+                        <div class="footer-buttons">
+                            <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
+                            <button type="button" name="default" class="footer-button">По умолчанию</button>
+                            <button type="button" name="restory" class="footer-button">Восстановить</button>
+                            <button type="button" name="save" class="footer-button">Сохранить</button>
+                            <button type="button" name="close" class="footer-button">Применить</button>
                         </div>
                         <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
                     </div>
@@ -93,13 +120,36 @@ function FactoryForm() {
     const formStyle = `
         /* Full-width input fields */
         input[type="text"],
-        input[type="password"] {
+        input[type="password"],
+        input[type="number"] {
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
             display: inline-block;
             border: 1px solid #ccc;
             box-sizing: border-box;
+        }
+
+        .lesson, .topic {
+            display: flex;
+        }
+
+        .lesson > input[type="text"],
+        .topic > input[type="text"]
+        {
+            width: 80%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .lesson > input[name="lessonnumber"],
+        .topic > input[name="topicnumber"]
+        {
+            width: 20%;
+            margin-right: 4px;
+            text-align: center;
         }
 
         /* Set a style for all buttons */
@@ -142,13 +192,16 @@ function FactoryForm() {
             justify-content: start;
         }
 
-        .checkboxes-settings label{
+        .checkboxes-settings label {
             width: 50%;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
 
+        .checkboxes-settings label > input[type='checkbox']{
+            margin-bottom: 10px;
+        }
 
         /* Extra styles for the cancel button */
         .cancel-button {
@@ -245,9 +298,8 @@ function FactoryForm() {
         }
 
         .form-tab + .form-tab {
-            margin-left: -1px;
+            margin-left: -5px;
         }
-
 
         .form-tab.selected {
             bottom: -1px;
@@ -337,6 +389,11 @@ function FactoryForm() {
             animation: animatezoom 0.6s;
         }
 
+        .animate-close {
+            -webkit-animation: animatezoomreverse 0.6s;
+            animation: animatezoomreverse 0.6s;
+        }
+
         @-webkit-keyframes animatezoom {
             from {
                 -webkit-transform: scale(0);
@@ -352,6 +409,28 @@ function FactoryForm() {
             }
             to {
                 transform: scale(1);
+            }
+        }
+
+        @-webkit-keyframes animatezoomreverse {
+            from {
+                background-color: rgba(0, 0, 0, 0.4);
+                -webkit-transform: scale(1);
+            }
+            to {
+                background-color: rgba(0, 0, 0, 0);
+                -webkit-transform: scale(0);
+            }
+        }
+
+        @keyframes animatezoomreverse {
+            from {
+                /* background-color: rgba(0, 0, 0, 0.4); */
+                transform: scale(1);
+            }
+            to {
+                /* background-color: rgba(0, 0, 0, 0); */
+                transform: scale(0);
             }
         }
 
@@ -400,6 +479,13 @@ function FactoryForm() {
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='restory'").onclick = this.restorySettings.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='save'").onclick = this.saveSettings.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='close'").onclick = this.closeSettings.bind(this);
+
+            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='cancel'").onclick = this.cancelLessons.bind(this);
+            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='default'").onclick = this.defaultLessons.bind(this);
+            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='restory'").onclick = this.restoryLessons.bind(this);
+            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='save'").onclick = this.saveLessons.bind(this);
+            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='close'").onclick = this.closeLessons.bind(this);
+
             // this.shadowRoot.getElementById('save').onclick = this.save.bind(this);
             // this.shadowRoot.getElementById('delete').onclick = this.delete.bind(this);
             // this.shadowRoot.getElementById('compact').onclick = this.compact.bind(this);
@@ -414,11 +500,28 @@ function FactoryForm() {
             }
         }
 
+        stopAnimation() {
+            form.classList.remove('animate-close');
+            form.removeEventListener('animationend', this.animateCallback);
+            this.form.style.display = "none";
+        }
+
         static pdb = new PouchDB('settings')
 
         restorySettings() {
 
         }
+
+        async restoryLessons() {
+            const mdResult = await this.modalDialog.show();
+            if (mdResult === "OK") {
+                alert(mdResult);
+            }
+            else {
+                alert(mdResult);
+            }
+        }
+
         attributeChangedCallback(name, oldValue, newValue) {
             // if (name === "show") {
             //     if (oldValue === null) {
@@ -431,11 +534,15 @@ function FactoryForm() {
         }
 
         get form() {
-            return this.shadowRoot.getElementById("form");
+            return this.shadowRoot.getElementById('form');
         }
 
+        get modalDialog() {
+            return this.shadowRoot.querySelector('modal-dialog');
+        }
         show() {
             const form = this.shadowRoot.getElementById('form-settings');
+            
             form.cloud.checked = !settings.cloud.hidden;
             form.horizon.checked = !settings.horizon.hidden;
             form.cactus.checked = !settings.cactus.hidden;
@@ -445,11 +552,24 @@ function FactoryForm() {
             form.moon.checked = !settings.moon.hidden;
             form.star.checked = !settings.star.hidden;
             form.night.checked = !settings.night.hidden;
+
+            form.topology.value = settings.topology.join('-');
+            form.populationCount.value = settings.populationCount;
+            form.lessonname.value = settings.lesson.name;
+            form.lessonnumber.value = settings.lesson.number;
+            form.topicname.value = settings.topic.name;
+            form.topicnumber.value = settings.topic.number;
             this.form.style.display = "block";
         }
 
         close() {
-            this.form.style.display = "none";
+            const form = this.shadowRoot.getElementById('form-settings');
+            form.onanimationend = () => {
+                form.classList.remove('animate-close');
+                form.onanimationend = undefined;
+                this.form.style.display = "none";
+            }
+            form.classList.add('animate-close');
         }
 
         cancel() {
@@ -461,12 +581,6 @@ function FactoryForm() {
             settings.cloud.hidden = !form.cloud.checked;
             settings.horizon.hidden = !form.horizon.checked;
             settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
-            // if (settings.horizon.hidden) {
-            //     hideHorizon();
-            // }
-            // else {
-            //     showHorizon();
-            // }
             settings.cactus.hidden = !form.cactus.checked;
             settings.ground.hidden = !form.ground.checked;
             settings.bumps.hidden = !form.bumps.checked;
@@ -474,20 +588,40 @@ function FactoryForm() {
             settings.moon.hidden = !form.moon.checked;
             settings.star.hidden = !form.star.checked;
             settings.night.hidden = !form.night.checked;
-            this.form.style.display = "none";
+
+        }
+
+        saveLessons() {
+            const form = this.shadowRoot.getElementById('form-settings');
+            settings.lesson.number = form.lessonnumber.value;
+            settings.lesson.name = form.lessonname.value;
+            settings.topic.number = form.topicnumber.value;
+            settings.topic.name = form.topicname.value;
+            settings.topology = form.topology.value.split('-');
+            settings.populationCount = form.populationCount.value;
         }
 
         defaultSettings() {
             const form = this.shadowRoot.getElementById('form-settings');
-            form.cloud.checked = !settings.cloud.hidden;
-            form.horizon.checked = !settings.horizon.hidden;
-            form.cactus.checked = !settings.cactus.hidden;
-            form.ground.checked = !settings.ground.hidden;
-            form.bumps.checked = !settings.bumps.hidden;
-            form.pterodactyl.checked = !settings.pterodactyl.hidden;
-            form.moon.checked = !settings.moon.hidden;
-            form.star.checked = !settings.star.hidden;
-            form.night.checked = !settings.night.hidden;
+            form.cloud.checked = !defaultSettings.cloud.hidden;
+            form.horizon.checked = !defaultSettings.horizon.hidden;
+            form.cactus.checked = !defaultSettings.cactus.hidden;
+            form.ground.checked = !defaultSettings.ground.hidden;
+            form.bumps.checked = !defaultSettings.bumps.hidden;
+            form.pterodactyl.checked = !defaultSettings.pterodactyl.hidden;
+            form.moon.checked = !defaultSettings.moon.hidden;
+            form.star.checked = !defaultSettings.star.hidden;
+            form.night.checked = !defaultSettings.night.hidden;
+        }
+
+        defaultLessons() {
+            const form = this.shadowRoot.getElementById('form-settings');
+            form.lessonnumber.value = defaultSettings.lesson.number;
+            form.lessonname.value = defaultSettings.lesson.name;
+            form.topicnumber.value = defaultSettings.topic.number;
+            form.topicname.value = defaultSettings.topic.name;
+            form.topology.value = defaultSettings.topology.join('-');
+            form.populationCount.value = defaultSettings.populationCount;
         }
 
         cancelSettings() {
@@ -508,12 +642,6 @@ function FactoryForm() {
             settings.cloud.hidden = !form.cloud.checked;
             settings.horizon.hidden = !form.horizon.checked;
             settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
-            // if (settings.horizon.hidden) {
-            //     hideHorizon();
-            // }
-            // else {
-            //     showHorizon();
-            // }
             settings.cactus.hidden = !form.cactus.checked;
             settings.ground.hidden = !form.ground.checked;
             settings.bumps.hidden = !form.bumps.checked;
@@ -524,6 +652,26 @@ function FactoryForm() {
             this.form.style.display = "none";
         }
 
+        cancelLessons() {
+            const form = this.shadowRoot.getElementById('form-settings');
+            form.lessonnumber.value = settings.lesson.number;
+            form.lessonname.value = settings.lesson.name;
+            form.topicnumber.value = settings.topic.number;
+            form.topicname.value = settings.topic.name;
+            form.topology.value = settings.topology.join('-');
+            form.populationCount.value = settings.populationCount;
+        }
+
+        closeLessons() {
+            const form = this.shadowRoot.getElementById('form-settings');
+            settings.lesson.number = form.lessonnumber.value;
+            settings.lesson.name = form.lessonname.value;
+            settings.topic.number = form.topicnumber.value;
+            settings.topic.name = form.topicname.value;
+            settings.topology = form.topology.value.split('-');
+            settings.populationCount = form.populationCount.value;
+            this.form.style.display = "none";
+        }
 
         changeTab(e){
             let tabName = e.target.getAttribute('id');
