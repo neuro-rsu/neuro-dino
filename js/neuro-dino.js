@@ -143,19 +143,23 @@ function DinoFactory() {
         jump(cactus, cactusCoords) {
             if (!this.classList.contains("dino-jump")) {
                 const dinoCoords = this.getBoundingClientRect();
+                // const inputs = [[ map( cactusCoords.x - dinoCoords.x - dinoCoords.width,
+                //     this.parentNode.offsetLeft + dinoCoords.x + dinoCoords.width,
+                //     this.parentNode.offsetLeft +
+                //     this.parentNode.offsetWidth - dinoCoords.x - dinoCoords.width, 0, 1)]];
                 const inputs = [[ map( cactusCoords.x - dinoCoords.x - dinoCoords.width,
                     this.parentNode.offsetLeft + dinoCoords.x + dinoCoords.width,
                     this.parentNode.offsetLeft +
-                    this.parentNode.offsetWidth - dinoCoords.x - dinoCoords.width,0, 1)]];
+                    400 - dinoCoords.x - dinoCoords.width, 0, 1)]];
                 const result = this.dinoBrain.feedForward(inputs[0]);
-                if (result[1]  > result[0]) {
+                if (result[1] > result[0]) {
                     this.classList.add("dino-jump");
                     const svg = this.shadowRoot.querySelector('svg');
                     svg.pauseAnimations();
                     this.getAnimations().forEach((anim, i, arr) => {
                         anim.onfinish = () => {
                             this.classList.remove("dino-jump")
-                            this.offsetHeight;                                                     // не удаляй reflow
+                            this.offsetHeight; // не удаляй reflow
                             svg.unpauseAnimations();
                         }
                     });

@@ -4,16 +4,17 @@
     --base-color: grey;
     --cloud-color: #e2e2e2;
     --day-color: white;
-    --night-color: black;
-}
+    --night-body: #121212;
 
-.unselectable {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -khtml-user-select: none;    /* Konqueror */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
-    user-select: none;           /* Non-prefixed version, currently*/
+    --dark-body: #121212;
+    --dark-form-title: #252525;
+    --dark-input-body: #3b3b3b;
+    --dark-input-border: #3b3b3b;
+
+    --dark-base: #808080;
+    --dark-cactus-body: #878787;
+    --dark-cactus-border: #4c4c4c;
+    --dark-cloud: #e2e2e2;
 }
 
 body {
@@ -35,6 +36,14 @@ body {
     position: absolute;
     background-color: var(--day-color);
     overflow: hidden;
+}
+
+#game-space.dark {
+    background-color: var(--dark-body);
+}
+
+#game-space.night {
+    background-color: var(--night-body);
 }
 
 @keyframes dino-move{
@@ -373,51 +382,63 @@ svg path{
     fill: var(--base-color);
 }
 
-svg path[fill=red] {
-    fill: white;
-}
+/*svg path[fill=red] {
+    fill: var(--dark-color);
+}*/
 
 svg rect{
     fill: var(--base-color);
 }
 
-.star2 .night path{
-    fill: var(--night-color);
+#game-space.night .star2 path {
+    fill: var(--night-body);
 }
 
-.clouds path, .clouds rect{
+.clouds path, .clouds rect {
     fill: var(--cloud-color);
 }
 
-.clouds.night path, .clouds.night rect{
+#game-space.night clouds path,
+#game-space.night .clouds.night rect,
+#game-space.dark .clouds path,
+#game-space.dark .clouds rect {
     fill: var(--base-color);
 }
 
-.cactuses.night path {
+#game-space.night .cactuses path {
+    fill: var(--base-color);
+}
+
+#game-space.night .pterodactyls path {
+    fill: var(--base-color);
+}
+
+#game-space.night .grounds path {
     fill: var(--cloud-color);
 }
 
-.pterodactyls.night path {
+.bumps path[fill=red] {
+    fill: #fff;
+}
+
+#game-space.dark .bumps path[fill=red] {
+    fill: var(--dark-body);
+}
+
+/* .bumps.night path {
+    fill: var(--cloud-color);
+} */
+
+#game-space.night .bumps path {
+    fill: var(--night-body);
+}
+
+
+#game-space.night .horizon path {
     fill: var(--cloud-color);
 }
 
-.grounds.night path {
-    fill: var(--cloud-color);
-}
-
-.bumps.night path[fill=red] {
-    fill: var(--night-color);
-}
-
-.bumps.night path {
-    fill: var(--cloud-color);
-}
-
-.horizon.night path {
-    fill: var(--cloud-color);
-}
-
-.dinos.night path {
+#game-space.night .dinos path {
     fill: var(--cloud-color);
 }
 
@@ -425,20 +446,20 @@ svg rect{
     fill: var(--day-color);
 }
 
-.dinos.night #small-eye {
-    fill: var(--night-color);
+#game-space.night .dinos #small-eye {
+    fill: var(--night-body);
 }
 
-.dinos.night #big-eye {
-    fill: var(--night-color);
+#game-space.night .dinos #big-eye {
+    fill: var(--night-body);
 }
 
-.dinos.night #small-eye-bow {
-    fill: var(--night-color);
+#game-space.night .dinos #small-eye-bow {
+    fill: var(--night-body);
 }
 
-.dinos.night #big-eye-bow {
-    fill: var(--night-color);
+#game-space.night .dinos #big-eye-bow {
+    fill: var(--night-body);
 }
 
 .dinos #big-eye {
@@ -453,15 +474,18 @@ svg rect{
     fill: var(--base-color);
 }
 
-#game-space.night {
-    background-color: var(--night-color);
-}
-
 .star3 {
-
     animation-name: star3-move;
     animation-duration: 20s;
     animation-iteration-count: 1;
     animation-timing-function: linear;
+}
 
+.unselectable {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently*/
 }

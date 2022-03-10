@@ -12,17 +12,20 @@ function FactoryForm() {
             <modal-dialog></modal-dialog>
             <form class="modal-form-content animate" method="post" id="form-settings">
                 <div class="form-header">
-                    <ul class="form-tabs noselect">
-                        <li class="form-tab selected">
+                    <div class="form-tabs noselect">
+                        <div class="form-tab selected">
                             <span id="lessons-tab" class="form-tab-link noselect">Уроки</span>
-                        </li>
-                        <li class="form-tab">
-                            <span id="settings-tab" class="form-tab-link noselect">Настройки</span>
-                        </li>
-                        <li class="form-tab">
+                        </div>
+                        <div class="form-tab">
+                            <span id="settings-tab" class="form-tab-link noselect">Параметры</span>
+                        </div>
+                        <div class="form-tab">
                             <span id="db-tab" class="form-tab-link noselect">База данных</span>
-                        </li>
-                    </ul>
+                        </div>
+                        <div class="form-tab">
+                            <span id="options-tab" class="form-tab-link noselect">Настройки</span>
+                        </div>
+                    </div>
                     <span id="close" class="close noselect" title="Закрыть">&times;</span>
                 </div>
 
@@ -69,6 +72,10 @@ function FactoryForm() {
 
                         <button type="submit">Login</button>
                     </div>
+
+                    <div id="options-tab-section" class="form-tab-section">
+                        <label class="noselect"><input type="checkbox" name="theme">Темная</label>
+                    </div>
                 </div>
 
                 <div class="form-footer noselect">
@@ -76,9 +83,10 @@ function FactoryForm() {
                         <div class="footer-buttons">
                             <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
                             <button type="button" name="default" class="footer-button">По умолчанию</button>
-                            <button type="button" name="restory" class="footer-button">Восстановить</button>
+                            <button type="button" name="restore" class="footer-button">Восстановить</button>
                             <button type="button" name="save" class="footer-button">Сохранить</button>
-                            <button type="button" name="close" class="footer-button">Применить</button>
+                            <button type="button" name="apply" class="footer-button">Применить</button>
+                            <button type="button" name="close" class="footer-button">Закрыть</button>
                         </div>
                         <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
                     </div>
@@ -86,9 +94,10 @@ function FactoryForm() {
                         <div class="footer-buttons">
                             <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
                             <button type="button" name="default" class="footer-button">По умолчанию</button>
-                            <button type="button" name="restory" class="footer-button">Восстановить</button>
+                            <button type="button" name="restore" class="footer-button">Восстановить</button>
                             <button type="button" name="save" class="footer-button">Сохранить</button>
-                            <button type="button" name="close" class="footer-button">Применить</button>
+                            <button type="button" name="apply" class="footer-button">Применить</button>
+                            <button type="button" name="close" class="footer-button">Закрыть</button>
                         </div>
                         <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
                     </div>
@@ -102,15 +111,16 @@ function FactoryForm() {
                         </div>
                         <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
                     </div>
-                    <div id="status-tab-buttons" class="footer-buttons-section">
+                    <div id="options-tab-buttons" class="footer-buttons-section">
                         <div class="footer-buttons">
                             <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
-                            <button type="button" id="delete" class="footer-button">Удалить</button>
-                            <button type="button" id="compact" class="footer-button">Сжать</button>
-                            <button type="button" id="default" class="footer-button">По умолчанию</button>
-                            <button type="button" id="save" class="footer-button">Сохранить</button>
+                            <button type="button" name="default" class="footer-button">По умолчанию</button>
+                            <button type="button" name="restore" class="footer-button">Восстановить</button>
+                            <button type="button" name="save" class="footer-button">Сохранить</button>
+                            <button type="button" name="apply" class="footer-button">Применить</button>
+                            <button type="button" name="close" class="footer-button">Закрыть</button>
+
                         </div>
-                        <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
                     </div>
                 </div>
             </form>
@@ -211,10 +221,11 @@ function FactoryForm() {
 
         /* Center the image and position the close button */
         .form-header {
-            text-align: center;
-            padding: 24px 0 16px 0;
-            border-radius: 10px 10px 0 0;
+            display: flex;
             position: relative;
+            text-align: center;
+            padding: 0px 16px 0 16px;
+            border-radius: 10px 10px 0 0;
             background-color: #f1f1f1;
         }
 
@@ -261,7 +272,7 @@ function FactoryForm() {
         }
 
         .form-tabs {
-            position: absolute;
+            flex: auto;
             top: 0;
             left: 0;
             right: 0;
@@ -360,7 +371,7 @@ function FactoryForm() {
 
         /* The Close Button (x) */
         .close {
-            position: absolute;
+            flex: none;
             right: 20px;
             top: 0;
             color: #000;
@@ -476,16 +487,24 @@ function FactoryForm() {
             this.shadowRoot.append(style);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='cancel'").onclick = this.cancelSettings.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='default'").onclick = this.defaultSettings.bind(this);
-            this.shadowRoot.querySelector("#settings-tab-buttons button[name='restory'").onclick = this.restorySettings.bind(this);
+            this.shadowRoot.querySelector("#settings-tab-buttons button[name='restore'").onclick = this.restoreSettings.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='save'").onclick = this.saveSettings.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='close'").onclick = this.closeSettings.bind(this);
+            this.shadowRoot.querySelector("#settings-tab-buttons button[name='apply'").onclick = this.applySettings.bind(this);
 
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='cancel'").onclick = this.cancelLessons.bind(this);
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='default'").onclick = this.defaultLessons.bind(this);
-            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='restory'").onclick = this.restoryLessons.bind(this);
+            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='restore'").onclick = this.restoreLessons.bind(this);
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='save'").onclick = this.saveLessons.bind(this);
+            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='apply'").onclick = this.applyLessons.bind(this);
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='close'").onclick = this.closeLessons.bind(this);
 
+            this.shadowRoot.querySelector("#options-tab-buttons button[name='cancel'").onclick = this.cancelOptions.bind(this);
+            this.shadowRoot.querySelector("#options-tab-buttons button[name='default'").onclick = this.defaultOptions.bind(this);
+            this.shadowRoot.querySelector("#options-tab-buttons button[name='restore'").onclick = this.restoreOptions.bind(this);
+            this.shadowRoot.querySelector("#options-tab-buttons button[name='save'").onclick = this.saveOptions.bind(this);
+            this.shadowRoot.querySelector("#options-tab-buttons button[name='apply'").onclick = this.applyOptions.bind(this);
+            this.shadowRoot.querySelector("#options-tab-buttons button[name='close'").onclick = this.closeOptions.bind(this);
             // this.shadowRoot.getElementById('save').onclick = this.save.bind(this);
             // this.shadowRoot.getElementById('delete').onclick = this.delete.bind(this);
             // this.shadowRoot.getElementById('compact').onclick = this.compact.bind(this);
@@ -508,11 +527,14 @@ function FactoryForm() {
 
         static pdb = new PouchDB('settings')
 
-        restorySettings() {
+        restoreSettings() {
 
         }
 
-        async restoryLessons() {
+        restoreOptions() {
+
+        }
+        async restoreLessons() {
             const mdResult = await this.modalDialog.show();
             if (mdResult === "OK") {
                 alert(mdResult);
@@ -542,7 +564,7 @@ function FactoryForm() {
         }
         show() {
             const form = this.shadowRoot.getElementById('form-settings');
-            
+
             form.cloud.checked = !settings.cloud.hidden;
             form.horizon.checked = !settings.horizon.hidden;
             form.cactus.checked = !settings.cactus.hidden;
@@ -559,6 +581,7 @@ function FactoryForm() {
             form.lessonnumber.value = settings.lesson.number;
             form.topicname.value = settings.topic.name;
             form.topicnumber.value = settings.topic.number;
+            form.theme.checked = settings.theme === 'dark';
             this.form.style.display = "block";
         }
 
@@ -588,7 +611,11 @@ function FactoryForm() {
             settings.moon.hidden = !form.moon.checked;
             settings.star.hidden = !form.star.checked;
             settings.night.hidden = !form.night.checked;
+        }
 
+        saveOptions() {
+            const form = this.shadowRoot.getElementById('form-settings');
+            settings.theme = form.theme.checked ? 'dark' : 'light';
         }
 
         saveLessons() {
@@ -624,6 +651,11 @@ function FactoryForm() {
             form.populationCount.value = defaultSettings.populationCount;
         }
 
+        defaultOptions() {
+            const form = this.shadowRoot.getElementById('form-settings');
+            form.theme.checked = defaultSettings.theme === 'dark';
+        }
+
         cancelSettings() {
             const form = this.shadowRoot.getElementById('form-settings');
             form.cloud.checked = !settings.cloud.hidden;
@@ -638,6 +670,10 @@ function FactoryForm() {
         }
 
         closeSettings() {
+            this.close();
+        }
+
+        applySettings() {
             const form = this.shadowRoot.getElementById('form-settings');
             settings.cloud.hidden = !form.cloud.checked;
             settings.horizon.hidden = !form.horizon.checked;
@@ -649,7 +685,7 @@ function FactoryForm() {
             settings.moon.hidden = !form.moon.checked;
             settings.star.hidden = !form.star.checked;
             settings.night.hidden = !form.night.checked;
-            this.form.style.display = "none";
+
         }
 
         cancelLessons() {
@@ -662,7 +698,12 @@ function FactoryForm() {
             form.populationCount.value = settings.populationCount;
         }
 
-        closeLessons() {
+        cancelOptions() {
+            const form = this.shadowRoot.getElementById('form-settings');
+            form.theme.checked = settings.theme === 'dark';
+        }
+
+        applyLessons() {
             const form = this.shadowRoot.getElementById('form-settings');
             settings.lesson.number = form.lessonnumber.value;
             settings.lesson.name = form.lessonname.value;
@@ -670,7 +711,21 @@ function FactoryForm() {
             settings.topic.name = form.topicname.value;
             settings.topology = form.topology.value.split('-');
             settings.populationCount = form.populationCount.value;
-            this.form.style.display = "none";
+        }
+
+        closeLessons() {
+            this.close();
+        }
+
+        applyOptions() {
+            const form = this.shadowRoot.getElementById('form-settings');
+            settings.theme = form.theme.checked ? 'dark' : 'light';
+            const gameSpace = document.querySelector('#game-space');
+            form.theme.checked ? gameSpace.classList.add('dark') : gameSpace.classList.remove('dark');
+        }
+
+        closeOptions() {
+            this.close();
         }
 
         changeTab(e){

@@ -110,6 +110,7 @@ export const defaultSettings = {
     horizon: {
         hidden: false,
     },
+    theme: 'dark',
 }
 
 export function compactSettings() {
