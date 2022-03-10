@@ -8,9 +8,9 @@ export { FactoryForm };
 
 function FactoryForm() {
     const formHTML = `
-        <div id="form" class="modal-form" style="display: none">
+        <div id="form-background" class="form-background">
             <modal-dialog></modal-dialog>
-            <form class="modal-form-content animate" method="post" id="form-settings">
+            <form class="form animate" method="post" id="form">
                 <div class="form-header">
                     <div class="form-tabs noselect">
                         <div class="form-tab selected">
@@ -45,8 +45,8 @@ function FactoryForm() {
                         <input type="text" placeholder="Например, 1-2" name="topology" required>
                         <label for="populationCount" class="noselect"><b>Размер популяции</b></label>
                         <input type="number" placeholder="Введите размер популяции" name="populationCount" min="1" required>
-
                     </div>
+
                     <div id="settings-tab-section" class="form-tab-section">
                         <div class="checkboxes-settings">
                             <label class="noselect"><input type="checkbox" checked="checked" name="cloud">Облака</label>
@@ -63,6 +63,7 @@ function FactoryForm() {
                             <label class="noselect"><input type="checkbox" checked="checked" name="three-cactus">Три кактуса</label>
                         </div>
                     </div>
+
                     <div id="db-tab-section" class="form-tab-section">
                         <label for="uname"><b>Username</b></label>
                         <input type="text" placeholder="Enter Username" name="uname" required>
@@ -128,6 +129,65 @@ function FactoryForm() {
     `;
 
     const formStyle = `
+        /* The Modal (background) */
+        .form-background {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 10000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal Form Box */
+        .form {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 800px;
+            border-radius: 10px;
+        }
+
+        .form.dark {
+            background-color: var(--dark-color);
+        }
+
+        /* Center the image and position the close button */
+        .form-header {
+            display: flex;
+            position: relative;
+            text-align: center;
+            padding: 0px 16px 0 16px;
+            border-radius: 10px 10px 0 0;
+            background-color: #f1f1f1;
+        }
+
+        #form.dark .form-header {
+            background-color: var(--dark-header-color);
+        }
+
+        .form-body {
+            margin-top: 16px;
+            padding: 16px;
+        }
+
+        .form-footer {
+            padding: 16px;
+            border-radius: 0 0 10px 10px;
+            background-color: #f1f1f1;
+            overflow: hidden;
+        }
+
+        #form.dark .form-footer {
+            background-color: var(--dark-header-color);
+        }
+
         /* Full-width input fields */
         input[type="text"],
         input[type="password"],
@@ -140,23 +200,24 @@ function FactoryForm() {
             box-sizing: border-box;
         }
 
+        #form.dark input[type="text"],
+        #form.dark input[type="password"],
+        #form.dark input[type="number"] {
+            background-color: var(--dark-input-color);
+            border-color: var(--dark-input-border-color);
+        }
+
         .lesson, .topic {
             display: flex;
         }
 
         .lesson > input[type="text"],
-        .topic > input[type="text"]
-        {
+        .topic > input[type="text"] {
             width: 80%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
         }
 
         .lesson > input[name="lessonnumber"],
-        .topic > input[name="topicnumber"]
-        {
+        .topic > input[name="topicnumber"] {
             width: 20%;
             margin-right: 4px;
             text-align: center;
@@ -180,18 +241,18 @@ function FactoryForm() {
             opacity: 0.8;
         }
 
+        .footer-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
         .footer-button {
             width: auto;
             flex: none;
             padding: 10px 18px;
             margin: 4px;
             background-color: #04aa6d;
-        }
-
-        .footer-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
         }
 
         /* Extra styles for the cancel button */
@@ -219,56 +280,9 @@ function FactoryForm() {
             background-color: #f44336;
         }
 
-        /* Center the image and position the close button */
-        .form-header {
-            display: flex;
-            position: relative;
-            text-align: center;
-            padding: 0px 16px 0 16px;
-            border-radius: 10px 10px 0 0;
-            background-color: #f1f1f1;
-        }
-
-        .form-body {
-            margin-top: 16px;
-            padding: 16px;
-        }
-
-        .form-footer {
-            padding: 16px;
-            border-radius: 0 0 10px 10px;
-            background-color: #f1f1f1;
-            overflow: hidden;
-        }
-
         span.psw {
             float: right;
             padding-top: 16px;
-        }
-
-        /* The Modal (background) */
-        .modal-form {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 10000; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0, 0, 0); /* Fallback color */
-            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-            padding-top: 60px;
-        }
-
-        /* Modal Content/Box */
-        .modal-form-content {
-            background-color: #fefefe;
-            margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-            max-width: 800px;
-            border-radius: 10px;
         }
 
         .form-tabs {
@@ -466,7 +480,7 @@ function FactoryForm() {
     class SettingsForm extends HTMLElement {
 
         static get observedAttributes() {
-            return ['show'];
+            // return ['theme'];
         }
 
         tabSections = new Map
@@ -509,6 +523,7 @@ function FactoryForm() {
             // this.shadowRoot.getElementById('delete').onclick = this.delete.bind(this);
             // this.shadowRoot.getElementById('compact').onclick = this.compact.bind(this);
             this.shadowRoot.getElementById('close').onclick = this.close.bind(this);
+            this.form = this.shadowRoot.getElementById('form');
             // this.shadowRoot.getElementById('default').onclick = this.default.bind(this);
             let tabList = this.shadowRoot.querySelectorAll('.form-tab-link');
             for (let i = 0; i < tabList.length; i++) {
@@ -545,54 +560,62 @@ function FactoryForm() {
         }
 
         attributeChangedCallback(name, oldValue, newValue) {
-            // if (name === "show") {
-            //     if (oldValue === null) {
-            //         this.show();
+            // if (name === "theme") {
+            //     if (newValue === 'dark') {
+            //         this.form.classList.add('dark');
             //     }
             //     else {
-            //         this.close();
+            //         this.form.classList.remove('dark');
             //     }
             // }
         }
 
-        get form() {
-            return this.shadowRoot.getElementById('form');
-        }
+        // get form() {
+        //     return this.shadowRoot.getElementById('form');
+        // }
 
         get modalDialog() {
             return this.shadowRoot.querySelector('modal-dialog');
         }
+
+        openForm() {
+            this.shadowRoot.getElementById('form-background').style.display = "block";
+        }
+
+        closeForm() {
+            this.shadowRoot.getElementById('form-background').style.display = "";
+        }
+
         show() {
-            const form = this.shadowRoot.getElementById('form-settings');
+            this.form.cloud.checked = !settings.cloud.hidden;
+            this.form.horizon.checked = !settings.horizon.hidden;
+            this.form.cactus.checked = !settings.cactus.hidden;
+            this.form.ground.checked = !settings.ground.hidden;
+            this.form.bumps.checked = !settings.bumps.hidden;
+            this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
+            this.form.moon.checked = !settings.moon.hidden;
+            this.form.star.checked = !settings.star.hidden;
+            this.form.night.checked = !settings.night.hidden;
 
-            form.cloud.checked = !settings.cloud.hidden;
-            form.horizon.checked = !settings.horizon.hidden;
-            form.cactus.checked = !settings.cactus.hidden;
-            form.ground.checked = !settings.ground.hidden;
-            form.bumps.checked = !settings.bumps.hidden;
-            form.pterodactyl.checked = !settings.pterodactyl.hidden;
-            form.moon.checked = !settings.moon.hidden;
-            form.star.checked = !settings.star.hidden;
-            form.night.checked = !settings.night.hidden;
+            this.form.topology.value = settings.topology.join('-');
+            this.form.populationCount.value = settings.populationCount;
+            this.form.lessonname.value = settings.lesson.name;
+            this.form.lessonnumber.value = settings.lesson.number;
+            this.form.topicname.value = settings.topic.name;
+            this.form.topicnumber.value = settings.topic.number;
+            this.form.theme.checked = settings.theme === 'dark';
 
-            form.topology.value = settings.topology.join('-');
-            form.populationCount.value = settings.populationCount;
-            form.lessonname.value = settings.lesson.name;
-            form.lessonnumber.value = settings.lesson.number;
-            form.topicname.value = settings.topic.name;
-            form.topicnumber.value = settings.topic.number;
-            form.theme.checked = settings.theme === 'dark';
-            this.form.style.display = "block";
+            this.openForm();
         }
 
         close() {
-            const form = this.shadowRoot.getElementById('form-settings');
-            form.onanimationend = () => {
-                form.classList.remove('animate-close');
-                form.onanimationend = undefined;
-                this.form.style.display = "none";
+
+            this.form.onanimationend = () => {
+                this.form.classList.remove('animate-close');
+                this.form.onanimationend = null;
+                this.closeForm();
             }
-            form.classList.add('animate-close');
+            this.form.classList.add('animate-close');
         }
 
         cancel() {
@@ -600,73 +623,66 @@ function FactoryForm() {
         }
 
         saveSettings() {
-            const form = this.shadowRoot.getElementById('form-settings');
-            settings.cloud.hidden = !form.cloud.checked;
-            settings.horizon.hidden = !form.horizon.checked;
+            settings.cloud.hidden = !this.form.cloud.checked;
+            settings.horizon.hidden = !this.form.horizon.checked;
             settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
-            settings.cactus.hidden = !form.cactus.checked;
-            settings.ground.hidden = !form.ground.checked;
-            settings.bumps.hidden = !form.bumps.checked;
-            settings.pterodactyl.hidden = !form.pterodactyl.checked;
-            settings.moon.hidden = !form.moon.checked;
-            settings.star.hidden = !form.star.checked;
-            settings.night.hidden = !form.night.checked;
+            settings.cactus.hidden = !this.form.cactus.checked;
+            settings.ground.hidden = !this.form.ground.checked;
+            settings.bumps.hidden = !this.form.bumps.checked;
+            settings.pterodactyl.hidden = !this.form.pterodactyl.checked;
+            settings.moon.hidden = !this.form.moon.checked;
+            settings.star.hidden = !this.form.star.checked;
+            settings.night.hidden = !this.form.night.checked;
         }
 
         saveOptions() {
-            const form = this.shadowRoot.getElementById('form-settings');
-            settings.theme = form.theme.checked ? 'dark' : 'light';
+            settings.theme = this.form.theme.checked ? 'dark' : 'light';
         }
 
         saveLessons() {
-            const form = this.shadowRoot.getElementById('form-settings');
-            settings.lesson.number = form.lessonnumber.value;
-            settings.lesson.name = form.lessonname.value;
-            settings.topic.number = form.topicnumber.value;
-            settings.topic.name = form.topicname.value;
-            settings.topology = form.topology.value.split('-');
-            settings.populationCount = form.populationCount.value;
+            settings.lesson.number = this.form.lessonnumber.value;
+            settings.lesson.name = this.form.lessonname.value;
+            settings.topic.number = this.form.topicnumber.value;
+            settings.topic.name = this.form.topicname.value;
+            settings.topology = this.form.topology.value.split('-');
+            settings.populationCount = this.form.populationCount.value;
         }
 
         defaultSettings() {
-            const form = this.shadowRoot.getElementById('form-settings');
-            form.cloud.checked = !defaultSettings.cloud.hidden;
-            form.horizon.checked = !defaultSettings.horizon.hidden;
-            form.cactus.checked = !defaultSettings.cactus.hidden;
-            form.ground.checked = !defaultSettings.ground.hidden;
-            form.bumps.checked = !defaultSettings.bumps.hidden;
-            form.pterodactyl.checked = !defaultSettings.pterodactyl.hidden;
-            form.moon.checked = !defaultSettings.moon.hidden;
-            form.star.checked = !defaultSettings.star.hidden;
-            form.night.checked = !defaultSettings.night.hidden;
+            this.form.cloud.checked = !defaultSettings.cloud.hidden;
+            this.form.horizon.checked = !defaultSettings.horizon.hidden;
+            this.form.cactus.checked = !defaultSettings.cactus.hidden;
+            this.form.ground.checked = !defaultSettings.ground.hidden;
+            this.form.bumps.checked = !defaultSettings.bumps.hidden;
+            this.form.pterodactyl.checked = !defaultSettings.pterodactyl.hidden;
+            this.form.moon.checked = !defaultSettings.moon.hidden;
+            this.form.star.checked = !defaultSettings.star.hidden;
+            this.form.night.checked = !defaultSettings.night.hidden;
         }
 
         defaultLessons() {
-            const form = this.shadowRoot.getElementById('form-settings');
-            form.lessonnumber.value = defaultSettings.lesson.number;
-            form.lessonname.value = defaultSettings.lesson.name;
-            form.topicnumber.value = defaultSettings.topic.number;
-            form.topicname.value = defaultSettings.topic.name;
-            form.topology.value = defaultSettings.topology.join('-');
-            form.populationCount.value = defaultSettings.populationCount;
+            this.form.lessonnumber.value = defaultSettings.lesson.number;
+            this.form.lessonname.value = defaultSettings.lesson.name;
+            this.form.topicnumber.value = defaultSettings.topic.number;
+            this.form.topicname.value = defaultSettings.topic.name;
+            this.form.topology.value = defaultSettings.topology.join('-');
+            this.form.populationCount.value = defaultSettings.populationCount;
         }
 
         defaultOptions() {
-            const form = this.shadowRoot.getElementById('form-settings');
-            form.theme.checked = defaultSettings.theme === 'dark';
+            this.form.theme.checked = defaultSettings.theme === 'dark';
         }
 
         cancelSettings() {
-            const form = this.shadowRoot.getElementById('form-settings');
-            form.cloud.checked = !settings.cloud.hidden;
-            form.horizon.checked = !settings.horizon.hidden;
-            form.cactus.checked = !settings.cactus.hidden;
-            form.ground.checked = !settings.ground.hidden;
-            form.bumps.checked = !settings.bumps.hidden;
-            form.pterodactyl.checked = !settings.pterodactyl.hidden;
-            form.moon.checked = !settings.moon.hidden;
-            form.star.checked = !settings.star.hidden;
-            form.night.checked = !settings.night.hidden;
+            this.form.cloud.checked = !settings.cloud.hidden;
+            this.form.horizon.checked = !settings.horizon.hidden;
+            this.form.cactus.checked = !settings.cactus.hidden;
+            this.form.ground.checked = !settings.ground.hidden;
+            this.form.bumps.checked = !settings.bumps.hidden;
+            this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
+            this.form.moon.checked = !settings.moon.hidden;
+            this.form.star.checked = !settings.star.hidden;
+            this.form.night.checked = !settings.night.hidden;
         }
 
         closeSettings() {
@@ -674,43 +690,38 @@ function FactoryForm() {
         }
 
         applySettings() {
-            const form = this.shadowRoot.getElementById('form-settings');
-            settings.cloud.hidden = !form.cloud.checked;
-            settings.horizon.hidden = !form.horizon.checked;
+            settings.cloud.hidden = !this.form.cloud.checked;
+            settings.horizon.hidden = !this.form.horizon.checked;
             settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
-            settings.cactus.hidden = !form.cactus.checked;
-            settings.ground.hidden = !form.ground.checked;
-            settings.bumps.hidden = !form.bumps.checked;
-            settings.pterodactyl.hidden = !form.pterodactyl.checked;
-            settings.moon.hidden = !form.moon.checked;
-            settings.star.hidden = !form.star.checked;
-            settings.night.hidden = !form.night.checked;
-
+            settings.cactus.hidden = !this.form.cactus.checked;
+            settings.ground.hidden = !this.form.ground.checked;
+            settings.bumps.hidden = !this.form.bumps.checked;
+            settings.pterodactyl.hidden = !this.form.pterodactyl.checked;
+            settings.moon.hidden = !this.form.moon.checked;
+            settings.star.hidden = !this.form.star.checked;
+            settings.night.hidden = !this.form.night.checked;
         }
 
         cancelLessons() {
-            const form = this.shadowRoot.getElementById('form-settings');
-            form.lessonnumber.value = settings.lesson.number;
-            form.lessonname.value = settings.lesson.name;
-            form.topicnumber.value = settings.topic.number;
-            form.topicname.value = settings.topic.name;
-            form.topology.value = settings.topology.join('-');
-            form.populationCount.value = settings.populationCount;
+            this.form.lessonnumber.value = settings.lesson.number;
+            this.form.lessonname.value = settings.lesson.name;
+            this.form.topicnumber.value = settings.topic.number;
+            this.form.topicname.value = settings.topic.name;
+            this.form.topology.value = settings.topology.join('-');
+            this.form.populationCount.value = settings.populationCount;
         }
 
         cancelOptions() {
-            const form = this.shadowRoot.getElementById('form-settings');
-            form.theme.checked = settings.theme === 'dark';
+            this.form.theme.checked = settings.theme === 'dark';
         }
 
         applyLessons() {
-            const form = this.shadowRoot.getElementById('form-settings');
-            settings.lesson.number = form.lessonnumber.value;
-            settings.lesson.name = form.lessonname.value;
-            settings.topic.number = form.topicnumber.value;
-            settings.topic.name = form.topicname.value;
-            settings.topology = form.topology.value.split('-');
-            settings.populationCount = form.populationCount.value;
+            settings.lesson.number = this.form.lessonnumber.value;
+            settings.lesson.name = this.form.lessonname.value;
+            settings.topic.number = this.form.topicnumber.value;
+            settings.topic.name = this.form.topicname.value;
+            settings.topology = this.form.topology.value.split('-');
+            settings.populationCount = this.form.populationCount.value;
         }
 
         closeLessons() {
@@ -718,10 +729,10 @@ function FactoryForm() {
         }
 
         applyOptions() {
-            const form = this.shadowRoot.getElementById('form-settings');
-            settings.theme = form.theme.checked ? 'dark' : 'light';
+            settings.theme = this.form.theme.checked ? 'dark' : 'light';
             const gameSpace = document.querySelector('#game-space');
-            form.theme.checked ? gameSpace.classList.add('dark') : gameSpace.classList.remove('dark');
+            this.form.theme.checked ? gameSpace.classList.add('dark') : gameSpace.classList.remove('dark');
+            this.form.theme.checked ? this.form.classList.add('dark') : this.form.classList.remove('class');
         }
 
         closeOptions() {

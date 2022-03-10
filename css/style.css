@@ -6,10 +6,10 @@
     --day-color: white;
     --night-body: #121212;
 
-    --dark-body: #121212;
-    --dark-form-title: #252525;
-    --dark-input-body: #3b3b3b;
-    --dark-input-border: #3b3b3b;
+    --dark-color: #121212;
+    --dark-header-color: #252525;
+    --dark-input-color: #3b3b3b;
+    --dark-input-border-color: #3b3b3b;
 
     --dark-base: #808080;
     --dark-cactus-body: #878787;
