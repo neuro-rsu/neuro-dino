@@ -133,29 +133,30 @@ function FactoryForm() {
         .form-background {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
-            z-index: 10000; /* Sit on top */
             left: 0;
             top: 0;
+            z-index: 10000; /* Sit on top */
             width: 100%; /* Full width */
             height: 100%; /* Full height */
+            padding-top: 60px;
             overflow: auto; /* Enable scroll if needed */
             background-color: rgb(0, 0, 0); /* Fallback color */
             background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-            padding-top: 60px;
         }
 
         /* Modal Form Box */
         .form {
-            background-color: #fefefe;
-            margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-            border: 1px solid #888;
             width: 80%; /* Could be more or less, depending on screen size */
             max-width: 800px;
+            margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
             border-radius: 10px;
+            background-color: #fefefe;
         }
 
         .form.dark {
-            background-color: var(--dark-color);
+            background-color: var(--dark-background-color);
+            color: var(--dark-color);
         }
 
         /* Center the image and position the close button */
@@ -186,16 +187,17 @@ function FactoryForm() {
 
         #form.dark .form-footer {
             background-color: var(--dark-header-color);
+            color: var(--dark-color);
         }
 
         /* Full-width input fields */
         input[type="text"],
         input[type="password"],
         input[type="number"] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
             display: inline-block;
+            width: 100%;
+            margin: 8px 0;
+            padding: 12px 20px;
             border: 1px solid #ccc;
             box-sizing: border-box;
         }
@@ -203,8 +205,13 @@ function FactoryForm() {
         #form.dark input[type="text"],
         #form.dark input[type="password"],
         #form.dark input[type="number"] {
-            background-color: var(--dark-input-color);
+            background-color: var(--dark-input-background-color);
             border-color: var(--dark-input-border-color);
+            color: var(--dark-input-color);
+        }
+
+        #form.dark input:focus-visible {
+            outline-color: var(--dark-input-background-color);
         }
 
         .lesson, .topic {
@@ -225,16 +232,16 @@ function FactoryForm() {
 
         /* Set a style for all buttons */
         button {
+            width: 100%;
+            margin: 8px 0;
+            padding: 14px 20px;
+            border: none;
+            overflow: hidden;
             background-color: #04aa6d;
             color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            cursor: pointer;
         }
 
         button:hover {
@@ -250,8 +257,8 @@ function FactoryForm() {
         .footer-button {
             width: auto;
             flex: none;
-            padding: 10px 18px;
             margin: 4px;
+            padding: 10px 18px;
             background-color: #04aa6d;
         }
 
@@ -344,7 +351,7 @@ function FactoryForm() {
 
         .form-tab.selected > .form-tab-link{
             margin: 0 -1px;
-            border-top: 4px solid #4cc8f1;
+            border-top: 4px solid var(--dark-tab-select-border-color);
         }
 
         .form-tab-link {

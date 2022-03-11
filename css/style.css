@@ -6,10 +6,17 @@
     --day-color: white;
     --night-body: #121212;
 
-    --dark-color: #121212;
+    --dark-background-color: #121212;
+    --dark-color: white;
     --dark-header-color: #252525;
-    --dark-input-color: #3b3b3b;
-    --dark-input-border-color: #3b3b3b;
+    --dark-input-background-color: #3b3b3b;
+    --dark-input-border-color: #ccc;
+    --dark-input-color: white;
+
+    --dark-tab-color: #b5b5b5;
+    --dark-tab-border-color: #b5b5b5;
+    --dark-tab-select-border-color: #4cc8f1;
+
 
     --dark-base: #808080;
     --dark-cactus-body: #878787;
