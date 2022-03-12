@@ -149,9 +149,10 @@ function FactoryForm() {
             width: 80%; /* Could be more or less, depending on screen size */
             max-width: 800px;
             margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-            border: 1px solid #888;
+            border: 1px solid var(--form-border-color);
             border-radius: 10px;
-            background-color: #fefefe;
+            color: var(--form-color);
+            background-color: var(--form-background-color);
         }
 
         .form.dark {
@@ -166,7 +167,8 @@ function FactoryForm() {
             text-align: center;
             padding: 0px 16px 0 16px;
             border-radius: 10px 10px 0 0;
-            background-color: #f1f1f1;
+            background-color: var(--header-background-color);
+            border-bottom: solid var(--form-header-border-color) 1px;
         }
 
         #form.dark .form-header {
@@ -181,7 +183,7 @@ function FactoryForm() {
         .form-footer {
             padding: 16px;
             border-radius: 0 0 10px 10px;
-            background-color: #f1f1f1;
+            background-color: var(--header-background-color);
             overflow: hidden;
         }
 
@@ -200,6 +202,8 @@ function FactoryForm() {
             padding: 12px 20px;
             border: 1px solid #ccc;
             box-sizing: border-box;
+            outline-color: var(--form-border-color);
+            color: var(--form-color);
         }
 
         #form.dark input[type="text"],
@@ -208,6 +212,7 @@ function FactoryForm() {
             background-color: var(--dark-input-background-color);
             border-color: var(--dark-input-border-color);
             color: var(--dark-input-color);
+            outline-color: var(--form-border-color);
         }
 
         #form.dark input:focus-visible {
@@ -237,7 +242,7 @@ function FactoryForm() {
             padding: 14px 20px;
             border: none;
             overflow: hidden;
-            background-color: #04aa6d;
+            background-color: var(--button-color);
             color: white;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -259,7 +264,7 @@ function FactoryForm() {
             flex: none;
             margin: 4px;
             padding: 10px 18px;
-            background-color: #04aa6d;
+            background-color: var(--button-color);
         }
 
         /* Extra styles for the cancel button */
@@ -284,7 +289,7 @@ function FactoryForm() {
         /* Extra styles for the cancel button */
         .cancel-button {
             margin-right: auto;
-            background-color: #f44336;
+            background-color: var(--cancel-button-color);
         }
 
         span.psw {
@@ -300,28 +305,27 @@ function FactoryForm() {
             padding: 0 12px;
             margin: 10px 0 0;
             text-align: left;
-            background: #f1f1f1;
-            border-bottom: 1px solid #ddd;
             border-radius: 3px 3px 0 0;
         }
 
-        .form-tab,
-        .form-list.selected:first-of-type ~ .form-tabs > .form-tab:first-child ~ .form-tab,
-        .form-list.selected:nth-of-type(2) ~ .form-tabs > .form-tab:nth-child(2) ~ .form-tab,
-        .form-list.selected:last-of-type ~ .form-tabs > .form-tab:last-child ~ .form-tab {
+        .form-tab {
             position: relative;
             display: inline-block;
             vertical-align: top;
             margin-top: 3px;
             line-height: 36px;
             font-weight: normal;
-            color: #999;
-            background: #fcfcfc;
-            border: solid #ddd;
+            color: var(--tab-color);
+            background: var(--form-background-color);
+            border: solid var(--form-header-border-color);
             border-width: 1px 1px 0;
             border-radius: 5px 5px 0 0;
             padding-bottom: 0;
             bottom: auto;
+        }
+
+        #form.dark .form-tab {
+            background: var(--dark-header-color);
         }
 
         .form-tab-link {
@@ -339,19 +343,24 @@ function FactoryForm() {
             padding-bottom: 2px;
             line-height: 34px;
             font-weight: bold;
-            color: #555;
-            background: white;
+            color: var(--tab-selected-color);
+            background: var(--form-background-color);
             border-top: 0;
+        }
+
+        #form.dark .form-tab.selected {
+            background: var(--dark-background-color);
+            color: var(--dark-tab-selected-color);
         }
 
         .form-tab:hover {
             font-weight: bold;
-            color: #555;
+            color: var(--tab-selected-color);
         }
 
         .form-tab.selected > .form-tab-link{
             margin: 0 -1px;
-            border-top: 4px solid var(--dark-tab-select-border-color);
+            border-top: 4px solid var(--tab-select-border-color);
         }
 
         .form-tab-link {
@@ -395,9 +404,13 @@ function FactoryForm() {
             flex: none;
             right: 20px;
             top: 0;
-            color: #000;
+            color: var(--form-tab-selected-color);
             font-size: 35px;
             font-weight: bold;
+        }
+
+        #form.dark .close {
+            color: white;
         }
 
         .title {
@@ -410,7 +423,9 @@ function FactoryForm() {
         }
 
         .close:hover,
-        .close:focus {
+        #form.dark .close:hover,
+        .close:focus,
+        #form.dark .close:focus {
             color: red;
             cursor: pointer;
         }
