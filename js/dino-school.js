@@ -218,9 +218,8 @@ function dinoJump() {
 }
 
 async function checkDinos(){
-    cloudDistance++;
-    settings.cloud.distance.min = 1;
 
+    cloudDistance++;
     if (cloudDistance > nextCloudDistance) {
         cloudDistance = 0;
         createCloud();
@@ -259,23 +258,21 @@ async function checkDinos(){
 
     nightDistance++;
     if (nightDistance > nextNightDistance) {
-        nightDistance = -settings.night.length.min;
+        nightDistance = -settings.night.top.min;
         nightBegin();
         nextNightDistance = randomInteger(settings.night.distance.min, settings.night.distance.max);
     }
 
-    if (nightDistance === 0)
-    {
+    if (nightDistance === 0) {
         nightEnd();
     }
-
-
 
     let dinos = document.querySelectorAll('neuro-dino');
     if ( dinos.length === 0 ) {
         requestAnimationFrame(checkDinos);
         return;
     }
+    
     let dinoCoords = dinos[0].getBoundingClientRect();
 
     let cactuses = document.querySelectorAll('.cactuses');

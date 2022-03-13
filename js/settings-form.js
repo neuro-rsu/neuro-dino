@@ -20,13 +20,16 @@ function FactoryForm() {
                             <span id="settings-tab" class="form-tab-link noselect">Параметры</span>
                         </div>
                         <div class="form-tab">
+                            <span id="top-distance-tab" class="form-tab-link noselect">Расположение</span>
+                        </div>
+                        <div class="form-tab">
                             <span id="db-tab" class="form-tab-link noselect">База данных</span>
                         </div>
                         <div class="form-tab">
                             <span id="options-tab" class="form-tab-link noselect">Настройки</span>
                         </div>
                     </div>
-                    <span id="close" class="close noselect" title="Закрыть">&times;</span>
+                    <span id="close" class="close-button noselect" title="Закрыть">&times;</span>
                 </div>
 
                 <div class="form-body">
@@ -64,6 +67,32 @@ function FactoryForm() {
                         </div>
                     </div>
 
+                    <div id="top-distance-tab-section" class="form-tab-section">
+                        <div class="radioboxes-settings">
+                            <label class="noselect"><input type="radio" name="radio-setting" value="cloud">Облака</label>
+                            <label class="noselect"><input type="radio" name="radio-setting" value="night">Ночь</label>
+                            <label class="noselect"><input type="radio" name="radio-setting" value="star">Звезды</label>
+                            <label class="noselect"><input type="radio" name="radio-setting" value="bumps">Кочки</label>
+                            <label class="noselect"><input type="radio" name="radio-setting" value="moon">Луна</label>
+                            <label class="noselect"><input type="radio" name="radio-setting" value="ground">Земля</label>
+                            <label class="noselect"><input type="radio" name="radio-setting" value="pterodactyl">Птеродактиль</label>
+                            <label class="noselect"><input type="radio" name="radio-setting" value="bigCactus">Большой кактус</label>
+                            <label class="noselect"><input type="radio" name="radio-setting" value="cactus">Маленький кактус</label>
+                        </div>
+
+                        <label for="top-distance" class="noselect"><b>Расстояние между</b></label>
+                        <div name="distance-group" class="top-distance">
+                            <input type="text" placeholder="Минимальное" name="distance-min" min="0" required>
+                            <input type="text" placeholder="Максимальное" name="distance-max" min="0" required>
+                        </div>
+
+                        <label for="lesson" class="noselect"><b>Высота</b></label>
+                        <div name="top-group" class="top-distance">
+                            <input type="text" placeholder="Минимальная" name="top-min" min="0" required>
+                            <input type="text" placeholder="Максимальная" name="top-max" min="0" required>
+                        </div>
+                    </div>
+
                     <div id="db-tab-section" class="form-tab-section">
                         <label for="uname"><b>Username</b></label>
                         <input type="text" placeholder="Enter Username" name="uname" required>
@@ -92,6 +121,17 @@ function FactoryForm() {
                         <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
                     </div>
                     <div id="settings-tab-buttons" class="footer-buttons-section">
+                        <div class="footer-buttons">
+                            <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
+                            <button type="button" name="default" class="footer-button">По умолчанию</button>
+                            <button type="button" name="restore" class="footer-button">Восстановить</button>
+                            <button type="button" name="save" class="footer-button">Сохранить</button>
+                            <button type="button" name="apply" class="footer-button">Применить</button>
+                            <button type="button" name="close" class="footer-button">Закрыть</button>
+                        </div>
+                        <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
+                    </div>
+                    <div id="top-distance-tab-buttons" class="footer-buttons-section">
                         <div class="footer-buttons">
                             <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
                             <button type="button" name="default" class="footer-button">По умолчанию</button>
@@ -202,7 +242,7 @@ function FactoryForm() {
             padding: 12px 20px;
             border: 1px solid #ccc;
             box-sizing: border-box;
-            outline-color: var(--form-border-color);
+            outline-color: var(--form-outline-color);
             color: var(--form-color);
         }
 
@@ -219,7 +259,8 @@ function FactoryForm() {
             outline-color: var(--dark-input-background-color);
         }
 
-        .lesson, .topic {
+        .lesson,
+        .topic {
             display: flex;
         }
 
@@ -233,6 +274,20 @@ function FactoryForm() {
             width: 20%;
             margin-right: 4px;
             text-align: center;
+        }
+
+        .top-distance {
+            display: flex;
+        }
+
+        .top-distance > input[type="text"] {
+            width: 50%;
+            text-align: center;
+            margin-right: 4px;
+        }
+
+        .top-distance > input[type="text"]:last-of-type {
+            margin-right: 0px;
         }
 
         /* Set a style for all buttons */
@@ -283,6 +338,26 @@ function FactoryForm() {
         }
 
         .checkboxes-settings label > input[type='checkbox']{
+            margin-bottom: 10px;
+        }
+
+        /* Extra styles for the radiobox settings */
+        .radioboxes-settings {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: start;
+            margin-bottom: 10px;
+        }
+
+        .radioboxes-settings label {
+            width: 50%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .radioboxes-settings label > input[type='radio']{
             margin-bottom: 10px;
         }
 
@@ -400,7 +475,7 @@ function FactoryForm() {
         }
 
         /* The Close Button (x) */
-        .close {
+        .close-button {
             flex: none;
             right: 20px;
             top: 0;
@@ -409,7 +484,7 @@ function FactoryForm() {
             font-weight: bold;
         }
 
-        #form.dark .close {
+        #form.dark .close-button {
             color: white;
         }
 
@@ -422,10 +497,10 @@ function FactoryForm() {
             font-weight: bold;
         }
 
-        .close:hover,
-        #form.dark .close:hover,
-        .close:focus,
-        #form.dark .close:focus {
+        .close-button:hover,
+        .close-button:focus,
+        #form.dark .close-button:hover,
+        #form.dark .close-button:focus {
             color: red;
             cursor: pointer;
         }
@@ -528,6 +603,14 @@ function FactoryForm() {
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='close'").onclick = this.closeSettings.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='apply'").onclick = this.applySettings.bind(this);
 
+            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='cancel'").onclick = this.cancelTopDistance.bind(this);
+            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='default'").onclick = this.defaultTopDistance.bind(this);
+            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='restore'").onclick = this.restoreTopDistance.bind(this);
+            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='save'").onclick = this.saveTopDistance.bind(this);
+            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='close'").onclick = this.closeTopDistance.bind(this);
+            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='apply'").onclick = this.applyTopDistance.bind(this);
+
+
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='cancel'").onclick = this.cancelLessons.bind(this);
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='default'").onclick = this.defaultLessons.bind(this);
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='restore'").onclick = this.restoreLessons.bind(this);
@@ -547,12 +630,18 @@ function FactoryForm() {
             this.shadowRoot.getElementById('close').onclick = this.close.bind(this);
             this.form = this.shadowRoot.getElementById('form');
             // this.shadowRoot.getElementById('default').onclick = this.default.bind(this);
+
             let tabList = this.shadowRoot.querySelectorAll('.form-tab-link');
             for (let i = 0; i < tabList.length; i++) {
                 const tab = tabList[i];
                 tab.onclick = this.changeTab.bind(this);
                 this.tabs.set(tab.getAttribute('id'), tab);
                 this.tabSections.set(tab.getAttribute('id'), this.shadowRoot.getElementById(tab.getAttribute('id')+'-section'));
+            }
+
+            let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
+            for (let i = 0; i < radioList.length; i++) {
+                radioList[i].onchange = this.radioChange.bind(this);
             }
         }
 
@@ -565,6 +654,10 @@ function FactoryForm() {
         static pdb = new PouchDB('settings')
 
         restoreSettings() {
+
+        }
+
+        restoreTopDistance() {
 
         }
 
@@ -657,6 +750,29 @@ function FactoryForm() {
             settings.night.hidden = !this.form.night.checked;
         }
 
+        saveTopDistance() {
+            let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
+            for (let i = 0; i < radioList.length; i++) {
+                const radio = radioList[i];
+                if (radio.checked)
+                {
+                    settings[radio.value].distance.min = this.form.elements['distance-min'].value;
+                    settings[radio.value].distance.max = this.form.elements['distance-max'].value;
+                    settings[radio.value].top.min = this.form.elements['top-min'].value;
+                    settings[radio.value].top.max = this.form.elements['top-max'].value;
+                    break;
+                }
+            }
+        }
+
+        radioChange(e) {
+            const radio = e.target.value;
+            this.form.elements['distance-min'].value = settings[radio].distance.min;
+            this.form.elements['distance-max'].value = settings[radio].distance.max;
+            this.form.elements['top-min'].value = settings[radio].top.min;
+            this.form.elements['top-max'].value = settings[radio].top.max;
+        }
+
         saveOptions() {
             settings.theme = this.form.theme.checked ? 'dark' : 'light';
         }
@@ -671,6 +787,18 @@ function FactoryForm() {
         }
 
         defaultSettings() {
+            this.form.cloud.checked = !defaultSettings.cloud.hidden;
+            this.form.horizon.checked = !defaultSettings.horizon.hidden;
+            this.form.cactus.checked = !defaultSettings.cactus.hidden;
+            this.form.ground.checked = !defaultSettings.ground.hidden;
+            this.form.bumps.checked = !defaultSettings.bumps.hidden;
+            this.form.pterodactyl.checked = !defaultSettings.pterodactyl.hidden;
+            this.form.moon.checked = !defaultSettings.moon.hidden;
+            this.form.star.checked = !defaultSettings.star.hidden;
+            this.form.night.checked = !defaultSettings.night.hidden;
+        }
+
+        defaultTopDistance() {
             this.form.cloud.checked = !defaultSettings.cloud.hidden;
             this.form.horizon.checked = !defaultSettings.horizon.hidden;
             this.form.cactus.checked = !defaultSettings.cactus.hidden;
@@ -707,11 +835,36 @@ function FactoryForm() {
             this.form.night.checked = !settings.night.hidden;
         }
 
+        cancelTopDistance() {
+            this.form.cloud.checked = !settings.cloud.hidden;
+            this.form.horizon.checked = !settings.horizon.hidden;
+            this.form.cactus.checked = !settings.cactus.hidden;
+            this.form.ground.checked = !settings.ground.hidden;
+            this.form.bumps.checked = !settings.bumps.hidden;
+            this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
+            this.form.moon.checked = !settings.moon.hidden;
+            this.form.star.checked = !settings.star.hidden;
+            this.form.night.checked = !settings.night.hidden;
+        }
+
         closeSettings() {
             this.close();
         }
 
         applySettings() {
+            settings.cloud.hidden = !this.form.cloud.checked;
+            settings.horizon.hidden = !this.form.horizon.checked;
+            settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
+            settings.cactus.hidden = !this.form.cactus.checked;
+            settings.ground.hidden = !this.form.ground.checked;
+            settings.bumps.hidden = !this.form.bumps.checked;
+            settings.pterodactyl.hidden = !this.form.pterodactyl.checked;
+            settings.moon.hidden = !this.form.moon.checked;
+            settings.star.hidden = !this.form.star.checked;
+            settings.night.hidden = !this.form.night.checked;
+        }
+
+        applyTopDistance() {
             settings.cloud.hidden = !this.form.cloud.checked;
             settings.horizon.hidden = !this.form.horizon.checked;
             settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
@@ -747,6 +900,10 @@ function FactoryForm() {
         }
 
         closeLessons() {
+            this.close();
+        }
+
+        closeTopDistance() {
             this.close();
         }
 

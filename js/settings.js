@@ -29,6 +29,10 @@ export const defaultSettings = {
             min: 100,
             max: 150,
         },
+        top: {
+            min: 10,
+            max: 100,
+        },
         hidden: false,
     },
 
@@ -36,6 +40,10 @@ export const defaultSettings = {
         distance: {
             min: 100,
             max: 150,
+        },
+        top: {
+            min: 10,
+            max: 100,
         },
         hidden: false
     },
@@ -56,6 +64,10 @@ export const defaultSettings = {
         distance: {
             min: 40,
             max: 100,
+        },
+        top: {
+            min: 442,
+            max: 451,
         },
         hidden: false,
     },
@@ -101,7 +113,7 @@ export const defaultSettings = {
             min: 400,
             max: 400,
         },
-        length: {
+        top: {
             min: 100,
             max: 100,
         },

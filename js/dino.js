@@ -307,7 +307,7 @@ function checkDino(){
 
     nightDistance++;
     if (nightDistance > nextNightDistance) {
-        nightDistance = -settings.night.length.min;
+        nightDistance = -settings.night.top.min;
         nightBegin();
         nextNightDistance = randomInteger(settings.night.distance.min, settings.night.distance.max);
     }
