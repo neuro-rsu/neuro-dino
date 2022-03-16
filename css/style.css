@@ -3,12 +3,19 @@
     --dino-max-top: 20px;
     --base-color: grey;
     --cloud-color: #e2e2e2;
-    --day-color: white;
+    --day-color: blue;
+    /* --day-color: white; */
+
     --night-body: #121212;
+    --night-background-color: #121212;
+
+    --header-color: honeydew;
+    --header-background-color: grey;
+    --background-color: white;
 
     /* --form-border-color: #888; */
-    --form-border-color: #ddd;
     --form-color: #444;
+    --form-border-color: #ddd;
     --form-header-border-color: #ddd;
     --form-outline-color: #999;
 
@@ -21,10 +28,12 @@
 
     --form-background-color: #fefefe;
 
-    --header-background-color: #fcfcfc;
-    --header-color: #f1f1f1;
+    /* --form-header-background-color: #fcfcfc; */
+    --form-header-background-color: #f1f1f1;
+    --form-header-color: #f1f1f1;
 
     --dark-background-color: #121212;
+
 
     --dark-color: white;
     --dark-header-color: #252525;
@@ -33,6 +42,8 @@
     --dark-input-color: white;
 
     --dark-tab-color: #b5b5b5;
+    --dark-tab-hover-color: white;
+    --dark-tab-focus-color: #b5b5b5;
     --dark-tab-selected-color: white;
     --dark-tab-border-color: #b5b5b5;
 
@@ -51,7 +62,7 @@ body {
     height: 100%;
     width: 100%;
     position: absolute;
-    background-color: var(--base-color);
+    background-color: var(--header-background-color);
 }
 
 #game-space {
@@ -60,16 +71,16 @@ body {
     top: 200px;
     left: 0px;
     position: absolute;
-    background-color: var(--day-color);
+    background-color: var(--background-color);
     overflow: hidden;
 }
 
 #game-space.dark {
-    background-color: var(--dark-body);
+    background-color: var(--dark-background-color);
 }
 
 #game-space.night {
-    background-color: var(--night-body);
+    background-color: var(--night-background-color);
 }
 
 @keyframes dino-move{
@@ -264,8 +275,6 @@ svg {
     z-index: 100;
  }
 
-
-
 .clouds {
     position: absolute;
     animation-name: cloud-move;
@@ -416,9 +425,9 @@ svg rect{
     fill: var(--base-color);
 }
 
-#game-space.night .star2 path {
+/* #game-space.night .star2 path {
     fill: var(--night-body);
-}
+} */
 
 .clouds path, .clouds rect {
     fill: var(--cloud-color);
@@ -444,20 +453,24 @@ svg rect{
 }
 
 .bumps path[fill=red] {
-    fill: #fff;
+    fill: var(--background-color);
 }
 
 #game-space.dark .bumps path[fill=red] {
-    fill: var(--dark-body);
+    fill: var(--dark-background-color);
+}
+
+#game-space.night .bumps path[fill=red] {
+    fill: var(--night-background-color);
 }
 
 /* .bumps.night path {
-    fill: var(--cloud-color);
+    fill: var(--night-background-color);
 } */
 
-#game-space.night .bumps path {
+/* #game-space.night .bumps path {
     fill: var(--night-body);
-}
+} */
 
 
 #game-space.night .horizon path {
