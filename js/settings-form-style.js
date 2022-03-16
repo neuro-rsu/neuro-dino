@@ -218,43 +218,42 @@ span.psw {
 }
 
 .form-tabs {
+    display: flex;
     flex: auto;
     top: 0;
     left: 0;
     right: 0;
-    padding: 0 12px;
     margin: 10px 0 0;
+    padding: 0 12px 0 0;
+    overflow: hidden;
     text-align: left;
     border-radius: 3px 3px 0 0;
 }
 
 .form-tab {
     position: relative;
-    display: inline-block;
+    display: flex;
     vertical-align: top;
+    bottom: auto;
     margin-top: 3px;
+    padding-bottom: 0;
+    overflow: hidden;
     line-height: 36px;
     font-weight: normal;
     color: var(--tab-color);
-    background: var(--form-background-color);
     border: solid var(--form-header-border-color);
     border-width: 1px 1px 0;
     border-radius: 5px 5px 0 0;
-    padding-bottom: 0;
-    bottom: auto;
+    background: var(--form-background-color);
 }
 
 #form.dark .form-tab {
     background: var(--dark-header-color);
 }
 
-.form-tab-link {
-    margin: 0;
-    border-top: 0;
-}
 
 .form-tab + .form-tab {
-    margin-left: -5px;
+    margin-left: -1px;
 }
 
 .form-tab.selected {
@@ -290,13 +289,17 @@ span.psw {
 
 .form-tab-link {
     display: block;
-    min-width: 60px;
     padding: 0 15px;
+    margin: 0;
+    border-top: 0;
     color: inherit;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     border-radius: 4px 4px 0 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .form-tab-section {
