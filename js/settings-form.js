@@ -451,8 +451,8 @@ function FactoryForm() {
                 {
                     this.form.elements['distance-min'].value = settings[radio.value].distance.min;
                     this.form.elements['distance-max'].value = settings[radio.value].distance.max;
-                    this.form.elements['top-min'].value = settings[radio.value].distance.min;
-                    this.form.elements['top-max'].value = settings[radio.value].distance.max;
+                    this.form.elements['top-min'].value = settings[radio.value].top.min;
+                    this.form.elements['top-max'].value = settings[radio.value].top.max;
                 }
             }
         }
