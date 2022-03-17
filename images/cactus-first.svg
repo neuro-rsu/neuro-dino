@@ -3,7 +3,7 @@
      width="48" height="105"
      xmlns="http://www.w3.org/2000/svg">
 
-    <path d="
+     <path d="
         M0 29,
         h3,
         v-4,
@@ -43,4 +43,4 @@
         z
         " fill="grey">
     </path>
- </svg>
+ </svg> 

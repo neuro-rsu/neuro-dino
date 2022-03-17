@@ -61,7 +61,7 @@ function FactoryForm() {
                             <label class="noselect"><input type="checkbox" checked="checked" name="ground">Земля</label>
                             <label class="noselect"><input type="checkbox" checked="checked" name="pterodactyl">Птеродактиль</label>
                             <label class="noselect"><input type="checkbox" checked="checked" name="cactus">Большой кактус</label>
-                            <label class="noselect"><input type="checkbox" checked="checked" name="small-cactus">Маленький кактус</label>
+                            <label class="noselect"><input type="checkbox" checked="checked" name="smallcactus">Маленький кактус</label>
                             <label class="noselect"><input type="checkbox" checked="checked" name="two-cactus">Два кактуса</label>
                             <label class="noselect"><input type="checkbox" checked="checked" name="three-cactus">Три кактуса</label>
                         </div>
@@ -77,7 +77,7 @@ function FactoryForm() {
                             <label class="noselect"><input type="radio" name="radio-setting" value="ground">Земля</label>
                             <label class="noselect"><input type="radio" name="radio-setting" value="pterodactyl">Птеродактиль</label>
                             <label class="noselect"><input type="radio" name="radio-setting" value="bigCactus">Большой кактус</label>
-                            <label class="noselect"><input type="radio" name="radio-setting" value="cactus">Маленький кактус</label>
+                            <label class="noselect"><input type="radio" name="radio-setting" value="smallcactus">Маленький кактус</label>
                         </div>
 
                         <label for="distance-group" class="noselect"><b>Расстояние между</b></label>
@@ -251,7 +251,14 @@ function FactoryForm() {
 
         }
 
-        restoreTopDistance() {
+        async restoreTopDistance() {
+            const mdResult = await this.modalDialog.show();
+            if (mdResult === "OK") {
+                alert(mdResult);
+            }
+            else {
+                alert(mdResult);
+            }
 
         }
 
@@ -299,6 +306,7 @@ function FactoryForm() {
             this.form.cloud.checked = !settings.cloud.hidden;
             this.form.horizon.checked = !settings.horizon.hidden;
             this.form.cactus.checked = !settings.cactus.hidden;
+            this.form.smallcactus.checked = !settings.smallcactus.hidden;
             this.form.ground.checked = !settings.ground.hidden;
             this.form.bumps.checked = !settings.bumps.hidden;
             this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
@@ -336,6 +344,7 @@ function FactoryForm() {
             settings.horizon.hidden = !this.form.horizon.checked;
             settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
             settings.cactus.hidden = !this.form.cactus.checked;
+            //settings.smallcactus.hidden = !this.form.smallcactus.checked;
             settings.ground.hidden = !this.form.ground.checked;
             settings.bumps.hidden = !this.form.bumps.checked;
             settings.pterodactyl.hidden = !this.form.pterodactyl.checked;
@@ -384,6 +393,7 @@ function FactoryForm() {
             this.form.cloud.checked = !defaultSettings.cloud.hidden;
             this.form.horizon.checked = !defaultSettings.horizon.hidden;
             this.form.cactus.checked = !defaultSettings.cactus.hidden;
+            //this.form.smallcactus.checked = !defaultSettings.smallcactus.hidden;
             this.form.ground.checked = !defaultSettings.ground.hidden;
             this.form.bumps.checked = !defaultSettings.bumps.hidden;
             this.form.pterodactyl.checked = !defaultSettings.pterodactyl.hidden;
@@ -393,15 +403,18 @@ function FactoryForm() {
         }
 
         defaultTopDistance() {
-            this.form.cloud.checked = !defaultSettings.cloud.hidden;
-            this.form.horizon.checked = !defaultSettings.horizon.hidden;
-            this.form.cactus.checked = !defaultSettings.cactus.hidden;
-            this.form.ground.checked = !defaultSettings.ground.hidden;
-            this.form.bumps.checked = !defaultSettings.bumps.hidden;
-            this.form.pterodactyl.checked = !defaultSettings.pterodactyl.hidden;
-            this.form.moon.checked = !defaultSettings.moon.hidden;
-            this.form.star.checked = !defaultSettings.star.hidden;
-            this.form.night.checked = !defaultSettings.night.hidden;
+            let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
+            for (let i = 0; i < radioList.length; i++) {
+                const radio = radioList[i];
+                if (radio.checked)
+                {
+                    this.form.elements['distance-min'].value = defaultSettings[radio.value].distance.min;
+                    this.form.elements['distance-max'].value = defaultSettings[radio.value].distance.max;
+                    this.form.elements['top-min'].value = defaultSettings[radio.value].top.min;
+                    this.form.elements['top-max'].value = defaultSettings[radio.value].top.max;
+                }
+            }
+
         }
 
         defaultLessons() {
@@ -421,6 +434,7 @@ function FactoryForm() {
             this.form.cloud.checked = !settings.cloud.hidden;
             this.form.horizon.checked = !settings.horizon.hidden;
             this.form.cactus.checked = !settings.cactus.hidden;
+            //this.form.smallcactus.checked = !settings.smallcactus.hidden;
             this.form.ground.checked = !settings.ground.hidden;
             this.form.bumps.checked = !settings.bumps.hidden;
             this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
@@ -430,15 +444,17 @@ function FactoryForm() {
         }
 
         cancelTopDistance() {
-            this.form.cloud.checked = !settings.cloud.hidden;
-            this.form.horizon.checked = !settings.horizon.hidden;
-            this.form.cactus.checked = !settings.cactus.hidden;
-            this.form.ground.checked = !settings.ground.hidden;
-            this.form.bumps.checked = !settings.bumps.hidden;
-            this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
-            this.form.moon.checked = !settings.moon.hidden;
-            this.form.star.checked = !settings.star.hidden;
-            this.form.night.checked = !settings.night.hidden;
+            let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
+            for (let i = 0; i < radioList.length; i++) {
+                const radio = radioList[i];
+                if (radio.checked)
+                {
+                    this.form.elements['distance-min'].value = settings[radio.value].distance.min;
+                    this.form.elements['distance-max'].value = settings[radio.value].distance.max;
+                    this.form.elements['top-min'].value = settings[radio.value].distance.min;
+                    this.form.elements['top-max'].value = settings[radio.value].distance.max;
+                }
+            }
         }
 
         closeSettings() {
@@ -450,6 +466,7 @@ function FactoryForm() {
             settings.horizon.hidden = !this.form.horizon.checked;
             settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
             settings.cactus.hidden = !this.form.cactus.checked;
+            //settings.smallcactus.hidden = !this.form.smallcactus.checked;
             settings.ground.hidden = !this.form.ground.checked;
             settings.bumps.hidden = !this.form.bumps.checked;
             settings.pterodactyl.hidden = !this.form.pterodactyl.checked;
@@ -459,16 +476,18 @@ function FactoryForm() {
         }
 
         applyTopDistance() {
-            settings.cloud.hidden = !this.form.cloud.checked;
-            settings.horizon.hidden = !this.form.horizon.checked;
-            settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
-            settings.cactus.hidden = !this.form.cactus.checked;
-            settings.ground.hidden = !this.form.ground.checked;
-            settings.bumps.hidden = !this.form.bumps.checked;
-            settings.pterodactyl.hidden = !this.form.pterodactyl.checked;
-            settings.moon.hidden = !this.form.moon.checked;
-            settings.star.hidden = !this.form.star.checked;
-            settings.night.hidden = !this.form.night.checked;
+            let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
+            for (let i = 0; i < radioList.length; i++) {
+                const radio = radioList[i];
+                if (radio.checked)
+                {
+                    settings[radio.value].distance.min =  this.form.elements['distance-min'].value;
+                    settings[radio.value].distance.max = this.form.elements['distance-max'].value;
+                    settings[radio.value].top.min = this.form.elements['top-min'].value;
+                    settings[radio.value].top.max = this.form.elements['top-max'].value;
+                }
+            }
+
         }
 
         cancelLessons() {
