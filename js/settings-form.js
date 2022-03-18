@@ -487,7 +487,6 @@ function FactoryForm() {
                     settings[radio.value].top.max = this.form.elements['top-max'].value;
                 }
             }
-
         }
 
         cancelLessons() {
