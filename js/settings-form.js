@@ -359,10 +359,10 @@ function FactoryForm() {
                 const radio = radioList[i];
                 if (radio.checked)
                 {
-                    settings[radio.value].distance.min = this.form.elements['distance-min'].value;
-                    settings[radio.value].distance.max = this.form.elements['distance-max'].value;
-                    settings[radio.value].top.min = this.form.elements['top-min'].value;
-                    settings[radio.value].top.max = this.form.elements['top-max'].value;
+                    settings[radio.value].distance.min = +this.form.elements['distance-min'].value;
+                    settings[radio.value].distance.max = +this.form.elements['distance-max'].value;
+                    settings[radio.value].top.min = +this.form.elements['top-min'].value;
+                    settings[radio.value].top.max = +this.form.elements['top-max'].value;
                     break;
                 }
             }
@@ -481,10 +481,10 @@ function FactoryForm() {
                 const radio = radioList[i];
                 if (radio.checked)
                 {
-                    settings[radio.value].distance.min =  this.form.elements['distance-min'].value;
-                    settings[radio.value].distance.max = this.form.elements['distance-max'].value;
-                    settings[radio.value].top.min = this.form.elements['top-min'].value;
-                    settings[radio.value].top.max = this.form.elements['top-max'].value;
+                    settings[radio.value].distance.min = +this.form.elements['distance-min'].value;
+                    settings[radio.value].distance.max = +this.form.elements['distance-max'].value;
+                    settings[radio.value].top.min = +this.form.elements['top-min'].value;
+                    settings[radio.value].top.max = +this.form.elements['top-max'].value;
                 }
             }
         }
