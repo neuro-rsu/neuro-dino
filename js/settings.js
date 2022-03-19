@@ -147,6 +147,13 @@ export const defaultSettings = {
     horizon: {
         hidden: false,
     },
+    user: {
+        username: "",
+    },
+    connection: {
+        host: "http://localhost",
+        port: "5984",
+    },
     theme: 'dark',
 }
 

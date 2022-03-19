@@ -77,11 +77,12 @@ async function saveBestDinoBrain() {
 }
 
 export async function compactDb() {
-    pdb.compact().then(function (info) {
-        alert("База данных сжата");
-    }).catch(function (err) {
-        alert(err);
-    });
+    return pdb.compact();
+    // return pdb.compact().then(
+    //     () => "База данных сжата"
+    // ).catch(
+    //     err => err
+    // );
 }
 
 export async function deleteDb() {
@@ -90,4 +91,9 @@ export async function deleteDb() {
     }).catch(function (err) {
         alert(err);
     })
+}
+
+export async function clearDb() {
+    pdb.destroy().then( () => "База данных удалена")
+    .catch(err => err)
 }

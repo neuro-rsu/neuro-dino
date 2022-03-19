@@ -2,7 +2,7 @@ import {settings, defaultSettings} from './settings.js';
 
 import {factoryModalDialog} from './modal-dialog.js';
 
-import {compactDb, deleteDb} from './dino-brain.js';
+import {compactDb, deleteDb, clearDb} from './dino-brain.js';
 import {formStyle} from './settings-form-style.js';
 export { FactoryForm };
 
@@ -94,11 +94,17 @@ function FactoryForm() {
                     </div>
 
                     <div id="db-tab-section" class="form-tab-section">
-                        <label for="uname"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="uname" required>
+                        <label for="uname"><b>Пользователь</b></label>
+                        <input type="text" placeholder="Логин" name="username" required>
 
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
+                        <label for="password"><b>Password</b></label>
+                        <input type="password" placeholder="Пароль" name="password" required>
+
+                        <label for="host"><b>Хост</b></label>
+                        <input type="text" placeholder="http://example.com" name="host" required>
+
+                        <label for="port"><b>Порт</b></label>
+                        <input type="text" placeholder="Порт: 5984" name="port" required>
 
                         <button type="submit">Login</button>
                     </div>
@@ -144,11 +150,12 @@ function FactoryForm() {
                     </div>
                     <div id="db-tab-buttons" class="footer-buttons-section">
                         <div class="footer-buttons">
-                            <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
-                            <button type="button" id="delete" class="footer-button">Удалить</button>
-                            <button type="button" id="compact" class="footer-button">Сжать</button>
-                            <button type="button" id="default" class="footer-button">По умолчанию</button>
-                            <button type="button" id="save" class="footer-button">Сохранить</button>
+                            <button type="button" name="clear" class="footer-button cancel-button">Очистить</button>
+                            <button type="button" name="delete" class="footer-button">Удалить</button>
+                            <button type="button" name="compact" class="footer-button">Сжать</button>
+                            <button type="button" name="download" class="footer-button">Download</button>
+                            <button type="button" name="upload" class="footer-button">Upload</button>
+                            <button type="button" name="close" class="footer-button">Закрыть</button>
                         </div>
                         <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
                     </div>
@@ -160,7 +167,6 @@ function FactoryForm() {
                             <button type="button" name="save" class="footer-button">Сохранить</button>
                             <button type="button" name="apply" class="footer-button">Применить</button>
                             <button type="button" name="close" class="footer-button">Закрыть</button>
-
                         </div>
                     </div>
                 </div>
@@ -218,6 +224,15 @@ function FactoryForm() {
             this.shadowRoot.querySelector("#options-tab-buttons button[name='save'").onclick = this.saveOptions.bind(this);
             this.shadowRoot.querySelector("#options-tab-buttons button[name='apply'").onclick = this.applyOptions.bind(this);
             this.shadowRoot.querySelector("#options-tab-buttons button[name='close'").onclick = this.closeOptions.bind(this);
+
+            this.shadowRoot.querySelector("#db-tab-buttons button[name='clear'").onclick = this.clearDB.bind(this);
+            this.shadowRoot.querySelector("#db-tab-buttons button[name='delete'").onclick = this.deleteDB.bind(this);
+            this.shadowRoot.querySelector("#db-tab-buttons button[name='compact'").onclick = this.compactDB.bind(this);
+            this.shadowRoot.querySelector("#db-tab-buttons button[name='download'").onclick = this.downloadDB.bind(this);
+            this.shadowRoot.querySelector("#db-tab-buttons button[name='upload'").onclick = this.uploadDB.bind(this);
+            this.shadowRoot.querySelector("#db-tab-buttons button[name='close'").onclick = this.closeDB.bind(this);
+
+
             // this.shadowRoot.getElementById('save').onclick = this.save.bind(this);
             // this.shadowRoot.getElementById('delete').onclick = this.delete.bind(this);
             // this.shadowRoot.getElementById('compact').onclick = this.compact.bind(this);
@@ -338,6 +353,35 @@ function FactoryForm() {
         cancel() {
             this.form.style.display = "none";
         }
+
+        clearDB() {
+            clearDb().then(
+                () => this.modalDialog.show("Все записи удалены")
+            ).catch(
+                (message) => this.modalDialog.show(message)
+            );
+        };
+
+        deleteDB() {
+            this.modalDialog.show(deleteDb());
+        };
+
+        compactDB() {
+            compactDb().then(
+                () => this.modalDialog.show("База данных сжалась успешно")
+            ).catch(
+                (message) => this.modalDialog.show(message)
+            );
+        };
+        downloadDB() {
+            this.modalDialog.show("Все скачалось успешно");
+        };
+        uploadDB() {
+            this.modalDialog.show("Все загрузилось успешно");
+        };
+        closeDB() {
+            this.close();
+        };
 
         saveSettings() {
             settings.cloud.hidden = !this.form.cloud.checked;
