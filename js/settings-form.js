@@ -153,8 +153,8 @@ function FactoryForm() {
                             <button type="button" name="clear" class="footer-button cancel-button">Очистить</button>
                             <button type="button" name="delete" class="footer-button">Удалить</button>
                             <button type="button" name="compact" class="footer-button">Сжать</button>
-                            <button type="button" name="download" class="footer-button">Download</button>
-                            <button type="button" name="upload" class="footer-button">Upload</button>
+                            <button type="button" name="download" class="footer-button">Скачать</button>
+                            <button type="button" name="upload" class="footer-button">Загрузить</button>
                             <button type="button" name="close" class="footer-button">Закрыть</button>
                         </div>
                         <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
@@ -377,7 +377,19 @@ function FactoryForm() {
             this.modalDialog.show("Все скачалось успешно");
         };
         uploadDB() {
-            this.modalDialog.show("Все загрузилось успешно");
+            let remoteDb = new PouchDB('http://localhost:5984/my');
+            const obj = {_id: "1", a: 1, b: 2};
+            // remoteDb.put(obj).then(
+            //     (message) => this.modalDialog.show(message)
+            // ).catch(
+            //     (message) => this.modalDialog.show(message)
+            // );
+            remoteDb.get(obj).then(
+                (message) => this.modalDialog.show(message)
+            ).catch(
+                (message) => this.modalDialog.show(message)
+            );
+
         };
         closeDB() {
             this.close();
