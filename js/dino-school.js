@@ -17,6 +17,9 @@ let nextCloudDistance = 0;
 let cactusDistance = 0;
 let nextCactusDistance = 0;
 
+let smallcactusDistance = 0;
+let nextSmallCactusDistance = 0;
+
 let groundDistance = 0;
 let nextGroundDistance = 0;
 
@@ -40,9 +43,20 @@ async function initDinoSchool() {
         newTemplate.setAttribute('id', 'big-cactus');
         newTemplate.innerHTML = svg;
         gameSpace.append(newTemplate);
-        createPolygon(newTemplate.content.querySelector('svg'), 'path', '',
-         'big-cactus');
+        createPolygon(newTemplate.content.querySelector('svg'), 'path', '','big-cactus');
     });
+
+    fetch("images/smallcactus.svg")
+    .then(response => response.text())
+    .then(svg => {
+        const gameSpace = document.getElementById('game-space');
+        const newTemplate = document.createElement('template');
+        newTemplate.setAttribute('id', 'small-cactus');
+        newTemplate.innerHTML = svg;
+        gameSpace.append(newTemplate);
+        //createPolygon(newTemplate.content.querySelector('svg'), 'path', '', 'small-cactus');
+    });
+
     fetch("images/cloud.svg")
     .then(response => response.text())
     .then(svg => {
@@ -180,6 +194,9 @@ function dinoJump() {
         let cactusesAll = document.querySelectorAll('.cactuses');
         cactusesAll.forEach(cactus => cactus.remove());
 
+        cactusesAll = document.querySelectorAll('.smallcactus');
+        cactusesAll.forEach(smallcactus => smallcactus.remove());
+
         let grounds = document.querySelectorAll('.grounds');
         grounds.forEach(ground => ground.style.animationPlayState="running");
 
@@ -234,6 +251,14 @@ async function checkDinos(){
         createCactus();
         nextCactusDistance = randomInteger(settings.cactus.distance.min,
             settings.cactus.distance.max);
+    }
+
+    smallcactusDistance++;
+    if (smallcactusDistance > nextSmallCactusDistance) {
+        smallcactusDistance = 0;
+        createSmallCactus();
+        nextSmallCactusDistance = randomInteger(settings.smallcactus.distance.min,
+            settings.smallcactus.distance.max);
     }
 
     pterodactylDistance++;
@@ -413,6 +438,23 @@ function createCactus(){
     newCactus.getAnimations().forEach((anim, i, arr) => {
         anim.onfinish = () => {
             newCactus.remove();
+        };
+    });
+}
+
+function createSmallCactus(){
+    let dist = randomInteger(settings.smallcactus.distance.min, settings.smallcactus.distance.max);
+    const gameSpace = document.getElementById('game-space');
+    let topSet = document.querySelector('#small-cactus');
+    let newSmallCactus = topSet.content.cloneNode(true);
+    //newCactus.querySelector('svg').style.top = '200px';
+
+    gameSpace.append(newSmallCactus);
+
+    newSmallCactus = gameSpace.lastChild;
+    newSmallCactus.getAnimations().forEach((anim, i, arr) => {
+        anim.onfinish = () => {
+            newSmallCactus.remove();
         };
     });
 }

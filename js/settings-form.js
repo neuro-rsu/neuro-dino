@@ -2,7 +2,7 @@ import {settings, defaultSettings} from './settings.js';
 
 import {factoryModalDialog} from './modal-dialog.js';
 
-import {compactDb, deleteDb} from './dino-brain.js';
+import {compactDb, deleteDb, clearDb} from './dino-brain.js';
 import {formStyle} from './settings-form-style.js';
 export { FactoryForm };
 
@@ -61,7 +61,7 @@ function FactoryForm() {
                             <label class="noselect"><input type="checkbox" checked="checked" name="ground">Земля</label>
                             <label class="noselect"><input type="checkbox" checked="checked" name="pterodactyl">Птеродактиль</label>
                             <label class="noselect"><input type="checkbox" checked="checked" name="cactus">Большой кактус</label>
-                            <label class="noselect"><input type="checkbox" checked="checked" name="small-cactus">Маленький кактус</label>
+                            <label class="noselect"><input type="checkbox" checked="checked" name="smallcactus">Маленький кактус</label>
                             <label class="noselect"><input type="checkbox" checked="checked" name="two-cactus">Два кактуса</label>
                             <label class="noselect"><input type="checkbox" checked="checked" name="three-cactus">Три кактуса</label>
                         </div>
@@ -77,7 +77,7 @@ function FactoryForm() {
                             <label class="noselect"><input type="radio" name="radio-setting" value="ground">Земля</label>
                             <label class="noselect"><input type="radio" name="radio-setting" value="pterodactyl">Птеродактиль</label>
                             <label class="noselect"><input type="radio" name="radio-setting" value="bigCactus">Большой кактус</label>
-                            <label class="noselect"><input type="radio" name="radio-setting" value="cactus">Маленький кактус</label>
+                            <label class="noselect"><input type="radio" name="radio-setting" value="smallcactus">Маленький кактус</label>
                         </div>
 
                         <label for="distance-group" class="noselect"><b>Расстояние между</b></label>
@@ -94,11 +94,17 @@ function FactoryForm() {
                     </div>
 
                     <div id="db-tab-section" class="form-tab-section">
-                        <label for="uname"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="uname" required>
+                        <label for="uname"><b>Пользователь</b></label>
+                        <input type="text" placeholder="Логин" name="username" required>
 
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
+                        <label for="password"><b>Password</b></label>
+                        <input type="password" placeholder="Пароль" name="password" required>
+
+                        <label for="host"><b>Хост</b></label>
+                        <input type="text" placeholder="http://example.com" name="host" required>
+
+                        <label for="port"><b>Порт</b></label>
+                        <input type="text" placeholder="Порт: 5984" name="port" required>
 
                         <button type="submit">Login</button>
                     </div>
@@ -144,11 +150,12 @@ function FactoryForm() {
                     </div>
                     <div id="db-tab-buttons" class="footer-buttons-section">
                         <div class="footer-buttons">
-                            <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
-                            <button type="button" id="delete" class="footer-button">Удалить</button>
-                            <button type="button" id="compact" class="footer-button">Сжать</button>
-                            <button type="button" id="default" class="footer-button">По умолчанию</button>
-                            <button type="button" id="save" class="footer-button">Сохранить</button>
+                            <button type="button" name="clear" class="footer-button cancel-button">Очистить</button>
+                            <button type="button" name="delete" class="footer-button">Удалить</button>
+                            <button type="button" name="compact" class="footer-button">Сжать</button>
+                            <button type="button" name="download" class="footer-button">Скачать</button>
+                            <button type="button" name="upload" class="footer-button">Загрузить</button>
+                            <button type="button" name="close" class="footer-button">Закрыть</button>
                         </div>
                         <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
                     </div>
@@ -160,7 +167,6 @@ function FactoryForm() {
                             <button type="button" name="save" class="footer-button">Сохранить</button>
                             <button type="button" name="apply" class="footer-button">Применить</button>
                             <button type="button" name="close" class="footer-button">Закрыть</button>
-
                         </div>
                     </div>
                 </div>
@@ -218,6 +224,15 @@ function FactoryForm() {
             this.shadowRoot.querySelector("#options-tab-buttons button[name='save'").onclick = this.saveOptions.bind(this);
             this.shadowRoot.querySelector("#options-tab-buttons button[name='apply'").onclick = this.applyOptions.bind(this);
             this.shadowRoot.querySelector("#options-tab-buttons button[name='close'").onclick = this.closeOptions.bind(this);
+
+            this.shadowRoot.querySelector("#db-tab-buttons button[name='clear'").onclick = this.clearDB.bind(this);
+            this.shadowRoot.querySelector("#db-tab-buttons button[name='delete'").onclick = this.deleteDB.bind(this);
+            this.shadowRoot.querySelector("#db-tab-buttons button[name='compact'").onclick = this.compactDB.bind(this);
+            this.shadowRoot.querySelector("#db-tab-buttons button[name='download'").onclick = this.downloadDB.bind(this);
+            this.shadowRoot.querySelector("#db-tab-buttons button[name='upload'").onclick = this.uploadDB.bind(this);
+            this.shadowRoot.querySelector("#db-tab-buttons button[name='close'").onclick = this.closeDB.bind(this);
+
+
             // this.shadowRoot.getElementById('save').onclick = this.save.bind(this);
             // this.shadowRoot.getElementById('delete').onclick = this.delete.bind(this);
             // this.shadowRoot.getElementById('compact').onclick = this.compact.bind(this);
@@ -251,7 +266,14 @@ function FactoryForm() {
 
         }
 
-        restoreTopDistance() {
+        async restoreTopDistance() {
+            const mdResult = await this.modalDialog.show();
+            if (mdResult === "OK") {
+                alert(mdResult);
+            }
+            else {
+                alert(mdResult);
+            }
 
         }
 
@@ -299,6 +321,7 @@ function FactoryForm() {
             this.form.cloud.checked = !settings.cloud.hidden;
             this.form.horizon.checked = !settings.horizon.hidden;
             this.form.cactus.checked = !settings.cactus.hidden;
+            this.form.smallcactus.checked = !settings.smallcactus.hidden;
             this.form.ground.checked = !settings.ground.hidden;
             this.form.bumps.checked = !settings.bumps.hidden;
             this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
@@ -331,11 +354,53 @@ function FactoryForm() {
             this.form.style.display = "none";
         }
 
+        clearDB() {
+            clearDb().then(
+                () => this.modalDialog.show("Все записи удалены")
+            ).catch(
+                (message) => this.modalDialog.show(message)
+            );
+        };
+
+        deleteDB() {
+            this.modalDialog.show(deleteDb());
+        };
+
+        compactDB() {
+            compactDb().then(
+                () => this.modalDialog.show("База данных сжалась успешно")
+            ).catch(
+                (message) => this.modalDialog.show(message)
+            );
+        };
+        downloadDB() {
+            this.modalDialog.show("Все скачалось успешно");
+        };
+        uploadDB() {
+            let remoteDb = new PouchDB('http://localhost:5984/my');
+            const obj = {_id: "1", a: 1, b: 2};
+            // remoteDb.put(obj).then(
+            //     (message) => this.modalDialog.show(message)
+            // ).catch(
+            //     (message) => this.modalDialog.show(message)
+            // );
+            remoteDb.get(obj).then(
+                (message) => this.modalDialog.show(message)
+            ).catch(
+                (message) => this.modalDialog.show(message)
+            );
+
+        };
+        closeDB() {
+            this.close();
+        };
+
         saveSettings() {
             settings.cloud.hidden = !this.form.cloud.checked;
             settings.horizon.hidden = !this.form.horizon.checked;
             settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
             settings.cactus.hidden = !this.form.cactus.checked;
+            //settings.smallcactus.hidden = !this.form.smallcactus.checked;
             settings.ground.hidden = !this.form.ground.checked;
             settings.bumps.hidden = !this.form.bumps.checked;
             settings.pterodactyl.hidden = !this.form.pterodactyl.checked;
@@ -350,10 +415,10 @@ function FactoryForm() {
                 const radio = radioList[i];
                 if (radio.checked)
                 {
-                    settings[radio.value].distance.min = this.form.elements['distance-min'].value;
-                    settings[radio.value].distance.max = this.form.elements['distance-max'].value;
-                    settings[radio.value].top.min = this.form.elements['top-min'].value;
-                    settings[radio.value].top.max = this.form.elements['top-max'].value;
+                    settings[radio.value].distance.min = +this.form.elements['distance-min'].value;
+                    settings[radio.value].distance.max = +this.form.elements['distance-max'].value;
+                    settings[radio.value].top.min = +this.form.elements['top-min'].value;
+                    settings[radio.value].top.max = +this.form.elements['top-max'].value;
                     break;
                 }
             }
@@ -384,6 +449,7 @@ function FactoryForm() {
             this.form.cloud.checked = !defaultSettings.cloud.hidden;
             this.form.horizon.checked = !defaultSettings.horizon.hidden;
             this.form.cactus.checked = !defaultSettings.cactus.hidden;
+            //this.form.smallcactus.checked = !defaultSettings.smallcactus.hidden;
             this.form.ground.checked = !defaultSettings.ground.hidden;
             this.form.bumps.checked = !defaultSettings.bumps.hidden;
             this.form.pterodactyl.checked = !defaultSettings.pterodactyl.hidden;
@@ -393,15 +459,18 @@ function FactoryForm() {
         }
 
         defaultTopDistance() {
-            this.form.cloud.checked = !defaultSettings.cloud.hidden;
-            this.form.horizon.checked = !defaultSettings.horizon.hidden;
-            this.form.cactus.checked = !defaultSettings.cactus.hidden;
-            this.form.ground.checked = !defaultSettings.ground.hidden;
-            this.form.bumps.checked = !defaultSettings.bumps.hidden;
-            this.form.pterodactyl.checked = !defaultSettings.pterodactyl.hidden;
-            this.form.moon.checked = !defaultSettings.moon.hidden;
-            this.form.star.checked = !defaultSettings.star.hidden;
-            this.form.night.checked = !defaultSettings.night.hidden;
+            let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
+            for (let i = 0; i < radioList.length; i++) {
+                const radio = radioList[i];
+                if (radio.checked)
+                {
+                    this.form.elements['distance-min'].value = defaultSettings[radio.value].distance.min;
+                    this.form.elements['distance-max'].value = defaultSettings[radio.value].distance.max;
+                    this.form.elements['top-min'].value = defaultSettings[radio.value].top.min;
+                    this.form.elements['top-max'].value = defaultSettings[radio.value].top.max;
+                }
+            }
+
         }
 
         defaultLessons() {
@@ -421,6 +490,7 @@ function FactoryForm() {
             this.form.cloud.checked = !settings.cloud.hidden;
             this.form.horizon.checked = !settings.horizon.hidden;
             this.form.cactus.checked = !settings.cactus.hidden;
+            //this.form.smallcactus.checked = !settings.smallcactus.hidden;
             this.form.ground.checked = !settings.ground.hidden;
             this.form.bumps.checked = !settings.bumps.hidden;
             this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
@@ -430,15 +500,17 @@ function FactoryForm() {
         }
 
         cancelTopDistance() {
-            this.form.cloud.checked = !settings.cloud.hidden;
-            this.form.horizon.checked = !settings.horizon.hidden;
-            this.form.cactus.checked = !settings.cactus.hidden;
-            this.form.ground.checked = !settings.ground.hidden;
-            this.form.bumps.checked = !settings.bumps.hidden;
-            this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
-            this.form.moon.checked = !settings.moon.hidden;
-            this.form.star.checked = !settings.star.hidden;
-            this.form.night.checked = !settings.night.hidden;
+            let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
+            for (let i = 0; i < radioList.length; i++) {
+                const radio = radioList[i];
+                if (radio.checked)
+                {
+                    this.form.elements['distance-min'].value = settings[radio.value].distance.min;
+                    this.form.elements['distance-max'].value = settings[radio.value].distance.max;
+                    this.form.elements['top-min'].value = settings[radio.value].top.min;
+                    this.form.elements['top-max'].value = settings[radio.value].top.max;
+                }
+            }
         }
 
         closeSettings() {
@@ -450,6 +522,7 @@ function FactoryForm() {
             settings.horizon.hidden = !this.form.horizon.checked;
             settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
             settings.cactus.hidden = !this.form.cactus.checked;
+            //settings.smallcactus.hidden = !this.form.smallcactus.checked;
             settings.ground.hidden = !this.form.ground.checked;
             settings.bumps.hidden = !this.form.bumps.checked;
             settings.pterodactyl.hidden = !this.form.pterodactyl.checked;
@@ -459,16 +532,17 @@ function FactoryForm() {
         }
 
         applyTopDistance() {
-            settings.cloud.hidden = !this.form.cloud.checked;
-            settings.horizon.hidden = !this.form.horizon.checked;
-            settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
-            settings.cactus.hidden = !this.form.cactus.checked;
-            settings.ground.hidden = !this.form.ground.checked;
-            settings.bumps.hidden = !this.form.bumps.checked;
-            settings.pterodactyl.hidden = !this.form.pterodactyl.checked;
-            settings.moon.hidden = !this.form.moon.checked;
-            settings.star.hidden = !this.form.star.checked;
-            settings.night.hidden = !this.form.night.checked;
+            let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
+            for (let i = 0; i < radioList.length; i++) {
+                const radio = radioList[i];
+                if (radio.checked)
+                {
+                    settings[radio.value].distance.min = +this.form.elements['distance-min'].value;
+                    settings[radio.value].distance.max = +this.form.elements['distance-max'].value;
+                    settings[radio.value].top.min = +this.form.elements['top-min'].value;
+                    settings[radio.value].top.max = +this.form.elements['top-max'].value;
+                }
+            }
         }
 
         cancelLessons() {

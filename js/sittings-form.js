@@ -10,6 +10,7 @@ export function settingsFormOpen() {
     form.cloud.checked = settings.cloud.visible;
     form.horizon.checked = settings.horizon.visible;
     form.cactus.checked = settings.cactus.visible;
+    form.smallcactus.checked = settings.smallcactus.visible;
     form.ground.checked = settings.ground.visible;
     form.bumps.checked = settings.bumps.visible;
     form.pterodactyl.checked = settings.pterodactyl.visible;
@@ -26,6 +27,7 @@ export function settingsFormClose() {
     settings.cloud.visible = !form.cloud.checked;
     settings.horizon.visible = !form.horizon.checked;
     settings.cactus.visible = !form.cactus.checked;
+    settings.smallcactus.visible = !form.smallcactus.checked;
     settings.ground.visible = !form.ground.checked;
     settings.bumps.visible = !form.bumps.checked;
     settings.pterodactyl.visible = !form.pterodactyl.checked;

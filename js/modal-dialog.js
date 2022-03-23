@@ -9,20 +9,21 @@ function factoryModalDialog() {
                     <span id="dialog-title" class="dialog-title noselect">Сообщение</span>
                     <span id="dialog-button-close" class="dialog-button-close noselect" title="Закрыть">&times;</span>
                 </div>
+
                 <div class="dialog-body">
-                    <span class="noselect">Вы выиграли миллион долларов</span>
+                    <span id="message" class="noselect">Вы выиграли миллион долларов</span>
                 </div>
 
                 <div class="dialog-footer noselect">
                     <div class="footer-buttons">
-                        <button type="button" id="cancel-button" class="footer-button btn-cancel">Закрыть</button>
+
                         <button type="button" id="ok-button" class="footer-button btn-ok">Понял</button>
                     </div>
                 </div>
             </div>
         </div>
     `;
-
+    //<button type="button" id="cancel-button" class="footer-button btn-cancel">Закрыть</button>
     const templateStyle = `
 
         /* Set a style for all buttons */
@@ -232,7 +233,7 @@ function factoryModalDialog() {
 
             this.shadowRoot.querySelector("#ok-button").onclick = this.ok.bind(this);
             this.shadowRoot.querySelector("#dialog-button-close").onclick = this.close.bind(this);
-            this.shadowRoot.querySelector("#cancel-button").onclick = this.cancel.bind(this);
+            // this.shadowRoot.querySelector("#cancel-button").onclick = this.cancel.bind(this);
         }
 
         stopAnimation() {
@@ -250,7 +251,9 @@ function factoryModalDialog() {
 
         dialogResult
 
-        show() {
+        show(message) {
+            const messageNode = this.shadowRoot.getElementById("message");
+            messageNode.innerHTML = message;
             this.dialog.classList.add('show');
             return new Promise( (resolve, reject) => {
                 this.dialogResult = resolve;
@@ -284,10 +287,10 @@ function factoryModalDialog() {
             dialog.onanimationend = () => {
                 dialog.classList.remove('animate-close');
                 dialog.onanimationend = undefined;
-                this.dialog.parentNode.style.display = "none";
+                this.dialog.classList.remove('show');
             }
             dialog.classList.add('animate-close');
-            dialogResult('OK');
+            this.dialogResult('Cancel');
         }
     }
 

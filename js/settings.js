@@ -36,6 +36,18 @@ export const defaultSettings = {
         hidden: false,
     },
 
+    smallcactus: {
+        distance: {
+            min: 100,
+            max: 150,
+        },
+        top: {
+            min: 10,
+            max: 100,
+        },
+        hidden: false,
+    },
+
     bigCactus: {
         distance: {
             min: 100,
@@ -47,6 +59,19 @@ export const defaultSettings = {
         },
         hidden: false
     },
+
+    smallCactus: {
+        distance: {
+            min: 100,
+            max: 150,
+        },
+        top: {
+            min: 10,
+            max: 100,
+        },
+        hidden: false
+    },
+
 
     ground: {
         distance: {
@@ -121,6 +146,13 @@ export const defaultSettings = {
     },
     horizon: {
         hidden: false,
+    },
+    user: {
+        username: "",
+    },
+    connection: {
+        host: "http://localhost",
+        port: "5984",
     },
     theme: 'dark',
 }
