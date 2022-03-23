@@ -373,9 +373,11 @@ function FactoryForm() {
                 (message) => this.modalDialog.show(message)
             );
         };
+
         downloadDB() {
             this.modalDialog.show("Все скачалось успешно");
         };
+        
         uploadDB() {
             let remoteDb = new PouchDB('http://localhost:5984/my');
             const obj = {_id: "1", a: 1, b: 2};
