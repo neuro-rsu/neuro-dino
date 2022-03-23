@@ -11,7 +11,8 @@
         h-6,
         v3,
         z
-        " fill = "#e2e2e2"/>
+        "
+    />
 
     <path d = "M13 35,
         h3,
@@ -77,20 +78,21 @@
         h-3,
         v6,
         h-7,
-        z
-        " fill = "#e2e2e2"/>
+        z"
+    />
 
-        <path d = "M32 38,
+    <path d = "M32 38,
         h112,
         v-3,
         h4,
         v6,
         h-116,
         z
-        " fill = "#e2e2e2"/>
+        "
+    />
 
-    <rect x="29" y="35" fill="#e2e2e2" height="3" width="3" />
+    <rect x="29" y="35" height="3" width="3" />
 
-    <rect x="96" y="19" fill="#e2e2e2" height="3" width="4" />
+    <rect x="96" y="19" height="3" width="4" />
 
 </svg>

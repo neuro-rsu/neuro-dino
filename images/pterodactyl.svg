@@ -38,8 +38,8 @@
         v-5,
         h-27,
         z
-        " fill="grey" stroke="transparent" id="pterodactyl" >
-    </path>
+        " stroke="transparent" id="pterodactyl"
+    />
 
     <!--Верхнее крыло-->
     <path d="
@@ -62,7 +62,7 @@
         h4,
         v5,
         z
-        " fill="grey" id="top-wing" visibility="visible">
+        " id="top-wing" visibility="visible">
         <animate attributeName="visibility" values="visible;hidden" dur="0.3s"
         repeatCount="indefinite"/>
     </path>
@@ -80,10 +80,9 @@
         v5,
         h-4,
         z
-        " fill="grey" id="bottom-wing" visibility="visible">
+        " id="bottom-wing" visibility="visible">
         <animate attributeName="visibility" values = "hidden;visible" dur="0.3s"
         repeatCount="indefinite"></animate>
     </path>
-
 
 </svg>

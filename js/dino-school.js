@@ -138,6 +138,7 @@ async function initDinoSchool() {
         createPolygon(newTemplate.content.querySelector('svg'), '', 'second-leg', 'dino-second-leg');
         createPolygon(newTemplate.content.querySelector('svg'), '', 'third-leg', 'dino-third-leg');
         createPolygon(newTemplate.content.querySelector('svg'), '', 'fourth-leg', 'dino-fourth-leg');
+        
         regDino();
         createPopulation();
         scoreID = setInterval(() => {
@@ -272,7 +273,7 @@ async function checkDinos(){
         requestAnimationFrame(checkDinos);
         return;
     }
-    
+
     let dinoCoords = dinos[0].getBoundingClientRect();
 
     let cactuses = document.querySelectorAll('.cactuses');

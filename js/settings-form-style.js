@@ -38,7 +38,7 @@ export const formStyle = `
     padding: 0px 16px 0 16px;
     border-radius: 10px 10px 0 0;
     background-color: var(--form-header-background-color);
-    border-bottom: solid var(--form-header-border-color) 1px;
+    /*border-bottom: solid var(--form-header-border-color) 1px;*/
 }
 
 #form.dark .form-header {
@@ -242,7 +242,7 @@ span.psw {
     font-weight: normal;
     color: var(--tab-color);
     border: solid var(--form-header-border-color);
-    border-width: 1px 1px 0;
+    border-width: 1px 1px 1px;
     border-radius: 5px 5px 0 0;
     background: var(--form-background-color);
 }
