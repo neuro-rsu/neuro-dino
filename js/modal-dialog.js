@@ -71,7 +71,11 @@ function factoryModalDialog() {
             align-items: center;
             padding: 0 16px 0 20px;
             border-radius: 10px 10px 0 0;
-            background-color: #f1f1f1;
+            background-color: var(--form-header-background-color);
+        }
+
+        #dialog.dark .dialog-header {
+            background: var(--dark-header-color);
         }
 
         .dialog-title {
@@ -82,6 +86,10 @@ function factoryModalDialog() {
             font-size: 20px;
         }
 
+        #dialog.dark .dialog-title {
+            color: var(--dark-color);
+        }
+
         /* The Close Button (x) */
         .dialog-button-close {
             flex: none;
@@ -90,8 +98,14 @@ function factoryModalDialog() {
             font-weight: bold;
         }
 
+        #dialog.dark .dialog-button-close {
+            color: #000;
+        }
+
         .dialog-button-close:hover,
-        .dialog-button-close:focus {
+        .dialog-button-close:focus,
+        #dialog.dark .dialog-button-close:hover,
+        #dialog.dark .dialog-button-close:focus {
             cursor: pointer;
             color: red;
         }
@@ -99,6 +113,8 @@ function factoryModalDialog() {
         .dialog-body {
             margin: 0 16px;
             padding: 16px;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .dialog-body > span {
@@ -110,7 +126,16 @@ function factoryModalDialog() {
             padding: 16px;
             border-radius: 0 0 10px 10px;
             overflow: hidden;
-            background-color: #f1f1f1;
+            background-color: var(--form-header-background-color);
+        }
+
+        #dialog.dark .dialog-footer {
+            background-color: var(--dark-header-color);
+            color: var(--dark-color);
+        }
+
+        #dialog.dark .dialog-button-close {
+            color: white;
         }
 
         /* The Modal (background) */
@@ -140,6 +165,11 @@ function factoryModalDialog() {
             width: 80%; /* Could be more or less, depending on screen size */
             max-width: 800px;
             border-radius: 10px;
+        }
+
+        #dialog.dark .modal-dialog-content {
+            background-color: var(--dark-background-color);
+            color: var(--dark-color);
         }
 
         .noselect {
@@ -291,6 +321,16 @@ function factoryModalDialog() {
             }
             dialog.classList.add('animate-close');
             this.dialogResult('Cancel');
+        }
+
+        changeTheme(themeName) {
+            const dialog = this.shadowRoot.getElementById('dialog');
+            if (themeName==="dark") {
+                dialog.classList.add("dark")
+            }
+            else {
+                dialog.classList.remove("dark");
+            }
         }
     }
 

@@ -377,7 +377,7 @@ function FactoryForm() {
         downloadDB() {
             this.modalDialog.show("Все скачалось успешно");
         };
-        
+
         uploadDB() {
             let remoteDb = new PouchDB('http://localhost:5984/my');
             const obj = {_id: "1", a: 1, b: 2};
@@ -582,6 +582,7 @@ function FactoryForm() {
             const gameSpace = document.querySelector('#game-space');
             this.form.theme.checked ? gameSpace.classList.add('dark') : gameSpace.classList.remove('dark');
             this.form.theme.checked ? this.form.classList.add('dark') : this.form.classList.remove('class');
+            this.form.theme.checked ? this.shadowRoot.querySelector('modal-dialog').changeTheme('dark') : this.shadowRoot.querySelector('modal-dialog').changeTheme('light');
         }
 
         closeOptions() {

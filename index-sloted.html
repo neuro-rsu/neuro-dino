@@ -1,0 +1,60 @@
+
+<style>
+
+    h2 {
+      color: green;
+    }
+  </style>
+  <custom-element class="dark"></custom-element>
+  <custom-element class="dark">
+    <h2 slot="m1">filled headline</h2>
+  </custom-element>
+  <h2>inside light DOM</h2>
+
+  <template>
+      <style>
+          :host.dark h2 {
+              color: black;
+          }
+
+          h2 {
+              color: darkorange;
+          }
+          :host {
+              display: block;
+              border: 3px solid red;
+              margin: 0 0 10px 0;
+              padding: 0 10px;
+          }
+          ::slotted(h2) {
+              color: blue !important;
+          }
+      </style>
+      <slot name="m1"><h2>default headline</h2></slot>
+
+  </template>
+
+  <script>
+    /**
+ * Class to represent <custom-element></custom-element>
+ * @extends HTMLElement
+ */
+class CustomElement extends HTMLElement
+{
+    constructor()
+    {
+        super();
+        this.attachShadow({ mode: 'open' });
+    }
+
+    connectedCallback()
+    {
+        const tpl = document.querySelector('template');
+        this.shadowRoot.appendChild(
+            tpl.content.cloneNode(true)
+        );
+    }
+}
+
+window.customElements.define('custom-element', CustomElement);
+</script>
