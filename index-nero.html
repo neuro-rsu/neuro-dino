@@ -6,10 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Document</title>
+    <title>Neuro Dino T-Rex</title>
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/settings-form-style.css">
 
     <script type="module" src="js/dino-school.js"></script>
     <script type="module" src="js/settings-form.js"></script>
@@ -19,38 +18,13 @@
 <body>
 
     <div id="wrapper">
-        <h1 id ="title" class="unselectable">Счет игры</h1>
+        <h1 id ="title" class="unselectable" onclick="form.show()">Счет игры</h1>
         <h1 id ="score" class="unselectable">0.0</h1>
         <div id="game-space"></div>
     </div>
 
     <settings-form id="form"></settings-form>
 
-    <script type="module">
-        import {settingsFormOpen} from './js/sittings-form.js';
-        import {settingsFormClose} from './js/sittings-form.js';
-        import {settingsFormCancel} from './js/sittings-form.js';
-        // Get the modal
-        var modal = document.getElementById('sittings-form');
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-        title.onclick = settingsFormOpen;
-        cancel.onclick = settingsFormCancel;
-        close1.onclick = settingsFormClose;
-        close2.onclick = settingsFormClose;
-
-    </script>
-
-    <script type="module">
-
-        // When the user clicks anywhere outside of the modal, close it
-        title.onclick = () => form.show();
-    </script>
 </body>
 
 </html>
