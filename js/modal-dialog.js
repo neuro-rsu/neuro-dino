@@ -6,15 +6,15 @@ function factoryModalDialog() {
         <div id="dialog" class="modal-dialog">
             <div class="modal-dialog-content animate" id="modal-dialog">
                 <div class="dialog-header">
-                    <span id="dialog-title" class="dialog-title noselect">Сообщение</span>
-                    <span id="dialog-button-close" class="dialog-button-close noselect" title="Закрыть">&times;</span>
+                    <span id="dialog-title" class="dialog-title no-select">Сообщение</span>
+                    <span id="dialog-button-close" class="dialog-button-close no-select" title="Закрыть">&times;</span>
                 </div>
 
                 <div class="dialog-body">
-                    <span id="message" class="noselect">Вы выиграли миллион долларов</span>
+                    <span id="message" class="no-select">Вы выиграли миллион долларов</span>
                 </div>
 
-                <div class="dialog-footer noselect">
+                <div class="dialog-footer no-select">
                     <div class="footer-buttons">
 
                         <button type="button" id="ok-button" class="footer-button btn-ok">Понял</button>
@@ -172,7 +172,7 @@ function factoryModalDialog() {
             color: var(--dark-color);
         }
 
-        .noselect {
+        .no-select {
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             -khtml-user-select: none;

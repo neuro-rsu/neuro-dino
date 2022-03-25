@@ -98,8 +98,8 @@ input[type="number"] {
     width: 80%;
 }
 
-.lesson > input[name="lessonnumber"],
-.topic > input[name="topicnumber"] {
+.lesson > input[name="lesson-number"],
+.topic > input[name="topic-number"] {
     width: 20%;
     margin-right: 4px;
     text-align: center;
@@ -170,8 +170,8 @@ button:hover {
     margin-bottom: 10px;
 }
 
-/* Extra styles for the radiobox settings */
-.radioboxes-settings {
+/* Extra styles for the radioBox settings */
+.radio-boxes-settings {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -179,14 +179,14 @@ button:hover {
     margin-bottom: 10px;
 }
 
-.radioboxes-settings label {
+.radio-boxes-settings label {
     width: 50%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.radioboxes-settings label > input[type='radio'] {
+.radio-boxes-settings label > input[type='radio'] {
     margin-bottom: 10px;
 }
 
@@ -319,7 +319,7 @@ span.psw {
     display: block;
 }
 
-.noselect {
+.no-select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -433,7 +433,7 @@ span.psw {
 }
 
 @media screen and (max-width: 400px) {
-    .radioboxes-settings label{
+    .radio-boxes-settings label{
         width: 100%;
     }
 }
@@ -458,8 +458,8 @@ span.psw {
         width: 100%;
     }
 
-    .lesson > input[name="lessonnumber"],
-    .topic > input[name="topicnumber"] {
+    .lesson > input[name="lesson-number"],
+    .topic > input[name="topic-number"] {
         width: 100%;
         margin-right: 0;
         margin-bottom: 0;

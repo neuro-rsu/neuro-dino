@@ -12,81 +12,81 @@ function FactoryForm() {
             <modal-dialog></modal-dialog>
             <form class="form animate" method="post" id="form">
                 <div class="form-header">
-                    <div class="form-tabs noselect">
+                    <div class="form-tabs no-select">
                         <div class="form-tab selected">
-                            <span id="lessons-tab" class="form-tab-link noselect">Уроки</span>
+                            <span id="lessons-tab" class="form-tab-link no-select">Уроки</span>
                         </div>
                         <div class="form-tab">
-                            <span id="settings-tab" class="form-tab-link noselect">Параметры</span>
+                            <span id="settings-tab" class="form-tab-link no-select">Параметры</span>
                         </div>
                         <div class="form-tab">
-                            <span id="top-distance-tab" class="form-tab-link noselect">Расположение</span>
+                            <span id="top-distance-tab" class="form-tab-link no-select">Расположение</span>
                         </div>
                         <div class="form-tab">
-                            <span id="db-tab" class="form-tab-link noselect">База данных</span>
+                            <span id="db-tab" class="form-tab-link no-select">База данных</span>
                         </div>
                         <div class="form-tab">
-                            <span id="options-tab" class="form-tab-link noselect">Настройки</span>
+                            <span id="options-tab" class="form-tab-link no-select">Настройки</span>
                         </div>
                     </div>
-                    <span id="close" class="close-button noselect" title="Закрыть">&times;</span>
+                    <span id="close" class="close-button no-select" title="Закрыть">&times;</span>
                 </div>
 
                 <div class="form-body">
                     <div id="lessons-tab-section" class="form-tab-section selected">
-                        <label for="lesson" class="noselect"><b>Урок</b></label>
+                        <label for="lesson" class="no-select"><b>Урок</b></label>
                         <div name="lesson" class="lesson">
-                            <input type="text" placeholder="Номер урока" name="lessonnumber" min="1" required>
-                            <input type="text" placeholder="Название урока" name="lessonname" required>
+                            <input type="text" placeholder="Номер урока" name="lesson-number" min="1" required>
+                            <input type="text" placeholder="Название урока" name="lesson-name" required>
                         </div>
-                        <label for="topic" class="noselect"><b>Тема урока</b></label>
+                        <label for="topic" class="no-select"><b>Тема урока</b></label>
                         <div name="topic" class="topic">
-                            <input type="text" placeholder="Номер темы" name="topicnumber" min="1" required>
-                            <input type="text" placeholder="Название темы" name="topicname" required>
+                            <input type="text" placeholder="Номер темы" name="topic-number" min="1" required>
+                            <input type="text" placeholder="Название темы" name="topic-name" required>
                         </div>
-                        <label for="topology" class="noselect"><b>Топология</b></label>
+                        <label for="topology" class="no-select"><b>Топология</b></label>
                         <input type="text" placeholder="Например, 1-2" name="topology" required>
-                        <label for="populationCount" class="noselect"><b>Размер популяции</b></label>
+                        <label for="populationCount" class="no-select"><b>Размер популяции</b></label>
                         <input type="number" placeholder="Введите размер популяции" name="populationCount" min="1" required>
                     </div>
 
                     <div id="settings-tab-section" class="form-tab-section">
                         <div class="checkboxes-settings">
-                            <label class="noselect"><input type="checkbox" checked="checked" name="cloud">Облака</label>
-                            <label class="noselect"><input type="checkbox" checked="checked" name="night">Ночь</label>
-                            <label class="noselect"><input type="checkbox" checked="checked" name="horizon">Горизонт</label>
-                            <label class="noselect"><input type="checkbox" checked="checked" name="star">Звезды</label>
-                            <label class="noselect"><input type="checkbox" checked="checked" name="bumps">Кочки</label>
-                            <label class="noselect"><input type="checkbox" checked="checked" name="moon">Луна</label>
-                            <label class="noselect"><input type="checkbox" checked="checked" name="ground">Земля</label>
-                            <label class="noselect"><input type="checkbox" checked="checked" name="pterodactyl">Птеродактиль</label>
-                            <label class="noselect"><input type="checkbox" checked="checked" name="cactus">Большой кактус</label>
-                            <label class="noselect"><input type="checkbox" checked="checked" name="smallcactus">Маленький кактус</label>
-                            <label class="noselect"><input type="checkbox" checked="checked" name="two-cactus">Два кактуса</label>
-                            <label class="noselect"><input type="checkbox" checked="checked" name="three-cactus">Три кактуса</label>
+                            <label class="no-select"><input type="checkbox" checked="checked" name="cloud">Облака</label>
+                            <label class="no-select"><input type="checkbox" checked="checked" name="night">Ночь</label>
+                            <label class="no-select"><input type="checkbox" checked="checked" name="horizon">Горизонт</label>
+                            <label class="no-select"><input type="checkbox" checked="checked" name="star">Звезды</label>
+                            <label class="no-select"><input type="checkbox" checked="checked" name="bumps">Кочки</label>
+                            <label class="no-select"><input type="checkbox" checked="checked" name="moon">Луна</label>
+                            <label class="no-select"><input type="checkbox" checked="checked" name="ground">Земля</label>
+                            <label class="no-select"><input type="checkbox" checked="checked" name="pterodactyl">Птеродактиль</label>
+                            <label class="no-select"><input type="checkbox" checked="checked" name="big-cactus">Большой кактус</label>
+                            <label class="no-select"><input type="checkbox" checked="checked" name="small-cactus">Маленький кактус</label>
+                            <label class="no-select"><input type="checkbox" checked="checked" name="two-cactus">Два кактуса</label>
+                            <label class="no-select"><input type="checkbox" checked="checked" name="three-cactus">Три кактуса</label>
                         </div>
                     </div>
 
                     <div id="top-distance-tab-section" class="form-tab-section">
-                        <div class="radioboxes-settings">
-                            <label class="noselect"><input type="radio" name="radio-setting" value="cloud">Облака</label>
-                            <label class="noselect"><input type="radio" name="radio-setting" value="night">Ночь</label>
-                            <label class="noselect"><input type="radio" name="radio-setting" value="star">Звезды</label>
-                            <label class="noselect"><input type="radio" name="radio-setting" value="bumps">Кочки</label>
-                            <label class="noselect"><input type="radio" name="radio-setting" value="moon">Луна</label>
-                            <label class="noselect"><input type="radio" name="radio-setting" value="ground">Земля</label>
-                            <label class="noselect"><input type="radio" name="radio-setting" value="pterodactyl">Птеродактиль</label>
-                            <label class="noselect"><input type="radio" name="radio-setting" value="bigCactus">Большой кактус</label>
-                            <label class="noselect"><input type="radio" name="radio-setting" value="smallcactus">Маленький кактус</label>
+                        <div class="radio-boxes-settings">
+                            <label class="no-select"><input type="radio" name="radio-setting" value="cloud">Облака</label>
+                            <label class="no-select"><input type="radio" name="radio-setting" value="night">Ночь</label>
+                            <label class="no-select"><input type="radio" name="radio-setting" value="star">Звезды</label>
+                            <label class="no-select"><input type="radio" name="radio-setting" value="bumps">Кочки</label>
+                            <label class="no-select"><input type="radio" name="radio-setting" value="moon">Луна</label>
+                            <label class="no-select"><input type="radio" name="radio-setting" value="ground">Земля</label>
+                            <label class="no-select"><input type="radio" name="radio-setting" value="pterodactyl">Птеродактиль</label>
+                            <label class="no-select"><input type="radio" name="radio-setting" value="bigCactus">Большой кактус</label>
+                            <label class="no-select"><input type="radio" name="radio-setting" value="smallCactus">Маленький кактус</label>
                         </div>
 
-                        <label for="distance-group" class="noselect"><b>Расстояние между</b></label>
+                        <label for="distance-group" class="no-select"><b>Расстояние между</b></label>
                         <div id="distance-group" name="distance-group" class="top-distance">
                             <input type="text" placeholder="Минимальное" name="distance-min" min="0" required>
                             <input type="text" placeholder="Максимальное" name="distance-max" min="0" required>
                         </div>
 
-                        <label for="top-group" class="noselect"><b>Высота появления</b></label>
+                        <label for="top-group" class="no-select"><b>Высота появления</b></label>
                         <div id="top-group" name="top-group" class="top-distance">
                             <input type="text" placeholder="Минимальная" name="top-min" min="0" required>
                             <input type="text" placeholder="Максимальная" name="top-max" min="0" required>
@@ -110,11 +110,11 @@ function FactoryForm() {
                     </div>
 
                     <div id="options-tab-section" class="form-tab-section">
-                        <label class="noselect"><input type="checkbox" name="theme">Темная</label>
+                        <label class="no-select"><input type="checkbox" name="theme">Темная</label>
                     </div>
                 </div>
 
-                <div class="form-footer noselect">
+                <div class="form-footer no-select">
                     <div id="lessons-tab-buttons" class="footer-buttons-section selected">
                         <div class="footer-buttons">
                             <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
@@ -320,8 +320,8 @@ function FactoryForm() {
         show() {
             this.form.cloud.checked = !settings.cloud.hidden;
             this.form.horizon.checked = !settings.horizon.hidden;
-            this.form.cactus.checked = !settings.cactus.hidden;
-            this.form.smallcactus.checked = !settings.smallcactus.hidden;
+            this.form.elements['big-cactus'].checked = !settings.bigCactus.hidden;
+            this.form.elements['small-cactus'].checked = !settings.smallCactus.hidden;
             this.form.ground.checked = !settings.ground.hidden;
             this.form.bumps.checked = !settings.bumps.hidden;
             this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
@@ -331,10 +331,10 @@ function FactoryForm() {
 
             this.form.topology.value = settings.topology.join('-');
             this.form.populationCount.value = settings.populationCount;
-            this.form.lessonname.value = settings.lesson.name;
-            this.form.lessonnumber.value = settings.lesson.number;
-            this.form.topicname.value = settings.topic.name;
-            this.form.topicnumber.value = settings.topic.number;
+            this.form.elements['lesson-name'].value = settings.lesson.name;
+            this.form.elements['lesson-number'].value = settings.lesson.number;
+            this.form.elements['topic-name'].value = settings.topic.name;
+            this.form.elements['topic-number'].value = settings.topic.number;
             this.form.theme.checked = settings.theme === 'dark';
 
             this.openForm();
@@ -375,7 +375,7 @@ function FactoryForm() {
         };
 
         downloadDB() {
-            this.modalDialog.show("Все скачалось успешно");
+            this.modalDialog.show("Скачивание завершено успешно");
         };
 
         uploadDB() {
@@ -401,8 +401,8 @@ function FactoryForm() {
             settings.cloud.hidden = !this.form.cloud.checked;
             settings.horizon.hidden = !this.form.horizon.checked;
             settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
-            settings.cactus.hidden = !this.form.cactus.checked;
-            //settings.smallcactus.hidden = !this.form.smallcactus.checked;
+            settings.bigCactus.hidden = !this.form.elements['big-cactus'].checked;
+            settings.smallCactus.hidden = !this.form.elements['small-cactus'].checked;
             settings.ground.hidden = !this.form.ground.checked;
             settings.bumps.hidden = !this.form.bumps.checked;
             settings.pterodactyl.hidden = !this.form.pterodactyl.checked;
@@ -439,10 +439,10 @@ function FactoryForm() {
         }
 
         saveLessons() {
-            settings.lesson.number = this.form.lessonnumber.value;
-            settings.lesson.name = this.form.lessonname.value;
-            settings.topic.number = this.form.topicnumber.value;
-            settings.topic.name = this.form.topicname.value;
+            settings.lesson.number = this.form.elements['lesson-number'].value;
+            settings.lesson.name = this.form.elements['lesson-name'].value;
+            settings.topic.number = this.form.elements['topic-number'].value;
+            settings.topic.name = this.form.elements['topic-name'].value;
             settings.topology = this.form.topology.value.split('-');
             settings.populationCount = this.form.populationCount.value;
         }
@@ -450,8 +450,8 @@ function FactoryForm() {
         defaultSettings() {
             this.form.cloud.checked = !defaultSettings.cloud.hidden;
             this.form.horizon.checked = !defaultSettings.horizon.hidden;
-            this.form.cactus.checked = !defaultSettings.cactus.hidden;
-            //this.form.smallcactus.checked = !defaultSettings.smallcactus.hidden;
+            this.form.elements['big-cactus'].checked = !defaultSettings.bigCactus.hidden;
+            this.form.elements['small-cactus'].checked = !defaultSettings.smallCactus.hidden;
             this.form.ground.checked = !defaultSettings.ground.hidden;
             this.form.bumps.checked = !defaultSettings.bumps.hidden;
             this.form.pterodactyl.checked = !defaultSettings.pterodactyl.hidden;
@@ -476,10 +476,10 @@ function FactoryForm() {
         }
 
         defaultLessons() {
-            this.form.lessonnumber.value = defaultSettings.lesson.number;
-            this.form.lessonname.value = defaultSettings.lesson.name;
-            this.form.topicnumber.value = defaultSettings.topic.number;
-            this.form.topicname.value = defaultSettings.topic.name;
+            this.form.elements['lesson-number'].value = defaultSettings.lesson.number;
+            this.form.elements['lesson-name'].value = defaultSettings.lesson.name;
+            this.form.elements['topic-number'].value = defaultSettings.topic.number;
+            this.form.elements['topic-name'].value = defaultSettings.topic.name;
             this.form.topology.value = defaultSettings.topology.join('-');
             this.form.populationCount.value = defaultSettings.populationCount;
         }
@@ -491,8 +491,8 @@ function FactoryForm() {
         cancelSettings() {
             this.form.cloud.checked = !settings.cloud.hidden;
             this.form.horizon.checked = !settings.horizon.hidden;
-            this.form.cactus.checked = !settings.cactus.hidden;
-            //this.form.smallcactus.checked = !settings.smallcactus.hidden;
+            this.form.elements['big-cactus'].checked = !settings.bigCactus.hidden;
+            this.form.elements['small-cactus'].checked = !settings.smallCactus.hidden;
             this.form.ground.checked = !settings.ground.hidden;
             this.form.bumps.checked = !settings.bumps.hidden;
             this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
@@ -523,8 +523,8 @@ function FactoryForm() {
             settings.cloud.hidden = !this.form.cloud.checked;
             settings.horizon.hidden = !this.form.horizon.checked;
             settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
-            settings.cactus.hidden = !this.form.cactus.checked;
-            //settings.smallcactus.hidden = !this.form.smallcactus.checked;
+            settings.bigCactus.hidden = !this.form.elements['big-cactus'].checked;
+            settings.smallCactus.hidden = !this.form.elements['small-cactus'].checked;
             settings.ground.hidden = !this.form.ground.checked;
             settings.bumps.hidden = !this.form.bumps.checked;
             settings.pterodactyl.hidden = !this.form.pterodactyl.checked;
@@ -548,10 +548,10 @@ function FactoryForm() {
         }
 
         cancelLessons() {
-            this.form.lessonnumber.value = settings.lesson.number;
-            this.form.lessonname.value = settings.lesson.name;
-            this.form.topicnumber.value = settings.topic.number;
-            this.form.topicname.value = settings.topic.name;
+            this.form.elements['lesson-number'].value = settings.lesson.number;
+            this.form.elements['lesson-name'].value = settings.lesson.name;
+            this.form.elements['topic-number'].value = settings.topic.number;
+            this.form.elements['topic-name'].value = settings.topic.name;
             this.form.topology.value = settings.topology.join('-');
             this.form.populationCount.value = settings.populationCount;
         }
@@ -561,10 +561,10 @@ function FactoryForm() {
         }
 
         applyLessons() {
-            settings.lesson.number = this.form.lessonnumber.value;
-            settings.lesson.name = this.form.lessonname.value;
-            settings.topic.number = this.form.topicnumber.value;
-            settings.topic.name = this.form.topicname.value;
+            settings.lesson.number = this.form.elements['lesson-number'].value;
+            settings.lesson.name = this.form.elements['lesson-name'].value;
+            settings.topic.number = this.form.elements['topic-number'].value;
+            settings.topic.name = this.form.elements['topic-name'].value;
             settings.topology = this.form.topology.value.split('-');
             settings.populationCount = this.form.populationCount.value;
         }

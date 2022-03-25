@@ -14,8 +14,8 @@ let gameStart=false;
 let cloudDistance = 0;
 let nextCloudDistance = 0;
 
-let cactusDistance = 0;
-let nextCactusDistance = 0;
+let bigCactusDistance = 0;
+let nextBigCactusDistance = 0;
 
 let smallCactusDistance = 0;
 let nextSmallCactusDistance = 0;
@@ -245,12 +245,12 @@ async function checkDinos(){
             settings.cloud.distance.max);
     }
 
-    cactusDistance++;
-    if (cactusDistance > nextCactusDistance) {
-        cactusDistance = 0;
-        createCactus();
-        nextCactusDistance = randomInteger(settings.cactus.distance.min,
-            settings.cactus.distance.max);
+    bigCactusDistance++;
+    if (bigCactusDistance > nextBigCactusDistance) {
+        bigCactusDistance = 0;
+        createBigCactus();
+        nextBigCactusDistance = randomInteger(settings.bigCactus.distance.min,
+            settings.bigCactus.distance.max);
     }
 
     smallCactusDistance++;
@@ -425,7 +425,10 @@ function createCloud(){
     });
 }
 
-function createCactus(){
+function createBigCactus(){
+    if (settings.bigCactus.hidden) {
+        return;
+    }
     let dist = randomInteger(settings.cactus.distance.min, settings.cactus.distance.max);
     const gameSpace = document.getElementById('game-space');
     let topSet = document.querySelector('#big-cactus');
@@ -443,6 +446,9 @@ function createCactus(){
 }
 
 function createSmallCactus(){
+    if (settings.smallCactus.hidden) {
+        return;
+    }
     let dist = randomInteger(settings.smallCactus.distance.min, settings.smallCactus.distance.max);
     const gameSpace = document.getElementById('game-space');
     let topSet = document.querySelector('#small-cactus');
