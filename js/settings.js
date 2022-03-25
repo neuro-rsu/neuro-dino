@@ -180,7 +180,7 @@ export async function save() {
 }
 
 function getSettingsID() {
-    return $`{settings.lesson.number.toString()}.{settings.topic.number.toString()}:{settings.topology.join('-')}.{settings.populationCount.toString()}`;
+    return `{settings.lesson.number.toString()}.{settings.topic.number.toString()}:{settings.topology.join('-')}.{settings.populationCount.toString()}`;
 }
 
 export async function create() {
