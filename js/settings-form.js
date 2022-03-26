@@ -1,6 +1,7 @@
 import {settings, defaultSettings} from './settings.js';
 
 import {factoryModalDialog} from './modal-dialog.js';
+import {factoryCancelDialog} from './cancel-dialog.js';
 
 import {compactDb, deleteDb, clearDb} from './dino-brain.js';
 import {formStyle} from './settings-form-style.js';
@@ -10,6 +11,7 @@ function FactoryForm() {
     const formHTML = `
         <div id="form-background" class="form-background">
             <modal-dialog></modal-dialog>
+            <cancel-dialog></cancel-dialog>
             <form class="form animate" method="post" id="form">
                 <div class="form-header">
                     <div class="form-tabs no-select">
@@ -309,6 +311,10 @@ function FactoryForm() {
             return this.shadowRoot.querySelector('modal-dialog');
         }
 
+        get cancelDialog() {
+            return this.shadowRoot.querySelector('cancel-dialog');
+        }
+
         openForm() {
             this.shadowRoot.getElementById('form-background').style.display = "block";
         }
@@ -340,8 +346,10 @@ function FactoryForm() {
             this.openForm();
         }
 
-        close() {
-
+        async close() {
+            let modalResult = await this.cancelDialog.show("Закрываем форму");
+            if (modalResult !== "OK")
+                return;
             this.form.onanimationend = () => {
                 this.form.classList.remove('animate-close');
                 this.form.onanimationend = null;
