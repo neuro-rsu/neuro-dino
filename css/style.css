@@ -3,7 +3,17 @@
     --dino-max-top: 20px;
     --base-color: grey;
     --cloud-color: #e2e2e2;
+    --moon-color: #e2e2e2;
     --day-color: blue;
+    --pterodactyl-color: var(--base-color);
+    --star-color: #e2e2e2;
+    --ground-color: var(--base-color);
+    --horizon-color: var(--base-color);
+    --bump-color: var(--base-color);
+    --dino-color: var(--base-color);
+    --cactus-color: var(--base-color);
+    --dino-eyes-color: white;
+
     /* --day-color: white; */
 
     --night-body: #121212;
@@ -49,15 +59,25 @@
 
 
     --dark-base: #808080;
+    --dark-base-color: #e2e2e2;
     --dark-cactus-body: #878787;
-    --dark-smallcactus-body: #878787;
+    --dark-small-cactus-body: #878787;
     --dark-cactus-border: #4c4c4c;
-    --dark-smallcactus-border: #4c4c4c;
-    --dark-cloud: #e2e2e2;
+    --dark-cloud-color: var(--dark-base-color);
+    --dark-moon-color: var(--dark-base-color);
+    --dark-pterodactyl-color: var(--dark-base-color);
+    --dark-star-color: var(--dark-base-color);
+    --dark-ground-color: var(--dark-base-color);
+    --dark-horizon-color: var(--dark-base-color);
+    --dark-bump-color: var(--dark-base-color);
+    --dark-dino-color: var(--base-color);
+    --dark-cactus-color: var(--dark-base-color);
+
 }
 
 body {
     margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #wrapper {
@@ -167,7 +187,7 @@ body {
     }
 }
 
-@keyframes smallcactus-move {
+@keyframes small-cactus-move {
     from {
         left: 100%;
     }
@@ -271,9 +291,9 @@ svg {
     z-index: 200;
 }
 
-.smallcactus {
+.small-cactus {
     left: 800px;
-    animation-name: smallcactus-move;
+    animation-name: small-cactus-move;
     animation-duration: 3s;
     animation-iteration-count: 1;
     animation-timing-function: linear;
@@ -401,7 +421,12 @@ neuro-dino {
     top: 435px;
     width: 100%;
     height: 3px;
-    background-color: var(--base-color);
+    background-color: var(--horizon-color);
+}
+
+#game-space.night .horizon,
+#game-space.dark .horizon {
+    background-color: var(--dark-horizon-color);
 }
 
 .moon {
@@ -453,7 +478,12 @@ svg rect{
     fill: var(--night-body);
 } */
 
-.clouds path, .clouds rect {
+/* .clouds path, .clouds rect {
+    fill: var(--cloud-color);
+} */
+
+.clouds path,
+.clouds rect {
     fill: var(--cloud-color);
 }
 
@@ -461,31 +491,73 @@ svg rect{
 #game-space.night .clouds.night rect,
 #game-space.dark .clouds path,
 #game-space.dark .clouds rect {
-    fill: var(--base-color);
+    fill: var(--dark-cloud-color);
 }
 
-#game-space.night .cactuses path {
-    fill: var(--base-color);
+.moon path {
+    fill: var(--moon-color);
 }
 
+#game-space.dark .moon path {
+    fill: var(--dark-moon-color);
+}
+
+.pterodactyls path {
+    fill: var(--pterodactyl-color);
+}
+
+#game-space.dark .pterodactyls path,
 #game-space.night .pterodactyls path {
-    fill: var(--base-color);
+    fill: var(--dark-pterodactyl-color);
 }
 
+.stars path,
+.stars rect {
+    fill: var(--star-color);
+}
+
+#game-space.dark .stars path,
+#game-space.dark .stars rect,
+#game-space.night .stars path,
+#game-space.night .stars rect {
+    fill: var(--dark-pterodactyl-color);
+}
+
+.cactuses path
+.cactuses path {
+    fill: var(--cactus-color);
+}
+
+#game-space.dark .cactuses path,
+#game-space.night .cactuses path {
+    fill: var(--dark-cactus-color);
+}
+
+.grounds path {
+    fill: var(--ground-color);
+}
+
+#game-space.dark .grounds path,
 #game-space.night .grounds path {
-    fill: var(--cloud-color);
+    fill: var(--dark-ground-color);
+}
+
+.bumps path {
+    fill: var(--bump-color);
 }
 
 .bumps path[fill=red] {
     fill: var(--background-color);
 }
 
-#game-space.dark .bumps path[fill=red] {
-    fill: var(--dark-background-color);
+#game-space.dark .bumps path,
+#game-space.night .bumps path {
+    fill: var(--dark-bump-color);
 }
 
+#game-space.dark .bumps path[fill=red],
 #game-space.night .bumps path[fill=red] {
-    fill: var(--night-background-color);
+    fill: var(--dark-background-color);
 }
 
 /* .bumps.night path {
@@ -501,7 +573,13 @@ svg rect{
     fill: var(--cloud-color);
 }
 
-#game-space.night .dinos path {
+.dinos path {
+    fill: var(--dino-color);
+}
+
+#game-space.night .dinos path,
+#game-space.dark .dinos path
+{
     fill: var(--cloud-color);
 }
 

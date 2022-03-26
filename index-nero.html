@@ -6,10 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Document</title>
+    <title>Neuro Dino T-Rex</title>
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/settings-form-style.css">
 
     <script type="module" src="js/dino-school.js"></script>
     <script type="module" src="js/settings-form.js"></script>
@@ -19,81 +18,13 @@
 <body>
 
     <div id="wrapper">
-        <h1 id ="title" class="unselectable">Счет игры</h1>
+        <h1 id ="title" class="unselectable" onclick="form.show()">Счет игры</h1>
         <h1 id ="score" class="unselectable">0.0</h1>
         <div id="game-space"></div>
     </div>
 
     <settings-form id="form"></settings-form>
 
-    <div id="sittings-form" class="modal-form">
-        <form class="modal-form-content animate" method="post" id="form-settings">
-            <div class="form-header">
-                <span id="close2" class="close" title="Close Modal">&times;</span>
-            </div>
-
-            <div class="form-body">
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
-
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
-
-                <button type="submit">Login</button>
-
-                <div class="checkboxes-settings">
-                    <label><input type="checkbox" checked="checked" name="cloud">Облака</label>
-                    <label><input type="checkbox" checked="checked" name="night">Ночь</label>
-                    <label><input type="checkbox" checked="checked" name="horizon">Горизонт</label>
-                    <label><input type="checkbox" checked="checked" name="star">Звезды</label>
-                    <label><input type="checkbox" checked="checked" name="bumps">Кочки</label>
-                    <label><input type="checkbox" checked="checked" name="moon">Луна</label>
-                    <label><input type="checkbox" checked="checked" name="ground">Земля</label>
-                    <label><input type="checkbox" checked="checked" name="pterodactyl">Птеродактиль</label>
-                    <label><input type="checkbox" checked="checked" name="cactus">Большой кактус</label>
-                    <label><input type="checkbox" checked="checked" name="smallcactus">Маленький кактус</label>
-                    <label><input type="checkbox" checked="checked" name="two-cactus">Два кактуса</label>
-                    <label><input type="checkbox" checked="checked" name="three-cactus">Три кактуса</label>
-                </div>
-            </div>
-
-            <div class="form-footer">
-                <div class="footer-buttons">
-                    <button type="button" id="cancel" class="footer-button cancel-button">Cancel</button>
-                    <button type="button" id="save" class="footer-button">Save</button>
-                    <button type="button" id="delete" class="footer-button">Delete</button>
-                    <button type="button" id="close1" class="footer-button">Закрыть</button>
-                </div>
-                <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
-            </div>
-        </form>
-    </div>
-
-    <script type="module">
-        import {settingsFormOpen} from './js/sittings-form.js';
-        import {settingsFormClose} from './js/sittings-form.js';
-        import {settingsFormCancel} from './js/sittings-form.js';
-        // Get the modal
-        var modal = document.getElementById('sittings-form');
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-        title.onclick = settingsFormOpen;
-        cancel.onclick = settingsFormCancel;
-        close1.onclick = settingsFormClose;
-        close2.onclick = settingsFormClose;
-
-    </script>
-
-    <script type="module">
-
-        // When the user clicks anywhere outside of the modal, close it
-        title.onclick = () => form.show();
-    </script>
 </body>
 
 </html>

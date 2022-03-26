@@ -47,6 +47,7 @@
         v-4,
         h-3,
         z
-        " fill="grey">
-    </path>
+        "
+    />
+
  </svg>

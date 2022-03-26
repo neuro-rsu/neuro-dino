@@ -1,7 +1,7 @@
 <svg version="1.1"
      baseProfile="full"
      width="25" height="29"
-     xmlns="http://www.w3.org/2000/svg">
+     xmlns="http://www.w3.org/2000/svg" class="stars">
 
     <path d="
         M0 16,
@@ -25,15 +25,16 @@
         h-3,
         v-3,
         z
-        " fill="grey">
-    </path>
+        "
+    />
 
-    <rect x="1" y="4" fill="grey" height="3" width="3" id="star11" visibility="visible"></rect>
 
-    <rect x="18" y="4" fill="grey" height="3" width="3" id="star12" visibility="visible"></rect>
+    <rect x="1" y="4" height="3" width="3" visibility="visible"/>
 
-    <rect x="1" y="21" fill="grey" height="3" width="3" id="star13" visibility="visible"></rect>
+    <rect x="18" y="4" height="3" width="3" visibility="visible"/>
 
-    <rect x="18" y="21" fill="grey" height="3" width="3" id="star11" visibility="visible"></rect>
+    <rect x="1" y="21" height="3" width="3" visibility="visible"/>
+
+    <rect x="18" y="21" height="3" width="3" visibility="visible"/>
 
  </svg>

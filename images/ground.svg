@@ -9,7 +9,7 @@
         v3,
         h-3,
         z
-        " fill="grey" id="ground3" visibility="hidde">
+        " id="ground3" visibility="hidde">
     </path>
 
     <path d="
@@ -18,7 +18,7 @@
         v3,
         h-4,
         z
-        " fill="grey" id="ground4"  visibility="hidden">
+        " id="ground4"  visibility="hidden">
     </path>
 
     <path d="
@@ -27,7 +27,7 @@
         v3,
         h-6,
         z
-        " fill="grey" id="ground6"  visibility="hidden">
+        " id="ground6"  visibility="hidden">
     </path>
 
     <path d="
@@ -36,7 +36,7 @@
         v3,
         h-9,
         z
-        " fill="grey" id="ground9"  visibility="hidden">
+        " id="ground9"  visibility="hidden">
     </path>
 
     <path d="
@@ -45,7 +45,7 @@
         v3,
         h-10,
         z
-        " fill="grey" id="ground10"  visibility="hidden">
+        " id="ground10"  visibility="hidden">
     </path>
 
     <path d="
@@ -54,7 +54,7 @@
         v3,
         h-13,
         z
-        " fill="grey" id="ground12" visibility="hidden">
+        " id="ground12" visibility="hidden">
     </path>
 
  </svg>

@@ -54,15 +54,16 @@
         v-6,
         h-7,
         z
-        " fill="grey" stroke="transparent" id="body" visibility="visible">
-    </path>
+        " stroke="transparent" id="body" visibility="visible"
+    />
+
 
     <!--Глаз маленький-->
-    <rect x="77" y="9" fill="white" height="7" width="6" id="small-eye" ></rect>
+    <rect x="77" y="9" fill="white" height="7" width="6" id="small-eye" class="eyes"/>
 
     <!--Глаз большой-->
     <rect x="78.5" y="10.5" fill="transparent" stroke-width="3"
-    stroke="white" height="10" width="10" id="big-eye" visibility="hidden"></rect>
+    stroke="white" height="10" width="10" id="big-eye" visibility="hidden"/>
 
     <!--Рот-->
     <path d="
@@ -73,8 +74,8 @@
         h13,
         v-7,
         z
-        " fill="grey" id="month" visibility="hidden">
-    </path>
+        " id="month" visibility="hidden"
+    />
 
     <!-- Тело наклон-->
     <path d="
@@ -125,16 +126,16 @@
         v-7,
         h-6,
         z
-        " fill="grey" id="body-bow" visibility="visible" class="hidden">
-    </path>
+        " id="body-bow" visibility="visible" class="hidden"
+    />
 
     <!--Глаз маленький наклон-->
     <rect x="125" y="66" fill="white" height="6" width="6" id="small-eye-bow"
-    visibility="visible" class="hidden"></rect>
+    visibility="visible" class="hidden"/>
 
     <!--Глаз большой наклон-->
     <rect x="126.5" y="67.5" fill="transparent" stroke-width="3" stroke="white"
-    height="10" width="10" id="big-eye-bow" visibility="hidden"></rect>
+    height="10" width="10" id="big-eye-bow" visibility="hidden"/>
 
     <!--Рот наклон-->
     <path d="
@@ -145,8 +146,9 @@
         h7,
         v-8,
         z
-        " fill="grey" id="month-bow" visibility="hidden">
-    </path>
+        " fill="grey" id="month-bow" visibility="hidden"
+    />
+
 
     <!--Перая нога-->
     <path d="
@@ -161,8 +163,8 @@
         h6,
         v-7,
         z
-        " fill="grey" id="first-leg" visibility="hidden">
-    </path>
+        " id="first-leg" visibility="hidden"
+    />
 
     <!--Вторая нога-->
     <path d="
@@ -175,8 +177,8 @@
         h-6,
         v-20,
         z
-        " fill="grey" id="second-leg" visibility="hidden">
-    </path>
+        " id="second-leg" visibility="hidden"
+    />
 
     <!-- Третья нога -->
     <path d="
@@ -187,8 +189,9 @@
         h-9,
         v-1,
         z
-        " fill="grey" visibility="hidden" id="third-leg">
-    </path>
+        " visibility="hidden" id="third-leg"
+    />
+
 
     <!--Четвертая нога-->
     <path d="
@@ -201,8 +204,8 @@
         h-6,
         v-7,
         z
-        " fill="grey" visibility="hidden" id="fourth-leg">
-    </path>
+        " visibility="hidden" id="fourth-leg"
+    />
 
      <!--Перая нога наклон-->
     <path d="
@@ -219,8 +222,8 @@
         h-16,
         v1,
         z
-        " fill="grey" id="first-leg-bow" visibility="hidden" class="hidden">
-    </path>
+        " id="first-leg-bow" visibility="hidden" class="hidden"
+    />
 
     <!--Вторая нога наклон-->
     <path d="
@@ -235,8 +238,8 @@
         h7,
         v-7,
         z
-        " fill="grey" id="second-leg-bow" visibility="hidden" class="hidden">
-    </path>
+        " id="second-leg-bow" visibility="hidden" class="hidden"
+    />
 
     <!--Третья нога наклон-->
     <path d="
@@ -247,8 +250,8 @@
         h-6,
         v-1,
         z
-        " fill="grey" id="third-leg-bow" visibility="hidden" class="hidden">
-    </path>
+        " id="third-leg-bow" visibility="hidden" class="hidden"
+    />
 
     <!-- Четвертая нога наклон -->
     <path d="
@@ -261,8 +264,8 @@
         h-4,
         v1,
         z
-        " fill="grey" visibility="hidden" id="fourth-leg-bow" class="hidden">
-    </path>
+        " visibility="hidden" id="fourth-leg-bow" class="hidden"
+    />
 
 
     <animate href="#first-leg" attributeName="visibility" values="visible;hidden" dur="0.3s"

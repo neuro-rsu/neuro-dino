@@ -1,7 +1,6 @@
+export { factoryCancelDialog };
 
-export { factoryModalDialog };
-
-function factoryModalDialog() {
+function factoryCancelDialog() {
     const templateHTML = `
         <div id="dialog" class="modal-dialog">
             <div class="modal-dialog-content animate" id="modal-dialog">
@@ -242,7 +241,7 @@ function factoryModalDialog() {
         }
     `;
 
-    class ModalDialog extends HTMLElement {
+    class CancelDialog extends HTMLElement {
 
         static get observedAttributes() {
             return ['show'];
@@ -281,7 +280,7 @@ function factoryModalDialog() {
 
         dialogResult
 
-        show(message) {
+        async show(message) {
             const messageNode = this.shadowRoot.getElementById("message");
             messageNode.innerHTML = message;
             this.dialog.classList.add('show');
@@ -318,9 +317,9 @@ function factoryModalDialog() {
                 dialog.classList.remove('animate-close');
                 dialog.onanimationend = undefined;
                 this.dialog.classList.remove('show');
+                this.dialogResult('OK');
             }
             dialog.classList.add('animate-close');
-            this.dialogResult('Cancel');
         }
 
         changeTheme(themeName) {
@@ -335,12 +334,12 @@ function factoryModalDialog() {
     }
 
     function regModalDialog() {
-        if (window.customElements.get('modal-dialog') !== undefined)
+        if (window.customElements.get('cancel-dialog') !== undefined)
             return;
-        customElements.define("modal-dialog", ModalDialog);
+        customElements.define("cancel-dialog", CancelDialog);
     }
 
     regModalDialog();
 }
 
-factoryModalDialog();
+factoryCancelDialog();

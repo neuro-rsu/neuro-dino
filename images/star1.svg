@@ -1,7 +1,7 @@
 <svg version="1.1"
      baseProfile="full"
      width="25" height="29"
-     xmlns="http://www.w3.org/2000/svg">
+     xmlns="http://www.w3.org/2000/svg" class="stars">
 
     <path d="
         M0 16,
@@ -25,7 +25,7 @@
         h-3,
         v-3,
         z
-        " fill="grey">
-    </path>
-
+        "
+    />
+    
  </svg>

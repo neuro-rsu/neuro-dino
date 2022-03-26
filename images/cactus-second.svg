@@ -1,7 +1,7 @@
 <svg version="1.1"
      baseProfile="full"
      width="48" height="105"
-     xmlns="http://www.w3.org/2000/svg">
+     xmlns="http://www.w3.org/2000/svg" class="cactuses">
 
     <path d="
         M0 16,
@@ -18,7 +18,7 @@
         h9,
         v3,
         h3,
-        v51, 
+        v51,
         h7,
         v-38,
         h3,
@@ -31,7 +31,7 @@
         v4,
         h-3,
         v3,
-        h-10,        
+        h-10,
         v41,
         h-16,
         v-54,
@@ -41,6 +41,7 @@
         v-3,
         h-4,
         z
-        " fill="grey">
-    </path>
+        "
+    />
+
  </svg>

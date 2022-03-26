@@ -36,18 +36,6 @@ export const defaultSettings = {
         hidden: false,
     },
 
-    smallcactus: {
-        distance: {
-            min: 100,
-            max: 150,
-        },
-        top: {
-            min: 10,
-            max: 100,
-        },
-        hidden: false,
-    },
-
     bigCactus: {
         distance: {
             min: 100,
@@ -158,19 +146,11 @@ export const defaultSettings = {
 }
 
 export function compactSettings() {
-    pdb.compact().then(function (info) {
-        alert("Настройки сжаты");
-    }).catch(function (err) {
-        alert(err);
-    });
+    pdb.compact();
 }
 
 export function destroySettings() {
-    pdb.destroy().then(function () {
-        alert("Настройки удалены");
-    }).catch(function (err) {
-        alert(err);
-    })
+    pdb.destroy();
 }
 
 export async function loadSettings() {
@@ -200,7 +180,7 @@ export async function save() {
 }
 
 function getSettingsID() {
-    return settings.lesson.number.toString() + '.' + settings.topic.number.toString() + ':' + settings.topology.join('-')+'.'+settings.populationCount.toString();
+    return `{settings.lesson.number.toString()}.{settings.topic.number.toString()}:{settings.topology.join('-')}.{settings.populationCount.toString()}`;
 }
 
 export async function create() {

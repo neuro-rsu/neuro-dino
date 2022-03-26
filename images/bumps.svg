@@ -17,8 +17,8 @@
         h-35,
         v1,
         z
-        " fill="red" visibility="hidden">
-    </path>
+        " fill="red" visibility="hidden"
+    />
 
     <path d="
         M3 13,
@@ -32,9 +32,8 @@
         h-40,
         v1,
         z
-        " fill="red" visibility="hidden">
-    </path>
-
+        " fill="red" visibility="hidden"
+    />
 
     <!-- Две кочка -->
     <path d="
@@ -99,8 +98,8 @@
         h-3,
         v3,
         z
-        " fill="grey" visibility="hidden">
-    </path>
+        " visibility="hidden"
+    />
 
     <!-- Кочка с ямкой -->
     <path d="
@@ -153,7 +152,7 @@
         h-4,
         v3,
         z
-        " fill="grey" visibility="hidden">
-    </path>
+        " visibility="hidden"
+    />
 
  </svg>

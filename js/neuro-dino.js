@@ -49,6 +49,28 @@ import {changeBestDinoBrain} from './dino-brain.js'
 //10->1// Mutate the clone
 
 function DinoFactory() {
+    const sheet = new CSSStyleSheet();
+    sheet.replaceSync(`
+        .dinos path {
+            fill: var(--dino-color);
+        }
+        .dinos #small-eye {
+            fill: var(--dino-eyes-color);
+        }
+        .dinos #big-eye {
+            fill: var(--dino-eyes-color);
+        }
+
+        .dinos #small-eye-bow {
+            fill: var(--dino-eyes-color);
+        }
+
+        .dinos #big-eye-bow {
+            fill: var(--dino-eyes-color);
+        }
+        `
+    );
+
 
     class NeuroDino extends HTMLElement {
 
@@ -59,6 +81,7 @@ function DinoFactory() {
 
             //this.shadowRoot.append(document.importNode(dino.content, true));
             this.shadowRoot.append(dino.content.cloneNode(true));
+            this.shadowRoot.adoptedStyleSheets = [sheet];
             this.speedX = this.maxVelocity.x;
             this.speedY = 0;
             this.dinoBrain = bestDinoBrain.clone();
