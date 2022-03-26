@@ -377,18 +377,23 @@ function FactoryForm() {
             this.modalDialog.show("Все скачалось успешно");
         };
         uploadDB() {
-            let remoteDb = new PouchDB('http://localhost:5984/my');
-            const obj = {_id: "1", a: 1, b: 2};
-            // remoteDb.put(obj).then(
-            //     (message) => this.modalDialog.show(message)
-            // ).catch(
-            //     (message) => this.modalDialog.show(message)
-            // );
-            remoteDb.get(obj).then(
+            let remoteDb = new PouchDB('http://admin:admin@localhost:5984/my');
+            remoteDb.info().then(
                 (message) => this.modalDialog.show(message)
             ).catch(
                 (message) => this.modalDialog.show(message)
             );
+            const obj = {_id: "1", a: 1, b: 2};
+            remoteDb.put(obj).then(
+                (message) => this.modalDialog.show(message)
+            ).catch(
+                (message) => this.modalDialog.show(message)
+            );
+            // remoteDb.get("1").then(
+            //     (message) => this.modalDialog.show(message)
+            // ).catch(
+            //     (message) => this.modalDialog.show(message)
+            // );
 
         };
         closeDB() {
