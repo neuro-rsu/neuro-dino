@@ -16,7 +16,11 @@ function factoryCancelDialog() {
                 <div class="dialog-footer no-select">
                     <div class="footer-buttons">
 
+                        <button type="button" id="ok-cancel" class="footer-button btn-cancel">Отменить изменения</button>
+                        <button type="button" id="ok-default" class="footer-button btn-default">По умолчанию</button>
+                        <button type="button" id="ok-restore" class="footer-button btn-restore">Восстановить из БД</button>
                         <button type="button" id="ok-button" class="footer-button btn-ok">Понял</button>
+
                     </div>
                 </div>
             </div>
@@ -261,6 +265,9 @@ function factoryCancelDialog() {
             this.shadowRoot.append(style);
 
             this.shadowRoot.querySelector("#ok-button").onclick = this.ok.bind(this);
+            this.shadowRoot.querySelector("#ok-cancel").onclick = this.ok.bind(this);
+            this.shadowRoot.querySelector("#ok-default").onclick = this.ok.bind(this);
+            this.shadowRoot.querySelector("#ok-restore").onclick = this.ok.bind(this);
             this.shadowRoot.querySelector("#dialog-button-close").onclick = this.close.bind(this);
             // this.shadowRoot.querySelector("#cancel-button").onclick = this.cancel.bind(this);
         }
@@ -306,9 +313,10 @@ function factoryCancelDialog() {
                 dialog.classList.remove('animate-close');
                 dialog.onanimationend = undefined;
                 this.dialog.classList.remove('show');
+                this.dialogResult('Cancel');
             }
             dialog.classList.add('animate-close');
-            this.dialogResult('Cancel');
+
         }
 
         ok() {
@@ -333,13 +341,13 @@ function factoryCancelDialog() {
         }
     }
 
-    function regModalDialog() {
+    function regCancelDialog() {
         if (window.customElements.get('cancel-dialog') !== undefined)
             return;
         customElements.define("cancel-dialog", CancelDialog);
     }
 
-    regModalDialog();
+    regCancelDialog();
 }
 
 factoryCancelDialog();

@@ -240,6 +240,9 @@ function FactoryForm() {
             // this.shadowRoot.getElementById('compact').onclick = this.compact.bind(this);
             this.shadowRoot.getElementById('close').onclick = this.close.bind(this);
             this.form = this.shadowRoot.getElementById('form');
+
+            // this.shadowRoot.getElementById('cancel').onclick = this.cancel.bind(this);
+            // this.form = this.shadowRoot.getElementById('form');
             // this.shadowRoot.getElementById('default').onclick = this.default.bind(this);
 
             let tabList = this.shadowRoot.querySelectorAll('.form-tab-link');
@@ -323,6 +326,10 @@ function FactoryForm() {
             this.shadowRoot.getElementById('form-background').style.display = "";
         }
 
+        cancelForm() {
+            this.shadowRoot.getElementById('form-background').style.display = "";
+        }
+
         show() {
             this.form.cloud.checked = !settings.cloud.hidden;
             this.form.horizon.checked = !settings.horizon.hidden;
@@ -358,9 +365,33 @@ function FactoryForm() {
             this.form.classList.add('animate-close');
         }
 
-        cancel() {
-            this.form.style.display = "none";
+        async cancel() {
+            let cancelResult = await this.cancelDialog.show("Выберите действие");
+            let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
+            if (cancelResult !== "OK")
+                return;
+            if (cancelResult !== "OK")
+            // let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
+            // for (let i = 0; i < radioList.length; i++) {
+            //     const radio = radioList[i];
+            //     if (radio.checked)
+            //     {
+            //         this.form.elements['distance-min'].value = settings[radio.value].distance.min;
+            //         this.form.elements['distance-max'].value = settings[radio.value].distance.max;
+            //         this.form.elements['top-min'].value = settings[radio.value].top.min;
+            //         this.form.elements['top-max'].value = settings[radio.value].top.max;
+            //     }
+            this.form.onanimationend = () => {
+                this.form.classList.remove('animate-close');
+                this.form.onanimationend = null;
+                this.cancelForm();
+            }
+            this.form.classList.add('animate-close');
         }
+
+        // cancel() {
+        //     this.form.style.display = "none";
+        // }
 
         clearDB() {
             clearDb().then(
@@ -502,30 +533,32 @@ function FactoryForm() {
         }
 
         cancelSettings() {
-            this.form.cloud.checked = !settings.cloud.hidden;
-            this.form.horizon.checked = !settings.horizon.hidden;
-            this.form.elements['big-cactus'].checked = !settings.bigCactus.hidden;
-            this.form.elements['small-cactus'].checked = !settings.smallCactus.hidden;
-            this.form.ground.checked = !settings.ground.hidden;
-            this.form.bumps.checked = !settings.bumps.hidden;
-            this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
-            this.form.moon.checked = !settings.moon.hidden;
-            this.form.star.checked = !settings.star.hidden;
-            this.form.night.checked = !settings.night.hidden;
+            this.cancel();
+            // this.form.cloud.checked = !settings.cloud.hidden;
+            // this.form.horizon.checked = !settings.horizon.hidden;
+            // this.form.elements['big-cactus'].checked = !settings.bigCactus.hidden;
+            // this.form.elements['small-cactus'].checked = !settings.smallCactus.hidden;
+            // this.form.ground.checked = !settings.ground.hidden;
+            // this.form.bumps.checked = !settings.bumps.hidden;
+            // this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
+            // this.form.moon.checked = !settings.moon.hidden;
+            // this.form.star.checked = !settings.star.hidden;
+            // this.form.night.checked = !settings.night.hidden;
         }
 
         cancelTopDistance() {
-            let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
-            for (let i = 0; i < radioList.length; i++) {
-                const radio = radioList[i];
-                if (radio.checked)
-                {
-                    this.form.elements['distance-min'].value = settings[radio.value].distance.min;
-                    this.form.elements['distance-max'].value = settings[radio.value].distance.max;
-                    this.form.elements['top-min'].value = settings[radio.value].top.min;
-                    this.form.elements['top-max'].value = settings[radio.value].top.max;
-                }
-            }
+            this.cancel();
+            // let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
+            // for (let i = 0; i < radioList.length; i++) {
+            //     const radio = radioList[i];
+            //     if (radio.checked)
+            //     {
+            //         this.form.elements['distance-min'].value = settings[radio.value].distance.min;
+            //         this.form.elements['distance-max'].value = settings[radio.value].distance.max;
+            //         this.form.elements['top-min'].value = settings[radio.value].top.min;
+            //         this.form.elements['top-max'].value = settings[radio.value].top.max;
+            //     }
+            // }
         }
 
         closeSettings() {
@@ -561,15 +594,18 @@ function FactoryForm() {
         }
 
         cancelLessons() {
-            this.form.elements['lesson-number'].value = settings.lesson.number;
-            this.form.elements['lesson-name'].value = settings.lesson.name;
-            this.form.elements['topic-number'].value = settings.topic.number;
-            this.form.elements['topic-name'].value = settings.topic.name;
-            this.form.topology.value = settings.topology.join('-');
-            this.form.populationCount.value = settings.populationCount;
-        }
+            this.cancel();
+            // this.form.elements['lesson-number'].value = settings.lesson.number;
+            // this.form.elements['lesson-name'].value = settings.lesson.name;
+            // this.form.elements['topic-number'].value = settings.topic.number;
+            // this.form.elements['topic-name'].value = settings.topic.name;
+            // this.form.topology.value = settings.topology.join('-');
+            // this.form.populationCount.value = settings.populationCount;
+
+            }
 
         cancelOptions() {
+            this.cancel();
             this.form.theme.checked = settings.theme === 'dark';
         }
 
