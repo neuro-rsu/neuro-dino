@@ -21,7 +21,7 @@ function FactoryForm() {
                             <span id="lessons-tab" class="form-tab-link no-select">Уроки</span>
                         </div>
                         <div class="form-tab">
-                            <span id="settings-tab" class="form-tab-link no-select">Параметры</span>
+                            <span id="settings-tab" class="form-tab-link no-select">Элементы</span>
                         </div>
                         <div class="form-tab">
                             <span id="top-distance-tab" class="form-tab-link no-select">Расположение</span>
