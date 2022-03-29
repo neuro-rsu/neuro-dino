@@ -1,25 +1,24 @@
-export { factoryCancelDialog };
+export { factoryCloseDialog };
 
-function factoryCancelDialog() {
+function factoryCloseDialog() {
     const templateHTML = `
         <div id="dialog" class="modal-dialog">
             <div class="modal-dialog-content animate" id="modal-dialog">
                 <div class="dialog-header">
                     <span id="dialog-title" class="dialog-title no-select">Динозавр T-Rex</span>
-                    <span id="dialog-button-close" class="dialog-button-close no-select" title="Закрыть">&times;</span>
+                    <span id="dialog-button-close" class="dialog-button-close no-select" title="Отменить">&times;</span>
                 </div>
 
                 <div class="dialog-body">
-                    <span id="message" class="no-select">Вы выиграли миллион долларов</span>
+                    <span id="message" class="no-select">Данные были изменены. Вы хотите сохранить изменения?</span>
                 </div>
 
                 <div class="dialog-footer no-select">
                     <div class="footer-buttons">
 
-                        <button type="button" id="button-cancel" class="footer-button button-cancel">Отменить изменения</button>
-                        <button type="button" id="button-default" class="footer-button button-default">По умолчанию</button>
-                        <button type="button" id="button-restore" class="footer-button button-restore">Восстановить из БД</button>
-                        <button type="button" id="button-close" class="footer-button button-close">Закрыть</button>
+                        <button type="button" id="save-button" class="footer-button save-button">Сохранить</button>
+                        <button type="button" id="no-save-button" class="footer-button no-save-button">Не сохранять</button>
+                        <button type="button" id="cancel-button" class="footer-button cancel-button">Отменить</button>
 
                     </div>
                 </div>
@@ -63,8 +62,14 @@ function factoryCancelDialog() {
         }
 
         /* Extra styles for the cancel button */
-        .cancel-button {
-            margin-right: auto;
+
+        /* .cancel-button {
+        //     margin-right: auto;
+        //     background-color: #f44336;
+        // }
+        */
+
+        .no-save-button {
             background-color: #f44336;
         }
 
@@ -185,6 +190,8 @@ function factoryCancelDialog() {
             user-select: none;
         }
 
+
+
         /* Add Zoom Animation */
         .animate {
             -webkit-animation: animatezoom 0.6s;
@@ -244,7 +251,7 @@ function factoryCancelDialog() {
         }
     `;
 
-    class CancelDialog extends HTMLElement {
+    class CloseDialog extends HTMLElement {
 
         static get observedAttributes() {
             return ['show'];
@@ -263,18 +270,11 @@ function factoryCancelDialog() {
             style.textContent = templateStyle;
             this.shadowRoot.append(style);
 
-            this.shadowRoot.querySelector("#button-close").onclick = this.close.bind(this);
-            this.shadowRoot.querySelector("#button-cancel").onclick = this.cancel.bind(this);
-            this.shadowRoot.querySelector("#button-default").onclick = this.default.bind(this);
-            this.shadowRoot.querySelector("#ok-restore").onclick = this.restore.bind(this);
+            this.shadowRoot.querySelector("#save-button").onclick = this.save.bind(this);
+            this.shadowRoot.querySelector("#cancel-button").onclick = this.cancel.bind(this);
+            this.shadowRoot.querySelector("#no-save-button").onclick = this.nosave.bind(this);
             this.shadowRoot.querySelector("#dialog-button-close").onclick = this.close.bind(this);
             // this.shadowRoot.querySelector("#cancel-button").onclick = this.cancel.bind(this);
-        }
-
-        stopAnimation() {
-            form.classList.remove('animate-close');
-            form.removeEventListener('animationend', this.animateCallback);
-            this.form.style.display = "none";
         }
 
         attributeChangedCallback(name, oldValue, newValue) {
@@ -315,27 +315,26 @@ function factoryCancelDialog() {
                 this.dialogResult('Cancel');
             }
             dialog.classList.add('animate-close');
-
         }
 
-        default() {
+        save() {
             const dialog = this.shadowRoot.getElementById('modal-dialog');
             dialog.onanimationend = () => {
                 dialog.classList.remove('animate-close');
                 dialog.onanimationend = undefined;
                 this.dialog.classList.remove('show');
-                this.dialogResult('Default');
+                this.dialogResult('Yes');
             }
             dialog.classList.add('animate-close');
         }
 
-        restore() {
+        nosave() {
             const dialog = this.shadowRoot.getElementById('modal-dialog');
             dialog.onanimationend = () => {
                 dialog.classList.remove('animate-close');
                 dialog.onanimationend = undefined;
                 this.dialog.classList.remove('show');
-                this.dialogResult('Restore');
+                this.dialogResult('No');
             }
             dialog.classList.add('animate-close');
         }
@@ -351,13 +350,13 @@ function factoryCancelDialog() {
         }
     }
 
-    function regCancelDialog() {
-        if (window.customElements.get('cancel-dialog') !== undefined)
+    function regCloseDialog() {
+        if (window.customElements.get('close-dialog') !== undefined)
             return;
-        customElements.define("cancel-dialog", CancelDialog);
+        customElements.define("close-dialog", CloseDialog);
     }
 
-    regCancelDialog();
+    regCloseDialog();
 }
 
-factoryCancelDialog();
+factoryCloseDialog();

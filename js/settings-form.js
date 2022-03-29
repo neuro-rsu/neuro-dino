@@ -2,6 +2,7 @@ import {settings, defaultSettings} from './settings.js';
 
 import {factoryModalDialog} from './modal-dialog.js';
 import {factoryCancelDialog} from './cancel-dialog.js';
+import {factoryCloseDialog} from './close-dialog.js';
 
 import {compactDb, deleteDb, clearDb} from './dino-brain.js';
 import {formStyle} from './settings-form-style.js';
@@ -12,6 +13,7 @@ function FactoryForm() {
         <div id="form-background" class="form-background">
             <modal-dialog></modal-dialog>
             <cancel-dialog></cancel-dialog>
+            <close-dialog></close-dialog>
             <form class="form animate" method="post" id="form">
                 <div class="form-header">
                     <div class="form-tabs no-select">
@@ -198,14 +200,14 @@ function FactoryForm() {
             let style = document.createElement('style');
             style.textContent = formStyle;
             this.shadowRoot.append(style);
-            this.shadowRoot.querySelector("#settings-tab-buttons button[name='cancel'").onclick = this.cancelSettings.bind(this);
+            this.shadowRoot.querySelector("#settings-tab-buttons button[name='cancel'").onclick = this.cancel.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='default'").onclick = this.defaultSettings.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='restore'").onclick = this.restoreSettings.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='save'").onclick = this.saveSettings.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='close'").onclick = this.closeSettings.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='apply'").onclick = this.applySettings.bind(this);
 
-            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='cancel'").onclick = this.cancelTopDistance.bind(this);
+            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='cancel'").onclick = this.cancel.bind(this);
             this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='default'").onclick = this.defaultTopDistance.bind(this);
             this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='restore'").onclick = this.restoreTopDistance.bind(this);
             this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='save'").onclick = this.saveTopDistance.bind(this);
@@ -213,14 +215,14 @@ function FactoryForm() {
             this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='apply'").onclick = this.applyTopDistance.bind(this);
 
 
-            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='cancel'").onclick = this.cancelLessons.bind(this);
+            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='cancel'").onclick = this.cancel.bind(this);
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='default'").onclick = this.defaultLessons.bind(this);
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='restore'").onclick = this.restoreLessons.bind(this);
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='save'").onclick = this.saveLessons.bind(this);
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='apply'").onclick = this.applyLessons.bind(this);
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='close'").onclick = this.closeLessons.bind(this);
 
-            this.shadowRoot.querySelector("#options-tab-buttons button[name='cancel'").onclick = this.cancelOptions.bind(this);
+            this.shadowRoot.querySelector("#options-tab-buttons button[name='cancel'").onclick = this.cancel.bind(this);
             this.shadowRoot.querySelector("#options-tab-buttons button[name='default'").onclick = this.defaultOptions.bind(this);
             this.shadowRoot.querySelector("#options-tab-buttons button[name='restore'").onclick = this.restoreOptions.bind(this);
             this.shadowRoot.querySelector("#options-tab-buttons button[name='save'").onclick = this.saveOptions.bind(this);
@@ -318,6 +320,10 @@ function FactoryForm() {
             return this.shadowRoot.querySelector('cancel-dialog');
         }
 
+        get closeDialog() {
+            return this.shadowRoot.querySelector('close-dialog');
+        }
+
         openForm() {
             this.shadowRoot.getElementById('form-background').style.display = "block";
         }
@@ -353,24 +359,60 @@ function FactoryForm() {
             this.openForm();
         }
 
+        isChanged() {
+            return this.form.cloud.checked !== !settings.cloud.hidden ||
+            this.form.horizon.checked !== !settings.horizon.hidden ||
+            this.form.elements['big-cactus'].checked !== !settings.bigCactus.hidden ||
+            this.form.elements['small-cactus'].checked !== !settings.smallCactus.hidden ||
+            this.form.ground.checked !== !settings.ground.hidden ||
+            this.form.bumps.checked !== !settings.bumps.hidden ||
+            this.form.pterodactyl.checked !== !settings.pterodactyl.hidden ||
+            this.form.moon.checked !== !settings.moon.hidden ||
+            this.form.star.checked !== !settings.star.hidden ||
+            this.form.night.checked !== !settings.night.hidden ||
+
+            this.form.topology.value !== settings.topology.join('-')  ||
+            this.form.populationCount.value !== settings.populationCount.toString() ||
+            this.form.elements['lesson-name'].value !== settings.lesson.name  ||
+            this.form.elements['lesson-number'].value !== settings.lesson.number.toString() ||
+            this.form.elements['topic-name'].value !== settings.topic.name ||
+            this.form.elements['topic-number'].value !== settings.topic.number.toString() ||
+            this.form.theme.checked !== (settings.theme === 'dark');
+        }
+
         async close() {
-            let modalResult = await this.cancelDialog.show("Закрываем форму");
-            if (modalResult !== "OK")
-                return;
-            this.form.onanimationend = () => {
-                this.form.classList.remove('animate-close');
-                this.form.onanimationend = null;
+            if (this.isChanged()) {
+                let modalResult = await this.closeDialog.show("Настройки были изменены. Вы хотите сохранить изменения?");
+                if (modalResult === "Cancel" || modalResult === "Close")
+                    return;
+                if (modalResult === "Yes") {
+                    this.saveSettings();
+                    this.saveTopDistance();
+                    this.saveOptions();
+                    this.saveLessons();
+                }
                 this.closeForm();
+            } else {
+                this.form.onanimationend = () => {
+                    this.form.classList.remove('animate-close');
+                    this.form.onanimationend = null;
+                    this.closeForm();
+                }
+                this.form.classList.add('animate-close');
             }
-            this.form.classList.add('animate-close');
         }
 
         async cancel() {
             let cancelResult = await this.cancelDialog.show("Выберите действие");
-            let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
-            if (cancelResult !== "OK")
+            if (cancelResult === "Close")
                 return;
-            if (cancelResult !== "OK")
+            if (cancelResult === "Cancel")
+            {
+                this.cancelSettings();
+                this.cancelTopDistance();
+                this.cancelLessons();
+                this.cancelOptions();
+            }
             // let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
             // for (let i = 0; i < radioList.length; i++) {
             //     const radio = radioList[i];
@@ -381,12 +423,7 @@ function FactoryForm() {
             //         this.form.elements['top-min'].value = settings[radio.value].top.min;
             //         this.form.elements['top-max'].value = settings[radio.value].top.max;
             //     }
-            this.form.onanimationend = () => {
-                this.form.classList.remove('animate-close');
-                this.form.onanimationend = null;
-                this.cancelForm();
-            }
-            this.form.classList.add('animate-close');
+
         }
 
         // cancel() {
@@ -533,32 +570,43 @@ function FactoryForm() {
         }
 
         cancelSettings() {
-            this.cancel();
-            // this.form.cloud.checked = !settings.cloud.hidden;
-            // this.form.horizon.checked = !settings.horizon.hidden;
-            // this.form.elements['big-cactus'].checked = !settings.bigCactus.hidden;
-            // this.form.elements['small-cactus'].checked = !settings.smallCactus.hidden;
-            // this.form.ground.checked = !settings.ground.hidden;
-            // this.form.bumps.checked = !settings.bumps.hidden;
-            // this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
-            // this.form.moon.checked = !settings.moon.hidden;
-            // this.form.star.checked = !settings.star.hidden;
-            // this.form.night.checked = !settings.night.hidden;
+            this.form.cloud.checked = !settings.cloud.hidden;
+            this.form.horizon.checked = !settings.horizon.hidden;
+            this.form.elements['big-cactus'].checked = !settings.bigCactus.hidden;
+            this.form.elements['small-cactus'].checked = !settings.smallCactus.hidden;
+            this.form.ground.checked = !settings.ground.hidden;
+            this.form.bumps.checked = !settings.bumps.hidden;
+            this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
+            this.form.moon.checked = !settings.moon.hidden;
+            this.form.star.checked = !settings.star.hidden;
+            this.form.night.checked = !settings.night.hidden;
         }
 
         cancelTopDistance() {
-            this.cancel();
-            // let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
-            // for (let i = 0; i < radioList.length; i++) {
-            //     const radio = radioList[i];
-            //     if (radio.checked)
-            //     {
-            //         this.form.elements['distance-min'].value = settings[radio.value].distance.min;
-            //         this.form.elements['distance-max'].value = settings[radio.value].distance.max;
-            //         this.form.elements['top-min'].value = settings[radio.value].top.min;
-            //         this.form.elements['top-max'].value = settings[radio.value].top.max;
-            //     }
-            // }
+            let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
+            for (let i = 0; i < radioList.length; i++) {
+                const radio = radioList[i];
+                if (radio.checked)
+                {
+                    this.form.elements['distance-min'].value = settings[radio.value].distance.min;
+                    this.form.elements['distance-max'].value = settings[radio.value].distance.max;
+                    this.form.elements['top-min'].value = settings[radio.value].top.min;
+                    this.form.elements['top-max'].value = settings[radio.value].top.max;
+                }
+            }
+        }
+
+        cancelLessons() {
+            this.form.elements['lesson-number'].value = settings.lesson.number;
+            this.form.elements['lesson-name'].value = settings.lesson.name;
+            this.form.elements['topic-number'].value = settings.topic.number;
+            this.form.elements['topic-name'].value = settings.topic.name;
+            this.form.topology.value = settings.topology.join('-');
+            this.form.populationCount.value = settings.populationCount;
+        }
+
+        cancelOptions() {
+            this.form.theme.checked = settings.theme === 'dark';
         }
 
         closeSettings() {
@@ -593,21 +641,7 @@ function FactoryForm() {
             }
         }
 
-        cancelLessons() {
-            this.cancel();
-            // this.form.elements['lesson-number'].value = settings.lesson.number;
-            // this.form.elements['lesson-name'].value = settings.lesson.name;
-            // this.form.elements['topic-number'].value = settings.topic.number;
-            // this.form.elements['topic-name'].value = settings.topic.name;
-            // this.form.topology.value = settings.topology.join('-');
-            // this.form.populationCount.value = settings.populationCount;
 
-            }
-
-        cancelOptions() {
-            this.cancel();
-            this.form.theme.checked = settings.theme === 'dark';
-        }
 
         applyLessons() {
             settings.lesson.number = this.form.elements['lesson-number'].value;
@@ -655,7 +689,7 @@ function FactoryForm() {
 
         delete() {
             deleteDb();
-        }
+    }
 
         compact() {
             compactDb();
