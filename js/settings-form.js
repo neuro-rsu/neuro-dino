@@ -165,6 +165,10 @@ function FactoryForm() {
             </form>
         </div>
     `;
+    // <button type="button" name="default" class="footer-button">По умолчанию</button>
+    //<button type="button" name="restore" class="footer-button">Восстановить</button>
+
+
 
     class SettingsForm extends HTMLElement {
 
@@ -471,21 +475,22 @@ function FactoryForm() {
                 this.cancelLessons();
                 this.cancelOptions();
             }
-            // let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
-            // for (let i = 0; i < radioList.length; i++) {
-            //     const radio = radioList[i];
-            //     if (radio.checked)
-            //     {
-            //         this.form.elements['distance-min'].value = settings[radio.value].distance.min;
-            //         this.form.elements['distance-max'].value = settings[radio.value].distance.max;
-            //         this.form.elements['top-min'].value = settings[radio.value].top.min;
-            //         this.form.elements['top-max'].value = settings[radio.value].top.max;
-            //     }
-
+            if (cancelResult === "Default")
+            {
+                this.defaultSettings();
+                this.defaultTopDistance();
+                this.defaultLessons();
+                this.defaultOptions();
+            }
+            if (cancelResult === "Restore")
+            {
+                this.restoreSettings();
+                this.restoreTopDistance();
+                this.restoreLessons();
+                this.restoreOptions();
+            }
+            this.closeForm();
         }
-        // cancel() {
-        //     this.form.style.display = "none";
-        // }
 
         clearDB() {
             clearDb().then(
