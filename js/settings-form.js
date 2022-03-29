@@ -122,9 +122,9 @@ function FactoryForm() {
                     <div id="lessons-tab-buttons" class="footer-buttons-section selected">
                         <div class="footer-buttons">
                             <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
-                            <button type="button" name="default" class="footer-button">По умолчанию</button>
-                            <button type="button" name="restore" class="footer-button">Восстановить</button>
-                            <button type="button" name="save" class="footer-button">Сохранить</button>
+
+
+                            <button type="button" name="save" class="footer-button">Сохранить в БД</button>
                             <button type="button" name="apply" class="footer-button">Применить</button>
                             <button type="button" name="close" class="footer-button">Закрыть</button>
                         </div>
@@ -133,9 +133,9 @@ function FactoryForm() {
                     <div id="settings-tab-buttons" class="footer-buttons-section">
                         <div class="footer-buttons">
                             <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
-                            <button type="button" name="default" class="footer-button">По умолчанию</button>
-                            <button type="button" name="restore" class="footer-button">Восстановить</button>
-                            <button type="button" name="save" class="footer-button">Сохранить</button>
+
+
+                            <button type="button" name="save" class="footer-button">Сохранить в БД</button>
                             <button type="button" name="apply" class="footer-button">Применить</button>
                             <button type="button" name="close" class="footer-button">Закрыть</button>
                         </div>
@@ -144,9 +144,9 @@ function FactoryForm() {
                     <div id="top-distance-tab-buttons" class="footer-buttons-section">
                         <div class="footer-buttons">
                             <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
-                            <button type="button" name="default" class="footer-button">По умолчанию</button>
-                            <button type="button" name="restore" class="footer-button">Восстановить</button>
-                            <button type="button" name="save" class="footer-button">Сохранить</button>
+
+
+                            <button type="button" name="save" class="footer-button">Сохранить в БД</button>
                             <button type="button" name="apply" class="footer-button">Применить</button>
                             <button type="button" name="close" class="footer-button">Закрыть</button>
                         </div>
@@ -166,9 +166,9 @@ function FactoryForm() {
                     <div id="options-tab-buttons" class="footer-buttons-section">
                         <div class="footer-buttons">
                             <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
-                            <button type="button" name="default" class="footer-button">По умолчанию</button>
-                            <button type="button" name="restore" class="footer-button">Восстановить</button>
-                            <button type="button" name="save" class="footer-button">Сохранить</button>
+
+
+                            <button type="button" name="save" class="footer-button">Сохранить в БД</button>
                             <button type="button" name="apply" class="footer-button">Применить</button>
                             <button type="button" name="close" class="footer-button">Закрыть</button>
                         </div>
@@ -177,6 +177,10 @@ function FactoryForm() {
             </form>
         </div>
     `;
+    // <button type="button" name="default" class="footer-button">По умолчанию</button>
+    //<button type="button" name="restore" class="footer-button">Восстановить</button>
+
+
 
     class SettingsForm extends HTMLElement {
 
@@ -201,30 +205,30 @@ function FactoryForm() {
             style.textContent = formStyle;
             this.shadowRoot.append(style);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='cancel'").onclick = this.cancel.bind(this);
-            this.shadowRoot.querySelector("#settings-tab-buttons button[name='default'").onclick = this.defaultSettings.bind(this);
-            this.shadowRoot.querySelector("#settings-tab-buttons button[name='restore'").onclick = this.restoreSettings.bind(this);
+            //this.shadowRoot.querySelector("#settings-tab-buttons button[name='default'").onclick = this.defaultSettings.bind(this);
+            //this.shadowRoot.querySelector("#settings-tab-buttons button[name='restore'").onclick = this.restoreSettings.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='save'").onclick = this.saveSettings.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='close'").onclick = this.closeSettings.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='apply'").onclick = this.applySettings.bind(this);
 
             this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='cancel'").onclick = this.cancel.bind(this);
-            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='default'").onclick = this.defaultTopDistance.bind(this);
-            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='restore'").onclick = this.restoreTopDistance.bind(this);
+            //this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='default'").onclick = this.defaultTopDistance.bind(this);
+            //this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='restore'").onclick = this.restoreTopDistance.bind(this);
             this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='save'").onclick = this.saveTopDistance.bind(this);
             this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='close'").onclick = this.closeTopDistance.bind(this);
             this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='apply'").onclick = this.applyTopDistance.bind(this);
 
 
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='cancel'").onclick = this.cancel.bind(this);
-            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='default'").onclick = this.defaultLessons.bind(this);
-            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='restore'").onclick = this.restoreLessons.bind(this);
+            //this.shadowRoot.querySelector("#lessons-tab-buttons button[name='default'").onclick = this.defaultLessons.bind(this);
+            //this.shadowRoot.querySelector("#lessons-tab-buttons button[name='restore'").onclick = this.restoreLessons.bind(this);
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='save'").onclick = this.saveLessons.bind(this);
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='apply'").onclick = this.applyLessons.bind(this);
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='close'").onclick = this.closeLessons.bind(this);
 
             this.shadowRoot.querySelector("#options-tab-buttons button[name='cancel'").onclick = this.cancel.bind(this);
-            this.shadowRoot.querySelector("#options-tab-buttons button[name='default'").onclick = this.defaultOptions.bind(this);
-            this.shadowRoot.querySelector("#options-tab-buttons button[name='restore'").onclick = this.restoreOptions.bind(this);
+            //this.shadowRoot.querySelector("#options-tab-buttons button[name='default'").onclick = this.defaultOptions.bind(this);
+            //this.shadowRoot.querySelector("#options-tab-buttons button[name='restore'").onclick = this.restoreOptions.bind(this);
             this.shadowRoot.querySelector("#options-tab-buttons button[name='save'").onclick = this.saveOptions.bind(this);
             this.shadowRoot.querySelector("#options-tab-buttons button[name='apply'").onclick = this.applyOptions.bind(this);
             this.shadowRoot.querySelector("#options-tab-buttons button[name='close'").onclick = this.closeOptions.bind(this);
@@ -403,6 +407,7 @@ function FactoryForm() {
         }
 
         async cancel() {
+            if (this.isChanged()) {
             let cancelResult = await this.cancelDialog.show("Выберите действие");
             if (cancelResult === "Close")
                 return;
@@ -413,16 +418,29 @@ function FactoryForm() {
                 this.cancelLessons();
                 this.cancelOptions();
             }
-            // let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
-            // for (let i = 0; i < radioList.length; i++) {
-            //     const radio = radioList[i];
-            //     if (radio.checked)
-            //     {
-            //         this.form.elements['distance-min'].value = settings[radio.value].distance.min;
-            //         this.form.elements['distance-max'].value = settings[radio.value].distance.max;
-            //         this.form.elements['top-min'].value = settings[radio.value].top.min;
-            //         this.form.elements['top-max'].value = settings[radio.value].top.max;
-            //     }
+            if (cancelResult === "Default")
+            {
+                this.defaultSettings();
+                this.defaultTopDistance();
+                this.defaultLessons();
+                this.defaultOptions();
+            }
+            if (cancelResult === "Restore")
+            {
+                this.restoreSettings();
+                this.restoreTopDistance();
+                this.restoreLessons();
+                this.restoreOptions();
+            }
+            this.closeForm();
+        } else {
+            this.form.onanimationend = () => {
+                this.form.classList.remove('animate-close');
+                this.form.onanimationend = null;
+                this.closeForm();
+            }
+            this.form.classList.add('animate-close');
+        }
 
         }
 
