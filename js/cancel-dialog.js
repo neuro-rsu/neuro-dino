@@ -266,7 +266,7 @@ function factoryCancelDialog() {
             this.shadowRoot.querySelector("#button-close").onclick = this.close.bind(this);
             this.shadowRoot.querySelector("#button-cancel").onclick = this.cancel.bind(this);
             this.shadowRoot.querySelector("#button-default").onclick = this.default.bind(this);
-            this.shadowRoot.querySelector("#ok-restore").onclick = this.restore.bind(this);
+            this.shadowRoot.querySelector("#button-restore").onclick = this.restore.bind(this);
             this.shadowRoot.querySelector("#dialog-button-close").onclick = this.close.bind(this);
             // this.shadowRoot.querySelector("#cancel-button").onclick = this.cancel.bind(this);
         }

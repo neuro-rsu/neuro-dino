@@ -21,7 +21,7 @@ function FactoryForm() {
                             <span id="lessons-tab" class="form-tab-link no-select">Уроки</span>
                         </div>
                         <div class="form-tab">
-                            <span id="settings-tab" class="form-tab-link no-select">Параметры</span>
+                            <span id="settings-tab" class="form-tab-link no-select">Элементы</span>
                         </div>
                         <div class="form-tab">
                             <span id="top-distance-tab" class="form-tab-link no-select">Расположение</span>
@@ -122,10 +122,7 @@ function FactoryForm() {
                     <div id="lessons-tab-buttons" class="footer-buttons-section selected">
                         <div class="footer-buttons">
                             <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
-                            <button type="button" name="default" class="footer-button">По умолчанию</button>
-                            <button type="button" name="restore" class="footer-button">Восстановить</button>
-                            <button type="button" name="save" class="footer-button">Сохранить</button>
-                            <button type="button" name="apply" class="footer-button">Применить</button>
+                            <button type="button" name="remember" class="footer-button">Запомнить</button>
                             <button type="button" name="close" class="footer-button">Закрыть</button>
                         </div>
                         <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
@@ -133,10 +130,7 @@ function FactoryForm() {
                     <div id="settings-tab-buttons" class="footer-buttons-section">
                         <div class="footer-buttons">
                             <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
-                            <button type="button" name="default" class="footer-button">По умолчанию</button>
-                            <button type="button" name="restore" class="footer-button">Восстановить</button>
-                            <button type="button" name="save" class="footer-button">Сохранить</button>
-                            <button type="button" name="apply" class="footer-button">Применить</button>
+                            <button type="button" name="remember" class="footer-button">Запомнить</button>
                             <button type="button" name="close" class="footer-button">Закрыть</button>
                         </div>
                         <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
@@ -144,10 +138,7 @@ function FactoryForm() {
                     <div id="top-distance-tab-buttons" class="footer-buttons-section">
                         <div class="footer-buttons">
                             <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
-                            <button type="button" name="default" class="footer-button">По умолчанию</button>
-                            <button type="button" name="restore" class="footer-button">Восстановить</button>
-                            <button type="button" name="save" class="footer-button">Сохранить</button>
-                            <button type="button" name="apply" class="footer-button">Применить</button>
+                            <button type="button" name="remember" class="footer-button">Запомнить</button>
                             <button type="button" name="close" class="footer-button">Закрыть</button>
                         </div>
                         <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
@@ -166,10 +157,7 @@ function FactoryForm() {
                     <div id="options-tab-buttons" class="footer-buttons-section">
                         <div class="footer-buttons">
                             <button type="button" name="cancel" class="footer-button cancel-button">Отменить</button>
-                            <button type="button" name="default" class="footer-button">По умолчанию</button>
-                            <button type="button" name="restore" class="footer-button">Восстановить</button>
-                            <button type="button" name="save" class="footer-button">Сохранить</button>
-                            <button type="button" name="apply" class="footer-button">Применить</button>
+                            <button type="button" name="remember" class="footer-button">Запомнить</button>
                             <button type="button" name="close" class="footer-button">Закрыть</button>
                         </div>
                     </div>
@@ -200,33 +188,25 @@ function FactoryForm() {
             let style = document.createElement('style');
             style.textContent = formStyle;
             this.shadowRoot.append(style);
+            let inputs = this.shadowRoot.querySelectorAll("input");
+            inputs.forEach(input => {
+                input.oninput = this.inputInput.bind(this);
+            })
+
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='cancel'").onclick = this.cancel.bind(this);
-            this.shadowRoot.querySelector("#settings-tab-buttons button[name='default'").onclick = this.defaultSettings.bind(this);
-            this.shadowRoot.querySelector("#settings-tab-buttons button[name='restore'").onclick = this.restoreSettings.bind(this);
-            this.shadowRoot.querySelector("#settings-tab-buttons button[name='save'").onclick = this.saveSettings.bind(this);
+            this.shadowRoot.querySelector("#settings-tab-buttons button[name='remember'").onclick = this.rememberSettings.bind(this);
             this.shadowRoot.querySelector("#settings-tab-buttons button[name='close'").onclick = this.closeSettings.bind(this);
-            this.shadowRoot.querySelector("#settings-tab-buttons button[name='apply'").onclick = this.applySettings.bind(this);
 
             this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='cancel'").onclick = this.cancel.bind(this);
-            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='default'").onclick = this.defaultTopDistance.bind(this);
-            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='restore'").onclick = this.restoreTopDistance.bind(this);
-            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='save'").onclick = this.saveTopDistance.bind(this);
+            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='remember'").onclick = this.rememberTopDistance.bind(this);
             this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='close'").onclick = this.closeTopDistance.bind(this);
-            this.shadowRoot.querySelector("#top-distance-tab-buttons button[name='apply'").onclick = this.applyTopDistance.bind(this);
-
 
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='cancel'").onclick = this.cancel.bind(this);
-            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='default'").onclick = this.defaultLessons.bind(this);
-            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='restore'").onclick = this.restoreLessons.bind(this);
-            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='save'").onclick = this.saveLessons.bind(this);
-            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='apply'").onclick = this.applyLessons.bind(this);
+            this.shadowRoot.querySelector("#lessons-tab-buttons button[name='remember'").onclick = this.rememberLessons.bind(this);
             this.shadowRoot.querySelector("#lessons-tab-buttons button[name='close'").onclick = this.closeLessons.bind(this);
 
             this.shadowRoot.querySelector("#options-tab-buttons button[name='cancel'").onclick = this.cancel.bind(this);
-            this.shadowRoot.querySelector("#options-tab-buttons button[name='default'").onclick = this.defaultOptions.bind(this);
-            this.shadowRoot.querySelector("#options-tab-buttons button[name='restore'").onclick = this.restoreOptions.bind(this);
-            this.shadowRoot.querySelector("#options-tab-buttons button[name='save'").onclick = this.saveOptions.bind(this);
-            this.shadowRoot.querySelector("#options-tab-buttons button[name='apply'").onclick = this.applyOptions.bind(this);
+            this.shadowRoot.querySelector("#options-tab-buttons button[name='remember'").onclick = this.rememberOptions.bind(this);
             this.shadowRoot.querySelector("#options-tab-buttons button[name='close'").onclick = this.closeOptions.bind(this);
 
             this.shadowRoot.querySelector("#db-tab-buttons button[name='clear'").onclick = this.clearDB.bind(this);
@@ -281,7 +261,6 @@ function FactoryForm() {
             else {
                 alert(mdResult);
             }
-
         }
 
         restoreOptions() {
@@ -359,7 +338,7 @@ function FactoryForm() {
             this.openForm();
         }
 
-        isChanged() {
+        get isChanged() {
             return this.form.cloud.checked !== !settings.cloud.hidden ||
             this.form.horizon.checked !== !settings.horizon.hidden ||
             this.form.elements['big-cactus'].checked !== !settings.bigCactus.hidden ||
@@ -380,8 +359,37 @@ function FactoryForm() {
             this.form.theme.checked !== (settings.theme === 'dark');
         }
 
+        inputInput() {
+            if (this.isChanged) {
+                let closeButtons = this.shadowRoot.querySelectorAll("button[name='close']");
+                closeButtons.forEach(button => {
+                    button.innerHTML = 'Сохранить';
+                    button.onclick = this.save.bind(this);
+                })
+            }
+            else {
+                let closeButtons = this.shadowRoot.querySelectorAll("button[name='close']");
+                closeButtons.forEach(button => {
+                    button.innerHTML = 'Закрыть';
+                    button.onclick = this.close.bind(this);
+                })
+            }
+        }
+
+        async save() {
+            this.saveOptions();
+            this.saveSettings();
+            this.saveTopDistance();
+            this.saveLessons();
+            let closeButtons = this.shadowRoot.querySelectorAll("button[name='close']");
+            closeButtons.forEach(button => {
+                button.innerHTML = 'Закрыть';
+                button.onclick = this.close.bind(this);
+            })
+        }
+
         async close() {
-            if (this.isChanged()) {
+            if (this.isChanged) {
                 let modalResult = await this.closeDialog.show("Настройки были изменены. Вы хотите сохранить изменения?");
                 if (modalResult === "Cancel" || modalResult === "Close")
                     return;
@@ -403,6 +411,56 @@ function FactoryForm() {
         }
 
         async cancel() {
+            let cancelResult = await this.cancelDialog.show("Выберите способ отмены");
+            if (cancelResult === "Close")
+                return;
+            if (cancelResult === "Cancel")
+            {
+                this.cancelSettings();
+                this.cancelTopDistance();
+                this.cancelLessons();
+                this.cancelOptions();
+                let closeButtons = this.shadowRoot.querySelectorAll("button[name='close']");
+                closeButtons.forEach(button => {
+                    button.innerHTML = 'Закрыть';
+                    button.onclick = this.close.bind(this);
+                })
+            }
+
+            if (cancelResult === "Default")
+            {
+                this.defaultSettings();
+                this.defaultLessons();
+                this.defaultOptions();
+                this.defaultTopDistance();
+                if (this.isChanged) {
+                    let closeButtons = this.shadowRoot.querySelectorAll("button[name='close']");
+                    closeButtons.forEach(button => {
+                        button.innerHTML = 'Сохранить';
+                        button.onclick = this.save.bind(this);
+                    })
+                }
+            }
+
+            if (cancelResult === "Restore")
+            {
+                this.defaultSettings();
+                this.defaultLessons();
+                this.defaultOptions();
+                this.defaultTopDistance();
+                if (this.isChanged) {
+                    let closeButtons = this.shadowRoot.querySelectorAll("button[name='close']");
+                    closeButtons.forEach(button => {
+                        button.innerHTML = 'Сохранить';
+                        button.onclick = this.save.bind(this);
+                    })
+                }
+            }
+
+
+        }
+
+        async default() {
             let cancelResult = await this.cancelDialog.show("Выберите действие");
             if (cancelResult === "Close")
                 return;
@@ -425,7 +483,6 @@ function FactoryForm() {
             //     }
 
         }
-
         // cancel() {
         //     this.form.style.display = "none";
         // }
@@ -507,14 +564,6 @@ function FactoryForm() {
             }
         }
 
-        radioChange(e) {
-            const radio = e.target.value;
-            this.form.elements['distance-min'].value = settings[radio].distance.min;
-            this.form.elements['distance-max'].value = settings[radio].distance.max;
-            this.form.elements['top-min'].value = settings[radio].top.min;
-            this.form.elements['top-max'].value = settings[radio].top.max;
-        }
-
         saveOptions() {
             settings.theme = this.form.theme.checked ? 'dark' : 'light';
         }
@@ -526,6 +575,28 @@ function FactoryForm() {
             settings.topic.name = this.form.elements['topic-name'].value;
             settings.topology = this.form.topology.value.split('-');
             settings.populationCount = this.form.populationCount.value;
+        }
+
+        rememberSettings() {
+
+        }
+
+        rememberTopDistance() {
+        }
+
+        rememberOptions() {
+        }
+
+        rememberLessons() {
+        }
+
+
+        radioChange(e) {
+            const radio = e.target.value;
+            this.form.elements['distance-min'].value = settings[radio].distance.min;
+            this.form.elements['distance-max'].value = settings[radio].distance.max;
+            this.form.elements['top-min'].value = settings[radio].top.min;
+            this.form.elements['top-max'].value = settings[radio].top.max;
         }
 
         defaultSettings() {
