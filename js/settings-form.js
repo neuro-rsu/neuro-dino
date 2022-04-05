@@ -447,6 +447,13 @@ function FactoryForm() {
                         button.onclick = this.save.bind(this);
                     })
                 }
+                else {
+                    let closeButtons = this.shadowRoot.querySelectorAll("button[name='close']");
+                    closeButtons.forEach(button => {
+                        button.innerHTML = 'Закрыть';
+                        button.onclick = this.close.bind(this);
+                    })
+                }
             }
 
             if (cancelResult === "Restore")
@@ -460,6 +467,13 @@ function FactoryForm() {
                     closeButtons.forEach(button => {
                         button.innerHTML = 'Сохранить';
                         button.onclick = this.save.bind(this);
+                    })
+                }
+                else {
+                    let closeButtons = this.shadowRoot.querySelectorAll("button[name='close']");
+                    closeButtons.forEach(button => {
+                        button.innerHTML = 'Закрыть';
+                        button.onclick = this.close.bind(this);
                     })
                 }
             }
