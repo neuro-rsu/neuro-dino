@@ -523,7 +523,6 @@ svg rect{
     fill: var(--dark-pterodactyl-color);
 }
 
-.cactuses path
 .cactuses path {
     fill: var(--cactus-color);
 }
