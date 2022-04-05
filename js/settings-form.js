@@ -220,6 +220,9 @@ function FactoryForm() {
             this.shadowRoot.querySelector("#db-tab-buttons button[name='upload'").onclick = this.uploadDB.bind(this);
             this.shadowRoot.querySelector("#db-tab-buttons button[name='close'").onclick = this.closeDB.bind(this);
 
+            this.shadowRoot.querySelector("#options-tab-section input[name='theme'").oninput = this.changeTheme.bind(this);
+
+
 
             // this.shadowRoot.getElementById('save').onclick = this.save.bind(this);
             // this.shadowRoot.getElementById('delete').onclick = this.delete.bind(this);
@@ -643,6 +646,7 @@ function FactoryForm() {
 
         defaultOptions() {
             this.form.theme.checked = defaultSettings.theme === 'dark';
+            this.changeTheme();
         }
 
         cancelSettings() {
@@ -683,6 +687,7 @@ function FactoryForm() {
 
         cancelOptions() {
             this.form.theme.checked = settings.theme === 'dark';
+            this.changeTheme();
         }
 
         closeSettings() {
@@ -742,6 +747,29 @@ function FactoryForm() {
             this.form.theme.checked ? gameSpace.classList.add('dark') : gameSpace.classList.remove('dark');
             this.form.theme.checked ? this.form.classList.add('dark') : this.form.classList.remove('class');
             this.form.theme.checked ? this.shadowRoot.querySelector('modal-dialog').changeTheme('dark') : this.shadowRoot.querySelector('modal-dialog').changeTheme('light');
+        }
+
+        changeTheme() {
+            if (this.isChanged) {
+                let closeButtons = this.shadowRoot.querySelectorAll("button[name='close']");
+                closeButtons.forEach(button => {
+                    button.innerHTML = 'Сохранить';
+                    button.onclick = this.save.bind(this);
+                })
+            }
+            else {
+                let closeButtons = this.shadowRoot.querySelectorAll("button[name='close']");
+                closeButtons.forEach(button => {
+                    button.innerHTML = 'Закрыть';
+                    button.onclick = this.close.bind(this);
+                })
+            }
+            const gameSpace = document.querySelector('#game-space');
+            this.form.theme.checked ? gameSpace.classList.add('dark') : gameSpace.classList.remove('dark');
+            this.form.theme.checked ? this.form.classList.add('dark') : this.form.classList.remove('dark');
+            this.form.theme.checked ? this.shadowRoot.querySelector('modal-dialog').changeTheme('dark') : this.shadowRoot.querySelector('modal-dialog').changeTheme('light');
+            this.form.theme.checked ? this.shadowRoot.querySelector('cancel-dialog').changeTheme('dark') : this.shadowRoot.querySelector('cancel-dialog').changeTheme('light');
+            this.form.theme.checked ? this.shadowRoot.querySelector('close-dialog').changeTheme('dark') : this.shadowRoot.querySelector('close-dialog').changeTheme('light');
         }
 
         closeOptions() {

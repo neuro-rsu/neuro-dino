@@ -267,30 +267,19 @@
         " visibility="hidden" id="fourth-leg-bow" class="hidden"
     />
 
+    <animate href="#first-leg" attributeName="visibility" values="visible;hidden" dur="0.3s" repeatCount="indefinite" id="first-leg-anim"/>
 
-    <animate href="#first-leg" attributeName="visibility" values="visible;hidden" dur="0.3s"
-        repeatCount="indefinite" id="first-leg-anim"/>
+    <animate href = "#fourth-leg" attributeName="visibility" values = "hidden;visible" dur="0.3s" repeatCount="indefinite"/>
 
-    <animate href = "#fourth-leg" attributeName="visibility"
-        values = "hidden;visible" dur="0.3s" repeatCount="indefinite"></animate>
+    <animate href="#second-leg" attributeName="visibility" values="hidden;visible" dur="0.3s" repeatCount="indefinite" id="second-leg-anim"/>
 
-    <animate href="#second-leg" attributeName="visibility" values="hidden;visible" dur="0.3s"
-        repeatCount="indefinite" id="second-leg-anim"/>
+    <animate href = "#third-leg" attributeName = "visibility" values = "visible;hidden" dur="0.3s" repeatCount = "indefinite"/>
 
-    <animate href = "#third-leg" attributeName = "visibility"
-        values = "visible;hidden" dur="0.3s" repeatCount = "indefinite"></animate>
+    <animate href="#first-leg-bow" attributeName="visibility" values="visible;hidden" dur="0.3s" repeatCount="indefinite" id="first-leg-bow-anim"/>
 
+    <animate href = "#fourth-leg-bow" attributeName="visibility" values = "hidden;visible" dur="0.3s" repeatCount="indefinite"/>
 
-    <animate href="#first-leg-bow" attributeName="visibility" values="visible;hidden" dur="0.3s"
-        repeatCount="indefinite" id="first-leg-bow-anim"/>
+    <animate href="#second-leg-bow" attributeName="visibility" values="hidden;visible" dur="0.3s" repeatCount="indefinite" id="second-leg-bow-anim"/>
 
-    <animate href = "#fourth-leg-bow" attributeName="visibility"
-        values = "hidden;visible" dur="0.3s" repeatCount="indefinite"></animate>
-
-    <animate href="#second-leg-bow" attributeName="visibility" values="hidden;visible" dur="0.3s"
-        repeatCount="indefinite" id="second-leg-bow-anim"/>
-
-    <animate href = "#third-leg-bow" attributeName = "visibility"
-        values = "visible;hidden" dur="0.3s" repeatCount = "indefinite"></animate>
-
+    <animate href = "#third-leg-bow" attributeName = "visibility" values = "visible;hidden" dur="0.3s" repeatCount = "indefinite"/>
 </svg>

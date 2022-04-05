@@ -142,7 +142,7 @@ export const defaultSettings = {
         host: "http://localhost",
         port: "5984",
     },
-    theme: 'dark',
+    theme: 'light',
 }
 
 export function compactSettings() {
