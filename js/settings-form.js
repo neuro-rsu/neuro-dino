@@ -397,7 +397,8 @@ function FactoryForm() {
 
         async close() {
             if (this.isChanged) {
-                let modalResult = await this.closeDialog.show("Настройки были изменены. Вы хотите сохранить изменения?");
+                let modalResult = await this.closeDialog.show(
+                    "Настройки изменены. Вы хотите сохранить изменения?");
                 if (modalResult === "Cancel" || modalResult === "Close")
                     return;
                 if (modalResult === "Yes") {
