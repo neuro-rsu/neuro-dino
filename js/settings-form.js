@@ -599,18 +599,18 @@ function FactoryForm() {
             settings.populationCount = this.form.populationCount.value;
         }
 
-        rememberSettings() {
+        // rememberSettings() {
 
-        }
+        // }
 
-        rememberTopDistance() {
-        }
+        // rememberTopDistance() {
+        // }
 
-        rememberOptions() {
-        }
+        // rememberOptions() {
+        // }
 
-        rememberLessons() {
-        }
+        // rememberLessons() {
+        // }
 
 
         radioChange(e) {
@@ -708,7 +708,7 @@ function FactoryForm() {
             this.close();
         }
 
-        applySettings() {
+        rememberSettings() {
             settings.cloud.hidden = !this.form.cloud.checked;
             settings.horizon.hidden = !this.form.horizon.checked;
             settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
@@ -722,7 +722,7 @@ function FactoryForm() {
             settings.night.hidden = !this.form.night.checked;
         }
 
-        applyTopDistance() {
+        rememberTopDistance() {
             let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
             for (let i = 0; i < radioList.length; i++) {
                 const radio = radioList[i];
@@ -738,7 +738,7 @@ function FactoryForm() {
 
 
 
-        applyLessons() {
+        rememberLessons() {
             settings.lesson.number = this.form.elements['lesson-number'].value;
             settings.lesson.name = this.form.elements['lesson-name'].value;
             settings.topic.number = this.form.elements['topic-number'].value;
@@ -755,7 +755,7 @@ function FactoryForm() {
             this.close();
         }
 
-        applyOptions() {
+        rememberOptions() {
             settings.theme = this.form.theme.checked ? 'dark' : 'light';
             const gameSpace = document.querySelector('#game-space');
             this.form.theme.checked ? gameSpace.classList.add('dark') : gameSpace.classList.remove('dark');
