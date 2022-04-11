@@ -257,30 +257,48 @@ function FactoryForm() {
         static pdb = new PouchDB('settings')
 
         restoreSettings() {
+            this.form.cloud.checked = !settings.cloud.hidden;
+            this.form.horizon.checked = !settings.horizon.hidden;
+            this.form.elements['big-cactus'].checked = !settings.bigCactus.hidden;
+            this.form.elements['small-cactus'].checked = !settings.smallCactus.hidden;
+            this.form.ground.checked = !settings.ground.hidden;
+            this.form.bumps.checked = !settings.bumps.hidden;
+            this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
+            this.form.moon.checked = !settings.moon.hidden;
+            this.form.star.checked = !settings.star.hidden;
+            this.form.night.checked = !settings.night.hidden;
 
         }
 
-        async restoreTopDistance() {
-            const mdResult = await this.modalDialog.show();
-            if (mdResult === "OK") {
-                alert(mdResult);
+        restoreTopDistance() {
+            let radioList = this.shadowRoot.querySelectorAll('[name="radio-setting"]');
+            for (let i = 0; i < radioList.length; i++) {
+                const radio = radioList[i];
+                if (radio.checked)
+                {
+                    this.form.elements['distance-min'].value = settings[radio.value].distance.min;
+                    this.form.elements['distance-max'].value = settings[radio.value].distance.max;
+                    this.form.elements['top-min'].value = settings[radio.value].top.min;
+                    this.form.elements['top-max'].value = settings[radio.value].top.max;
+                }
             }
-            else {
-                alert(mdResult);
-            }
+
         }
 
         restoreOptions() {
+            this.form.theme.checked = settings.theme === 'dark';
+            this.changeTheme();
 
         }
-        async restoreLessons() {
-            const mdResult = await this.modalDialog.show();
-            if (mdResult === "OK") {
-                alert(mdResult);
-            }
-            else {
-                alert(mdResult);
-            }
+
+
+        restoreLessons() {
+            this.form.elements['lesson-number'].value = settings.lesson.number;
+            this.form.elements['lesson-name'].value = settings.lesson.name;
+            this.form.elements['topic-number'].value = settings.topic.number;
+            this.form.elements['topic-name'].value = settings.topic.name;
+            this.form.topology.value = settings.topology.join('-');
+            this.form.populationCount.value = settings.populationCount;
         }
 
         attributeChangedCallback(name, oldValue, newValue) {
@@ -336,10 +354,10 @@ function FactoryForm() {
 
             this.form.topology.value = settings.topology.join('-');
             this.form.populationCount.value = settings.populationCount;
-            this.form.elements['lesson-name'].value = settings.lesson.name;
-            this.form.elements['lesson-number'].value = settings.lesson.number;
-            this.form.elements['topic-name'].value = settings.topic.name;
-            this.form.elements['topic-number'].value = settings.topic.number;
+            this.form.elements['lesson-name'].value == settings.lesson.name;
+            this.form.elements['lesson-number'].value == settings.lesson.number;
+            this.form.elements['topic-name'].value == settings.topic.name;
+            this.form.elements['topic-number'].value == settings.topic.number;
             this.form.theme.checked = settings.theme === 'dark';
 
             this.openForm();
@@ -459,10 +477,10 @@ function FactoryForm() {
 
             if (cancelResult === "Restore")
             {
-                this.defaultSettings();
-                this.defaultLessons();
-                this.defaultOptions();
-                this.defaultTopDistance();
+                this.restoreSettings();
+                this.restoreLessons();
+                this.restoreOptions();
+                this.restoreTopDistance();
                 if (this.isChanged) {
                     let closeButtons = this.shadowRoot.querySelectorAll("button[name='close']");
                     closeButtons.forEach(button => {

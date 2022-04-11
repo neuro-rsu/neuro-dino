@@ -91,4 +91,4 @@ export async function deleteDb() {
 export async function clearDb() {
     pdb.destroy().then( () => "База данных удалена")
     .catch(err => err)
-} 
+}
