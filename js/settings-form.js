@@ -537,7 +537,12 @@ function FactoryForm() {
         };
 
         deleteDB() {
-            this.modalDialog.show(deleteDb());
+            //this.modalDialog.show(deleteDb());
+            deleteDb().then(
+                () => this.modalDialog.show("Запись удалена")
+            ).catch(
+                (message) => this.modalDialog.show(message)
+            );
         };
 
         compactDB() {
