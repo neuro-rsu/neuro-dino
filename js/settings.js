@@ -72,6 +72,18 @@ export const defaultSettings = {
         hidden: false
     },
 
+    threeCactus: {
+        distance: {
+            min: 100,
+            max: 150,
+        },
+        top: {
+            min: 10,
+            max: 100,
+        },
+        hidden: false
+    },
+
 
     ground: {
         distance: {
