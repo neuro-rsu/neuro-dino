@@ -82,6 +82,7 @@ function FactoryForm() {
                             <label class="no-select"><input type="radio" name="radio-setting" value="pterodactyl">Птеродактиль</label>
                             <label class="no-select"><input type="radio" name="radio-setting" value="bigCactus">Большой кактус</label>
                             <label class="no-select"><input type="radio" name="radio-setting" value="smallCactus">Маленький кактус</label>
+                            <label class="no-select"><input type="radio" name="radio-setting" value="twoCactus">Два кактуса</label>
                         </div>
 
                         <label for="distance-group" class="no-select"><b>Расстояние между</b></label>
@@ -261,6 +262,7 @@ function FactoryForm() {
             this.form.horizon.checked = !settings.horizon.hidden;
             this.form.elements['big-cactus'].checked = !settings.bigCactus.hidden;
             this.form.elements['small-cactus'].checked = !settings.smallCactus.hidden;
+            this.form.elements['two-cactus'].checked = !settings.twoCactus.hidden;
             this.form.ground.checked = !settings.ground.hidden;
             this.form.bumps.checked = !settings.bumps.hidden;
             this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
@@ -345,6 +347,7 @@ function FactoryForm() {
             this.form.horizon.checked = !settings.horizon.hidden;
             this.form.elements['big-cactus'].checked = !settings.bigCactus.hidden;
             this.form.elements['small-cactus'].checked = !settings.smallCactus.hidden;
+            this.form.elements['two-cactus'].checked = !settings.twoCactus.hidden;
             this.form.ground.checked = !settings.ground.hidden;
             this.form.bumps.checked = !settings.bumps.hidden;
             this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
@@ -368,6 +371,7 @@ function FactoryForm() {
             this.form.horizon.checked !== !settings.horizon.hidden ||
             this.form.elements['big-cactus'].checked !== !settings.bigCactus.hidden ||
             this.form.elements['small-cactus'].checked !== !settings.smallCactus.hidden ||
+            this.form.elements['two-cactus'].checked !== !settings.twoCactus.hidden ||
             this.form.ground.checked !== !settings.ground.hidden ||
             this.form.bumps.checked !== !settings.bumps.hidden ||
             this.form.pterodactyl.checked !== !settings.pterodactyl.hidden ||
@@ -587,6 +591,7 @@ function FactoryForm() {
             settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
             settings.bigCactus.hidden = !this.form.elements['big-cactus'].checked;
             settings.smallCactus.hidden = !this.form.elements['small-cactus'].checked;
+            settings.twoCactus.hidden = !this.form.elements['two-cactus'].checked;
             settings.ground.hidden = !this.form.ground.checked;
             settings.bumps.hidden = !this.form.bumps.checked;
             settings.pterodactyl.hidden = !this.form.pterodactyl.checked;
@@ -650,6 +655,7 @@ function FactoryForm() {
             this.form.horizon.checked = !defaultSettings.horizon.hidden;
             this.form.elements['big-cactus'].checked = !defaultSettings.bigCactus.hidden;
             this.form.elements['small-cactus'].checked = !defaultSettings.smallCactus.hidden;
+            this.form.elements['two-cactus'].checked = !defaultSettings.twoCactus.hidden;
             this.form.ground.checked = !defaultSettings.ground.hidden;
             this.form.bumps.checked = !defaultSettings.bumps.hidden;
             this.form.pterodactyl.checked = !defaultSettings.pterodactyl.hidden;
@@ -692,6 +698,7 @@ function FactoryForm() {
             this.form.horizon.checked = !settings.horizon.hidden;
             this.form.elements['big-cactus'].checked = !settings.bigCactus.hidden;
             this.form.elements['small-cactus'].checked = !settings.smallCactus.hidden;
+            this.form.elements['two-cactus'].checked = !settings.twoCactus.hidden;
             this.form.ground.checked = !settings.ground.hidden;
             this.form.bumps.checked = !settings.bumps.hidden;
             this.form.pterodactyl.checked = !settings.pterodactyl.hidden;
@@ -738,6 +745,7 @@ function FactoryForm() {
             settings.horizon.hidden ? this.hideHorizon() : this.showHorizon();
             settings.bigCactus.hidden = !this.form.elements['big-cactus'].checked;
             settings.smallCactus.hidden = !this.form.elements['small-cactus'].checked;
+            settings.twoCactus.hidden = !this.form.elements['two-cactus'].checked;
             settings.ground.hidden = !this.form.ground.checked;
             settings.bumps.hidden = !this.form.bumps.checked;
             settings.pterodactyl.hidden = !this.form.pterodactyl.checked;
