@@ -184,7 +184,8 @@ function FactoryForm() {
 
         constructor () {
             super();
-
+            this.audio = new Audio('/audio/t-rex-get-it-on.mp3');
+            this.audio.loop = true;
             this.attachShadow({mode: 'open'});
 
             const template = document.createElement('template');
@@ -367,6 +368,15 @@ function FactoryForm() {
             this.form.theme.checked = settings.theme === 'dark';
 
             this.openForm();
+        }
+
+
+        play() {
+            if (this.audio.paused) {
+                this.audio.play();
+            } else {
+                this.audio.pause();
+            }
         }
 
         get isChanged() {

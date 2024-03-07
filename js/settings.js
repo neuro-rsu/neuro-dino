@@ -26,8 +26,8 @@ export const defaultSettings = {
     },
     cactus: {
         distance: {
-            min: 100,
-            max: 150,
+            min: 50,
+            max: 50,
         },
         top: {
             min: 10,
@@ -38,8 +38,8 @@ export const defaultSettings = {
 
     bigCactus: {
         distance: {
-            min: 100,
-            max: 150,
+            min: 50,
+            max: 50,
         },
         top: {
             min: 10,
@@ -50,8 +50,8 @@ export const defaultSettings = {
 
     smallCactus: {
         distance: {
-            min: 100,
-            max: 150,
+            min: 50,
+            max: 50,
         },
         top: {
             min: 10,
@@ -62,8 +62,8 @@ export const defaultSettings = {
 
     twoCactus: {
         distance: {
-            min: 100,
-            max: 150,
+            min: 50,
+            max: 50,
         },
         top: {
             min: 10,
@@ -74,8 +74,8 @@ export const defaultSettings = {
 
     threeCactus: {
         distance: {
-            min: 100,
-            max: 150,
+            min: 50,
+            max: 50,
         },
         top: {
             min: 10,

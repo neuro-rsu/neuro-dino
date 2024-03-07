@@ -17,6 +17,9 @@ let nextCloudDistance = 0;
 let bigCactusDistance = 0;
 let nextBigCactusDistance = 0;
 
+let nextCactusDistance = 0;
+let cactusDistance = 0;
+
 let smallCactusDistance = 0;
 let nextSmallCactusDistance = 0;
 
@@ -37,10 +40,11 @@ let nextBumpsDistance = 0;
 
 let nightDistance = 0;
 let nextNightDistance = 150;
-
+let audio;
 async function initDinoSchool() {
     await loadSettings();
     await createBestDinoBrain();
+   
     fetch("images/cactus.svg")
     .then(response => response.text())
     .then(svg => {
@@ -279,36 +283,33 @@ async function checkDinos(){
             settings.cloud.distance.max);
     }
 
-    bigCactusDistance++;
-    if (bigCactusDistance > nextBigCactusDistance) {
-        bigCactusDistance = 0;
-        createBigCactus();
-        nextBigCactusDistance = randomInteger(settings.bigCactus.distance.min,
-            settings.bigCactus.distance.max);
-    }
+    cactusDistance++;
+    if (cactusDistance > nextCactusDistance) {
+        cactusDistance = 0;
+        const cactusKind = randomInteger(0,3);
+        switch (cactusKind) {
+            case 0:
+                createBigCactus();
+                nextCactusDistance = randomInteger(settings.bigCactus.distance.min,
+                    settings.bigCactus.distance.max);
+                break;
+            case 1:
+                createSmallCactus();
+                nextCactusDistance = randomInteger(settings.smallCactus.distance.min,
+                    settings.smallCactus.distance.max);
+                break;
+            case 2:
+                createTwoCactus();
+                nextCactusDistance = randomInteger(settings.twoCactus.distance.min,
+                    settings.twoCactus.distance.max);
+                break;
+            case 3:
+                createThreeCactus();
+                nextCactusDistance = randomInteger(settings.threeCactus.distance.min,
+                    settings.threeCactus.distance.max);
+                break;
 
-    smallCactusDistance++;
-    if (smallCactusDistance > nextSmallCactusDistance) {
-        smallCactusDistance = 0;
-        createSmallCactus();
-        nextSmallCactusDistance = randomInteger(settings.smallCactus.distance.min,
-            settings.smallCactus.distance.max);
-    }
-
-    twoCactusDistance++;
-    if (twoCactusDistance > nextTwoCactusDistance) {
-        twoCactusDistance = 0;
-        createTwoCactus();
-        nextTwoCactusDistance = randomInteger(settings.twoCactus.distance.min,
-            settings.twoCactus.distance.max);
-    }
-
-    threeCactusDistance++;
-    if (threeCactusDistance > nextThreeCactusDistance) {
-        threeCactusDistance = 0;
-        createThreeCactus();
-        nextThreeCactusDistance = randomInteger(settings.threeCactus.distance.min,
-            settings.threeCactus.distance.max);
+        }
     }
 
     pterodactylDistance++;
