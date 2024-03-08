@@ -6,7 +6,7 @@ import {createPolygon} from './utils.js';
 import { DinoFactory } from "./neuro-dino.js";
 import { regDino } from "./reg-dino.js";
 
-import {changeBestDinoBrain, createBestDinoBrain} from './dino-brain.js'
+import {changeBestDinoBrain, createBestDinoBrain, clearBestDinoBrain} from './dino-brain.js'
 
 let gameOver=false;
 let gameStart=false;
@@ -14,20 +14,8 @@ let gameStart=false;
 let cloudDistance = 0;
 let nextCloudDistance = 0;
 
-let bigCactusDistance = 0;
-let nextBigCactusDistance = 0;
-
 let nextCactusDistance = 0;
 let cactusDistance = 0;
-
-let smallCactusDistance = 0;
-let nextSmallCactusDistance = 0;
-
-let twoCactusDistance = 0;
-let nextTwoCactusDistance = 0;
-
-let threeCactusDistance = 0;
-let nextThreeCactusDistance = 0;
 
 let groundDistance = 0;
 let nextGroundDistance = 0;
@@ -43,8 +31,9 @@ let nextNightDistance = 150;
 let audio;
 async function initDinoSchool() {
     await loadSettings();
-    await createBestDinoBrain();
-   
+    // await createBestDinoBrain();
+    await clearBestDinoBrain();
+
     fetch("images/cactus.svg")
     .then(response => response.text())
     .then(svg => {
@@ -64,7 +53,7 @@ async function initDinoSchool() {
         newTemplate.setAttribute('id', 'small-cactus');
         newTemplate.innerHTML = svg;
         gameSpace.append(newTemplate);
-        //createPolygon(newTemplate.content.querySelector('svg'), 'path', '', 'small-cactus');
+        createPolygon(newTemplate.content.querySelector('svg'), 'path', '', 'small-cactus');
     });
 
     fetch("images/two-cactus.svg")
@@ -75,7 +64,7 @@ async function initDinoSchool() {
         newTemplate.setAttribute('id', 'two-cactus');
         newTemplate.innerHTML = svg;
         gameSpace.append(newTemplate);
-        //createPolygon(newTemplate.content.querySelector('svg'), 'path', '', 'small-cactus');
+        createPolygon(newTemplate.content.querySelector('svg'), 'path', '', 'two-cactus');
     });
 
     fetch("images/three-cactus.svg")
@@ -86,7 +75,7 @@ async function initDinoSchool() {
         newTemplate.setAttribute('id', 'three-cactus');
         newTemplate.innerHTML = svg;
         gameSpace.append(newTemplate);
-        //createPolygon(newTemplate.content.querySelector('svg'), 'path', '', 'small-cactus');
+        createPolygon(newTemplate.content.querySelector('svg'), 'path', '', 'three-cactus');
     });
 
     fetch("images/cloud.svg")

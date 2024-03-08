@@ -6,18 +6,14 @@ var pdb = new PouchDB('dino');
 
 export let bestDinoBrain; // = new NeuralNetwork(settings.currentTopology);
 
-//await createBestDinoBrain();
-
 export async function createBestDinoBrain() {
     bestDinoBrain = new NeuralNetwork(settings.topology);
     bestDinoBrain.cost = -Infinity;
 
-    await pdb.get(settings.topology.join('-')).then(function (bestDinoBrainDB) {
+    await pdb.get(settings.topology.join('-')).then(bestDinoBrainDB => {
         bestDinoBrain.sections.forEach((item, index) => item.weights = bestDinoBrainDB.sections[index].weights);
         bestDinoBrain.cost = bestDinoBrainDB.cost;
-        // console.log(bestDinoBrainDB);
-    }).catch(function (err) {
-        // console.log(err);
+    }).catch( err => {
         bestDinoBrain._id = settings.topology.join('-');
         return pdb.put(bestDinoBrain);
     }).catch( err => {
@@ -29,12 +25,15 @@ export async function clearBestDinoBrain() {
     bestDinoBrain = new NeuralNetwork(settings.topology);
     bestDinoBrain.cost = -Infinity;
 
-    await pdb.get(settings.topology.join('-')).then(function (bestDinoBrainDB) {
+    await pdb.get(settings.topology.join('-')).then(bestDinoBrainDB => {
         bestDinoBrain._id = bestDinoBrainDB._id;
         bestDinoBrain._rev = bestDinoBrainDB._rev;
         return pdb.put(bestDinoBrain);
         // console.log(bestDinoBrainDB);
     }).catch( err => {
+        bestDinoBrain._id = settings.topology.join('-');
+        return pdb.put(bestDinoBrain);
+    }).    catch( err => {
         console.log(`Can't clear bestDinoBrain ${err}`);
     });
 }
@@ -55,7 +54,6 @@ export async function addBestDinoBrain() {
         console.log(`Can't add bestDinoBrain ${err}`);
     });
 }
-// bestDinoBrain.cost = -Infinity;
 
 export async function changeBestDinoBrain(dinoBrain) {
     if (dinoBrain.cost > bestDinoBrain.cost) {
@@ -66,11 +64,10 @@ export async function changeBestDinoBrain(dinoBrain) {
 }
 
 async function saveBestDinoBrain() {
-    await pdb.get(settings.topology.join('-')).then(function (bestDinoBrainDB) {
+    await pdb.get(settings.topology.join('-')).then(bestDinoBrainDB => {
         bestDinoBrain._id = bestDinoBrainDB._id;
         bestDinoBrain._rev = bestDinoBrainDB._rev;
         return pdb.put(bestDinoBrain);
-        //else if return pdb.put(cloud);
     }).catch( (err) => {
         console.log(`Can't save bestDinoBrain ${err}`);
     });
@@ -81,9 +78,9 @@ export async function compactDb() {
 }
 
 export async function deleteDb() {
-    pdb.destroy().then(function () {
+    pdb.destroy().then(() => {
         alert("База данных удалена");
-    }).catch(function (err) {
+    }).catch( err => {
         alert(err);
     })
 }

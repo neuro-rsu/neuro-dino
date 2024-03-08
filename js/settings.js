@@ -184,9 +184,9 @@ export async function loadSettings() {
 }
 
 export async function get() {
-    await pdb.get(getSettingsID).then(function (settingsDB) {
-        settings = settingsDB;
-    }).catch(function (err) {
+    await pdb.get(getSettingsID()).then(settingsDB =>
+        settings = settingsDB
+    ).catch(function (err) {
         create();
     });
 }
@@ -204,7 +204,7 @@ export async function save() {
 }
 
 function getSettingsID() {
-    return `{settings.lesson.number.toString()}.{settings.topic.number.toString()}:{settings.topology.join('-')}.{settings.populationCount.toString()}`;
+    return `${settings.lesson.number.toString()}.${settings.topic.number.toString()}:${settings.topology.join('-')}.${settings.populationCount.toString()}`;
 }
 
 export async function create() {

@@ -159,7 +159,7 @@ function DinoFactory() {
         // }
         check(cactus, cactusCoords) {
             const dino = this.shadowRoot.querySelector('svg');
-            return isIntersect(dino, cactus, 'big-cactus');
+            return isIntersect(dino, cactus, cactus.classList[0]);
 
         }
 
