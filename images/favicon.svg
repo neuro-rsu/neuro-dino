@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" baseProfile="full" width="186" height="137" fill="grey">
+    <path d="M0 48,h7,v12,h6,v7,h6,v6,h13,v-6,h7,v-7,h9,v-6,h10,v-6,h6,v-42,h7,v-6,h51,v6,h6,v29,h-32,v6,h19,v7,h-25,v12,h13,v13,h-7,v-6,h-6,v22,h-7,v10,h-6,v6,h-6,v7,h-45,v-7,h-7,v-6,h-6,v-7,h-6,v-6,h-7,z" stroke="transparent"/>
+    <rect x="77" y="9" fill="transparent" height="7" width="6"/>
+    <path d="M95 34,v8,h20,v-1,h13,v-7,z" fill="transparent"/>
+    <path d="M32 111,v26,h13,v-6,h-6,v-7,h6,v-6,h6,v-7,z"/>
+    <path d="M58 111,v7,h6,v19,h13,v-6,h-6,v-20,z"/>
+</svg>

@@ -275,7 +275,21 @@ async function checkDinos(){
     cactusDistance++;
     if (cactusDistance > nextCactusDistance) {
         cactusDistance = 0;
-        const cactusKind = randomInteger(0,3);
+        let cactusIndexes = []
+        if (!settings.bigCactus.hidden) {
+            cactusIndexes.push(0)
+        }
+        if (!settings.smallCactus.hidden) {
+            cactusIndexes.push(1)
+        }
+        if (!settings.twoCactus.hidden) {
+            cactusIndexes.push(2)
+        }
+        if (!settings.threeCactus.hidden) {
+            cactusIndexes.push(3)
+        }
+        let cactuses = +!settings.bigCactus.hidden
+        const cactusKind = cactusIndexes[randomInteger(0,cactusIndexes.length - 1)];
         switch (cactusKind) {
             case 0:
                 createBigCactus();
