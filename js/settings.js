@@ -1,4 +1,4 @@
-const pdb = new PouchDB('settings');
+const pdb = new PouchDB('dino-settings');
 
 export let settings;
 
@@ -26,8 +26,8 @@ export const defaultSettings = {
     },
     cactus: {
         distance: {
-            min: 50,
-            max: 50,
+            min: 100,
+            max: 100,
         },
         top: {
             min: 10,
@@ -38,8 +38,8 @@ export const defaultSettings = {
 
     bigCactus: {
         distance: {
-            min: 50,
-            max: 50,
+            min: 100,
+            max: 100,
         },
         top: {
             min: 10,
@@ -50,8 +50,8 @@ export const defaultSettings = {
 
     smallCactus: {
         distance: {
-            min: 50,
-            max: 50,
+            min: 100,
+            max: 100,
         },
         top: {
             min: 10,
@@ -62,8 +62,8 @@ export const defaultSettings = {
 
     twoCactus: {
         distance: {
-            min: 50,
-            max: 50,
+            min: 100,
+            max: 100,
         },
         top: {
             min: 10,
@@ -74,8 +74,8 @@ export const defaultSettings = {
 
     threeCactus: {
         distance: {
-            min: 50,
-            max: 50,
+            min: 100,
+            max: 100,
         },
         top: {
             min: 10,

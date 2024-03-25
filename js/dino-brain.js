@@ -4,7 +4,7 @@ import {settings} from './settings.js';
 
 var pdb = new PouchDB('dino');
 
-export let bestDinoBrain; // = new NeuralNetwork(settings.currentTopology);
+export let                         bestDinoBrain; // = new NeuralNetwork(settings.currentTopology);
 
 export async function createBestDinoBrain() {
     bestDinoBrain = new NeuralNetwork(settings.topology);

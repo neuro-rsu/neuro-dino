@@ -183,6 +183,7 @@ async function initDinoSchool() {
         scoreID = setInterval(() => {
             let score = document.getElementById('score').textContent;
             score =+score + 1;
+            cactusTime++;
             document.getElementById('score').textContent = score;
         }, 100);
         requestAnimationFrame(checkDinos);
@@ -190,16 +191,17 @@ async function initDinoSchool() {
 }
 
 let scoreID;
+let cactusTime = 0;
 
 initDinoSchool();
 
 function dinoJump() {
     if (!gameStart) {
         gameStart = true;
-
         scoreID = setInterval(() => {
             let score = document.getElementById('score').textContent;
             score =+score + 1;
+            cactusTime++;
             document.getElementById('score').textContent = score;
         }, 100);
         requestAnimationFrame(checkDino);
@@ -250,6 +252,7 @@ function dinoJump() {
         scoreID = setInterval(() => {
             let score = document.getElementById('score').textContent;
             score =+score + 1;
+            cactusTime++;
             document.getElementById('score').textContent = score;
         }, 100);
         requestAnimationFrame(checkDino);
@@ -268,6 +271,7 @@ function dinoJump() {
 
 async function checkDinos(){
 
+    console.debug(document.getElementById('score').textContent)
     cloudDistance++;
     if (cloudDistance > nextCloudDistance) {
         cloudDistance = 0;
@@ -277,8 +281,12 @@ async function checkDinos(){
     }
 
     cactusDistance++;
-    if (cactusDistance > nextCactusDistance) {
+
+    // if (cactusDistance > nextCactusDistance) {
+    if (cactusTime > 15) {
+        // cactusDistance = 0;
         cactusDistance = 0;
+        cactusTime = 0;
         let cactusIndexes = []
         if (!settings.bigCactus.hidden) {
             cactusIndexes.push(0)
@@ -315,7 +323,6 @@ async function checkDinos(){
                 nextCactusDistance = randomInteger(settings.threeCactus.distance.min,
                     settings.threeCactus.distance.max);
                 break;
-
         }
     }
 

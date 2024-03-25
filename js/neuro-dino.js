@@ -88,9 +88,9 @@ function DinoFactory() {
             this.dinoBrain.cost = 0;
 
             this.randomAmount = Math.random();
-            if ( this.randomAmount < 0.75 ) {
+            // if ( this.randomAmount < 0.75 ) {
                 this.dinoBrain.mutate();
-            }
+            // }
 
         }
 
